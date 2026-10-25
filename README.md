@@ -6,9 +6,9 @@ Built at **Cal Hacks 13.0** (October 2026) · [Devpost](https://devpost.com/soft
 
 ## Demo
 
-https://github.com/user-attachments/assets/89bdd6bd-059b-4931-928e-b351fb59be68
+https://github.com/user-attachments/assets/8568959e-ca1a-450a-8997-5afc132e93c3
 
-Also on [YouTube](https://www.youtube.com/watch?v=1gewQwKMbPc).
+[Download the demo video](docs/demo.mp4)
 
 ## Problem
 
@@ -23,16 +23,6 @@ Over 200 million people live with eczema, and triggers are different for everyon
 | **Insight (Claude)** | Claude gathers your data with tools, finds what changed before each flare, asks a few questions to rule things out, and names the most likely trigger plus a simple test to confirm it. |
 
 SkinXAI never diagnoses. It finds patterns in your own data and suggests confirming with a dermatologist.
-
-![Live scratch detection](docs/img/live-scratch.jpg)
-
-| Summary | Trends | Product ingredients |
-|---|---|---|
-| ![Summary](docs/img/today.jpg) | ![Trends](docs/img/trends.jpg) | ![Ingredients](docs/img/trends-shampoo.jpg) |
-
-| Claude: what changed | Claude: conclusion | Watch |
-|---|---|---|
-| ![Claude timeline](docs/img/insight-cards.jpg) | ![Claude conclusion](docs/img/insight-replay.jpg) | <img src="docs/img/watch.png" width="220" alt="Watch app"> |
 
 ## How it works
 
