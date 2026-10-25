@@ -1,0 +1,30 @@
+#!/bin/bash
+# Screenshot the watch app on Mac mini 2 (run scripts/rb <name> watch first).
+# Usage: scripts/watchshot <name> <screen> [wait_seconds=4] [extra launch args...]
+#   <screen>: names the output file (passed as -screen; the watch app has one screen, e.g. ring)
+#   -live 1 starts monitoring with the simulator's scripted wrist. Never pass -stream here.
+set -uo pipefail
+NAME=${1:?usage}; SCREEN=${2:?usage}; WAIT=${3:-4}; shift 3 2>/dev/null || shift $#
+EXTRA="$*"
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+source "$ROOT/scripts/common.sh"
+TAG=${SHOT_TAG:+-$SHOT_TAG}
+OUT="$ROOT/shots/$NAME-watch-$SCREEN$TAG.png"; mkdir -p "$ROOT/shots"
+rssh bash -s <<REMOTE
+set -e
+DEV="ET-$NAME-Watch"
+UDID=\$(xcrun simctl list devices available | grep "\$DEV (" | grep -oE '[0-9A-F-]{36}' | head -1)
+if [ -z "\$UDID" ]; then
+  RT=$WATCH_RUNTIME
+  UDID=\$(xcrun simctl create "\$DEV" $WATCH_TYPE \$RT)
+fi
+xcrun simctl boot \$UDID 2>/dev/null || true
+xcrun simctl bootstatus \$UDID -b >/dev/null
+xcrun simctl install \$UDID et/$NAME/dd/Build/Products/Debug-watchsimulator/EczemaTwinWatch.app
+xcrun simctl terminate \$UDID $WATCH_BUNDLE >/dev/null 2>&1 || true
+xcrun simctl launch \$UDID $WATCH_BUNDLE -screen $SCREEN $EXTRA >/dev/null
+sleep $WAIT
+xcrun simctl io \$UDID screenshot --type=png /tmp/et-$NAME-w-$SCREEN.png >/dev/null 2>&1
+[ "${KEEP_RUNNING:-0}" = 1 ] || xcrun simctl terminate \$UDID $WATCH_BUNDLE >/dev/null 2>&1 || true
+REMOTE
+scp -q "${SSH_OPTS[@]}" "$HOST:/tmp/et-$NAME-w-$SCREEN.png" "$OUT" && echo "$OUT"

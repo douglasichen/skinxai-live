@@ -1,0 +1,33 @@
+#!/bin/bash
+# Remote build on Mac mini 2.
+# Usage: scripts/rb <name> [ios|watch|all|device]
+#   <name>  your agent/worktree name (letters, digits, dash). Each name gets its own copy + DerivedData.
+#   ios     build the iPhone app for the simulator (also builds the embedded watch app)
+#   watch   build only the watch app for the watch simulator
+#   all     ios + watch (default)
+#   device  build the iPhone app for a real device (unsigned) to catch device-only errors
+# Prints only errors (file paths are rewritten to your local checkout) and BUILD SUCCEEDED/FAILED.
+set -uo pipefail
+NAME=${1:?usage: scripts/rb <name> [ios|watch|all|device]}; WHAT=${2:-all}
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+source "$ROOT/scripts/common.sh"
+(cd "$ROOT" && xcodegen generate --quiet) || { echo "xcodegen failed"; exit 1; }
+rssh "mkdir -p et/$NAME" || exit 1
+rsync -az --delete --exclude .git --exclude .build --exclude .swiftpm --exclude shots -e "$RSYNC_SSH" "$ROOT/" "$HOST:et/$NAME/src/" || exit 1
+REMOTE_SRC="/Users/jacky/et/$NAME/src"
+# Simulator builds are signed ad hoc ("Sign to Run Locally", what Xcode does): SpringBoard only shows
+# a launch storyboard from a sealed bundle (unsigned = black launch), and entitlements apply.
+SIM_SIGN="CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER="
+build() {
+  local scheme=$1 dest=$2 sign=${3:-CODE_SIGNING_ALLOWED=NO}
+  echo "== $scheme ($dest)"
+  rssh "cd et/$NAME/src && xcodebuild -project EczemaTwin.xcodeproj -scheme $scheme -destination '$dest' -derivedDataPath ../dd $sign build 2>&1" \
+    | grep -E "error:|BUILD (SUCCEEDED|FAILED)|\*\* BUILD" | sed "s#$REMOTE_SRC#$ROOT#g" | awk '!seen[$0]++' | head -80
+}
+case $WHAT in
+  ios) build EczemaTwin 'generic/platform=iOS Simulator' "$SIM_SIGN" ;;
+  watch) build EczemaTwinWatch 'generic/platform=watchOS Simulator' "$SIM_SIGN" ;;
+  all) build EczemaTwin 'generic/platform=iOS Simulator' "$SIM_SIGN"; build EczemaTwinWatch 'generic/platform=watchOS Simulator' "$SIM_SIGN" ;;
+  device) build EczemaTwin 'generic/platform=iOS' ;;
+  *) echo "unknown target $WHAT"; exit 2 ;;
+esac

@@ -1,0 +1,661 @@
+[
+ {
+  "scenario": "S1_bodywash",
+  "model": "claude-opus-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "new body wash (scented)",
+     "confidence": "medium",
+     "lag_days": "about 2",
+     "evidence": "You started it on Oct 9. Two days later (Oct 11) itch jumped from 2 to 6 and night scratching tripled (10 to 29 min). This fits the usual 1-3 day lag. You used it every day after that, and the flare has not settled in 8 days. It is the only new product in the log. This is still only one start event, and nothing else changed back to compare, so it is not proven."
+    },
+    {
+     "trigger": "gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Gym on Oct 8 alone caused no change. Gym on Oct 10 came the day before the flare, but you were also using the new body wash and had pizza. Gym on Oct 16-18 happened during an ongoing flare, so its effect cannot be seen. Sweat could add to the problem, but it is unlikely to be the main cause."
+    },
+    {
+     "trigger": "exam stress / short sleep",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Exam stress started Oct 14, after the flare had already begun, so it did not start it. Night scratching rose to its highest point (42 min) and sleep dropped to 4.8 h on Oct 15. Stress and poor sleep may be keeping the flare going, but they also partly result from it."
+    }
+   ],
+   "cannot_separate": [
+    "Body wash vs. the Oct 10 combination (pizza + gym + body wash on the same day, flare the next day). Pizza alone on Oct 7 and gym alone on Oct 8 did nothing, which points toward the body wash. But a combination effect cannot be ruled out yet.",
+    "Coffee was logged every single day, both calm days and flare days, so this data cannot say anything about it.",
+    "Humidity does not show a consistent pattern: the flare continued at 43%, 51%, and 65%."
+   ],
+   "next_experiment": "First get the skin checked (see red flags). Then: stop the scented body wash completely and go back to your previous wash, or use a fragrance-free one. Keep everything else as normal, including coffee, food, and gym, so only one thing changes. Shower and gently pat dry soon after the gym. Keep logging every day for 10-14 days. If itch and night scratching fall clearly within about a week, the body wash moves up to a stronger suspect. Do not test the body wash again on your own while the skin is broken. If you ever want to confirm it later, ask a doctor about doing it safely once your skin is fully calm.",
+   "red_flags": [
+    "The flare is spreading: it started on the inner elbows, then reached the neck, and now the wrists.",
+    "The skin has been bleeding from scratching for 6 days in a row (Oct 13-18). Open, scratched skin can become infected.",
+    "Night scratching stays very high (about 38-42 min, compared with about 10 before) and sleep has fallen as low as 4.8 h. There has been no improvement for 8 days.",
+    "Your last log entry is Oct 18 and today is Oct 23, so the app cannot see how your skin is now. Please contact a doctor today, especially if you notice oozing, yellow or honey-colored crusts, warmth, pain, or fever."
+   ],
+   "plain_summary": "Your skin was calm (itch 1-3) until Oct 11, when a big flare started two days after you began a new scented body wash. It has kept going while you kept using that wash. The body wash is the most likely suspect (medium confidence). It is not proven, because it started around the same time as a pizza + gym day. Coffee and humidity show no pattern. Exam stress and short sleep came later and are probably making things worse rather than causing the flare. Most importantly: the rash is spreading and has been bleeding for days, so please contact a doctor today to get it checked. After that, stop the scented body wash, keep everything else the same, and keep logging so we can see if your skin settles."
+  }
+ },
+ {
+  "scenario": "S1_bodywash",
+  "model": "claude-opus-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "new body wash (scented)",
+     "confidence": "medium",
+     "lag_days": "about 2",
+     "evidence": "Your skin was stable (itch 1-3, about 4-12 min night scratching) until you started the scented body wash on 10-09. Two days later, on 10-11, itch jumped to 6, scratching rose to 29 min, and red patches appeared. You have used it every day since, and the flare has not settled. This fits a common lag. But it is based on a single start date with no stop, so it is not proven."
+    },
+    {
+     "trigger": "exam stress / short sleep (keeping the flare going, not starting it)",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Exam stress began on 10-14, three days after the flare had already started, so it cannot explain how the flare began. Night scratching kept rising on 10-14 and 10-15 (38 and 42 min) as sleep fell to 4.8 h, so stress may be making it worse. Short sleep is probably partly a result of the itching, not just a cause."
+    },
+    {
+     "trigger": "gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-2",
+     "evidence": "The gym on 10-08 was not followed by a flare. On 10-10 it happened together with the body wash, and from 10-16 to 10-18 it happened during a flare that was already ongoing. There is no clear sign it starts flares for you. It might add irritation when your skin is already inflamed."
+    }
+   ],
+   "cannot_separate": [
+    "Coffee was logged every single day, both before and during the flare, so its effect cannot be judged from this log. Nothing points to it right now.",
+    "Body wash vs. gym/sweat on 10-10: both happened that day. The gym alone on 10-08 did not cause a flare, which makes the body wash the stronger suspect, but one day is not enough to fully separate them.",
+    "From 10-14 on, the body wash, exam stress, and poor sleep all overlap. I can't tell which of them is keeping the flare going.",
+    "Pizza (10-07, 10-10): there were no flares after 10-07, so it looks unlikely, but there are too few data points to rule it out.",
+    "Humidity moved up and down (43-65%) with no consistent link to your itch."
+   ],
+   "next_experiment": "Stop the scented body wash completely, starting today. Go back to your old wash or a plain fragrance-free one. Keep coffee, food, and gym roughly the same, and rinse off soon after the gym so sweat isn't a new variable. Log every day for 10-14 days, because healing can lag too. If itch and night scratching clearly drop over that time, the body wash suspicion gets stronger. Don't test the body wash again while your skin is still broken. If you ever want to re-test it, ask a doctor or pharmacist first. Also, your log stops at 10-18, so please fill in 10-19 to today if you can.",
+   "red_flags": [
+    "The flare has spread (from inner elbows and neck to your wrists by 10-13), and your skin has been bleeding from scratching for 6 days in a row without getting better. Night scratching is still high (38-42 min) and sleep is low. Please contact a doctor today, since a spreading flare with broken skin needs to be checked.",
+    "Broken skin can get infected. Get care urgently if you notice oozing, yellow or honey-colored crusts, pus, fast spreading, fever, or the skin getting much more painful."
+   ],
+   "plain_summary": "Your skin was calm until you started the new scented body wash on 10-09. About 2 days later, your eczema flared, and it has stayed bad since then because you kept using it. That makes the body wash the main suspect (medium confidence), though one start date isn't proof. Exam stress and short sleep came after the flare had started, so they probably made it worse rather than causing it. Coffee, pizza, the gym, and humidity show no clear pattern. Stop the scented body wash and track how your skin does over the next 10-14 days. Because the flare has spread to your wrists and your skin has been bleeding for about a week, please contact a doctor today, and get help sooner if you see oozing, yellow crusts, or fever."
+  }
+ },
+ {
+  "scenario": "S1_bodywash",
+  "model": "claude-sonnet-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "New scented body wash",
+     "confidence": "medium",
+     "lag_days": "about 2 (started Oct 9, flare began Oct 11)",
+     "evidence": "Oct 5-10 was calm (itch 1-3, night scratching 4-12 min). Two days after the wash started, itch jumped to 6 and scratching to 29 min. New red patches appeared on the neck and elbows. You used the wash every day from Oct 9 to Oct 18, and the flare never settled. Nothing else that changes from day to day lines up as well, but this is still one flare with other things overlapping."
+    },
+    {
+     "trigger": "Gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-2",
+     "evidence": "You went to the gym on Oct 10, the day before the flare. But you also went on Oct 8 and nothing happened. Later gym days (Oct 16-18) did not clearly make things worse. It might add to the wash effect (sweat plus scented product on skin), but the data does not show it alone doing anything."
+    },
+    {
+     "trigger": "Exam stress and short sleep (keeping the flare going, not starting it)",
+     "confidence": "low",
+     "lag_days": "0-2",
+     "evidence": "Stress began Oct 14, three days after the flare started, so it cannot explain the start. Night scratching stayed high (38-42 min) while sleep fell to 4.8-5.5 hours. Scratching and poor sleep feed each other, so it is hard to say which causes which."
+    }
+   ],
+   "cannot_separate": [
+    "Body wash vs. gym/sweat vs. pizza: all three fell on Oct 10, the day before the flare. The wash continued afterward and the other two came and went, so the wash fits best, but only a test will show it.",
+    "Body wash vs. exam stress/poor sleep: from Oct 14 on, all of them are present together, so you cannot tell which one is keeping the flare going.",
+    "Coffee: you had it every day, so this log cannot show whether it matters. It does not explain why things changed on Oct 11.",
+    "Humidity: it swung between 43% and 65% with no matching pattern in itch (bad days at both 43% and 65%), so there is no evidence for it either way."
+   ],
+   "next_experiment": "Stop the scented body wash and switch to a fragrance-free, gentle cleanser. Keep everything else about the same (gym, food, coffee) for 5-7 days so the change is easy to read. Log daily as usual. If itch and night scratching start to fall within 2-4 days, that supports the wash. Once skin has been calm for a few days, you could try the old wash on one small area, or restart it alone, to confirm. Don't reintroduce it at the same time as anything else. Also note that your log ends on Oct 18, so please add Oct 19-23 so I can see what has happened since.",
+   "red_flags": [],
+   "plain_summary": "Your skin was calm until about Oct 11, two days after you started the new scented body wash, then flared and stayed bad. That makes the wash the most likely suspect, but I can only say 'medium' confidence because there are only two weeks of data and a few other things overlapped (gym, pizza, then exam stress and poor sleep). Stress and bad sleep probably aren't what started it, but they may be keeping it going. Humidity and coffee don't show a useful pattern. The easiest next step is to switch to a fragrance-free cleanser for a week and see if things settle. Your skin has had bleeding from scratching for several days with no improvement, so it's worth seeing a doctor or pharmacist about this flare, even though I don't see signs of infection in your notes. Contact a doctor today if you notice oozing, yellow or honey-colored crusts, patches spreading quickly, fever, or severe pain."
+  }
+ },
+ {
+  "scenario": "S1_bodywash",
+  "model": "claude-sonnet-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "New scented body wash",
+     "confidence": "medium",
+     "lag_days": "about 2",
+     "evidence": "You started it on Oct 9. Itch was 1-3 and night scratching 4-12 min for the 5 days before the flare. On Oct 11, two days after the first use, itch jumped to 6, scratching to 29 min, and red patches appeared. Both stayed high on every day you kept using it (Oct 11-18). The timing fits a 1-3 day lag. It is only one start event, though, and other things changed on Oct 10."
+    },
+    {
+     "trigger": "Exam stress and short sleep (making it worse, not starting it)",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "The flare began on Oct 11, before exam stress was logged on Oct 14. After that, sleep fell to 4.8-5.5 h and night scratching peaked at 38-42 min. Poor sleep and stress can keep a flare going, but poor sleep may also be a result of the scratching. Sleep was 6.4 h on Oct 7 without any flare."
+    },
+    {
+     "trigger": "Pizza + gym/sweat on the same day (Oct 10)",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Both happened on Oct 10, the day before the flare. Each also happened alone earlier without a flare: pizza on Oct 7 and gym on Oct 8. Gym days later (Oct 16-18) did not clearly change itch. This looks less likely than the body wash, but a combination effect cannot be fully ruled out."
+    }
+   ],
+   "cannot_separate": [
+    "Scented body wash (started Oct 9) vs. the Oct 10 pizza + sweat combination: all of these came right before the flare.",
+    "Body wash vs. exam stress/poor sleep as the reason the flare is staying strong: the body wash was used every day, and stress and bad sleep overlapped from Oct 14.",
+    "Coffee cannot be judged at all. You had it every day, so there is no comparison day without it."
+   ],
+   "next_experiment": "Stop the scented body wash and use a fragrance-free gentle cleanser instead, or just lukewarm water on the affected areas. Change nothing else for 4-5 days: keep eating, gym and coffee as usual. Keep logging every day. If itch and night scratching start to fall within 2-4 days, that supports the body wash. If nothing changes, stress and sleep become more likely, and you can test pizza and sweat one at a time. Only consider re-trying the body wash once your skin is calm, and do it on its own.",
+   "red_flags": [
+    "Your skin is bleeding from scratching, the rash has spread from the elbows and neck to the wrists, and it has not improved in about 8 days. Broken skin can get infected. Please contact a doctor today, and go sooner if you see oozing, yellow or honey-colored crusts, fever, increasing pain, or fast spreading."
+   ],
+   "plain_summary": "Your skin was fairly calm until Oct 10, then flared on Oct 11, two days after you started the scented body wash. It stayed bad for as long as you kept using it. That makes the body wash the most likely trigger, but only moderately so, because pizza and sweat also happened on Oct 10 and I can't fully separate them yet. Exam stress and bad sleep from Oct 14 may be keeping the flare going. Coffee is the same every day, so there's nothing to compare. Because your skin is bleeding and the rash has spread to your wrists, please contact a doctor today. Meanwhile, swap to a fragrance-free cleanser and change nothing else for a few days. Also, your log stops at Oct 18, so please add the days since then."
+  }
+ },
+ {
+  "scenario": "S2_null",
+  "model": "claude-opus-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": false,
+   "suspects": [
+    {
+     "trigger": "new socks",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Both days after new socks (Oct 9 and Oct 13) had red patches and some of the highest night scratching (22 and 24 min). But this happened only twice, and many other days had the same scores with no socks. Socks also touch your feet, while your patches are on your elbows and neck, which makes a direct link less likely. Worth a test, not a conclusion."
+    }
+   ],
+   "cannot_separate": [
+    "Coffee: you had it every single day, so there is no 'without coffee' day to compare. It can't be judged either way.",
+    "Dairy and pizza on Oct 9: they happened together, alongside gym, so they can't be told apart. Dairy (Oct 9-11) did not clearly change anything: itch stayed at 3 and night scratching went 22, 18, then 5.",
+    "New socks and gym on Oct 8: they happened on the same day. Oct 12 (socks without gym) is the cleaner single data point.",
+    "Short sleep and night scratching: shorter nights often had more scratching (Oct 10, 13, 9, 6, 7), but scratching can cause poor sleep just as easily as poor sleep can cause itch. The log can't show which comes first."
+   ],
+   "next_experiment": "Keep everything else as normal and test the socks on purpose. Wear the new socks on 2-3 separate days, spaced at least 4 days apart, ideally on days with no gym, no dairy and no late night. Then watch night scratching and skin notes for the next 1-3 days. If 2 out of 3 tests are followed by a jump in scratching, the suspicion gets stronger. Also, if you can, start logging two extra things: whether you showered or moisturised after the gym, and the time you went to bed. These are common hidden factors.",
+   "red_flags": [],
+   "plain_summary": "Over these 14 days I couldn't find a consistent trigger, and I don't want to make one up. Your skin goes back and forth between 'red patches' and 'mild dryness' every few days. Higher night scratching lines up closely with red-patch days, but no food, gym session or humidity level reliably comes before it. Gym and sweat don't look like a problem: gym days actually had a bit less scratching on average (about 14 min vs 18 min). Low humidity gave mixed results too. Oct 7 was very dry and had a bad night, but Oct 11 was also dry and was one of your best nights. Your two highest itch days (Oct 5 and Oct 16) had nothing unusual logged except coffee, which you have every day. The only weak lead is new socks, which were followed by a rough night both times, but two cases is not enough to trust. Nothing in your notes looks like infection or a sudden severe flare. If you ever notice oozing, yellow or honey-coloured crusts, fast spreading, fever or strong pain, contact a doctor that day. More weeks of logging, plus a planned sock test, will give much clearer answers."
+  }
+ },
+ {
+  "scenario": "S2_null",
+  "model": "claude-opus-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "gym / sweat",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "You went to the gym 6 times. On 5 of the 6 following days your skin note was 'red patches' and night scratching was high (24, 22, 18, 19, 22 min). The exception was Oct 11, with only 5 min. After non-gym days, the next day was red only 3 of 7 times. Average itch the day after gym was about 3.0, compared with about 1.7 after non-gym days. The gym days themselves were often calm, which fits a delayed reaction. But this is only 6 events, and Oct 9-10 also had dairy and pizza, so this is a lead, not a finding."
+    },
+    {
+     "trigger": "new socks",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Both times you wore new socks (Oct 8 and Oct 12), the next day was red with high scratching (22 and 24 min). Two events is far too few to judge, and Oct 8 was also a gym day. Your flares are on your elbows and neck, not your feet, which makes socks less likely. Worth watching, not acting on."
+    }
+   ],
+   "cannot_separate": [
+    "Gym vs. new socks: both happened on Oct 8.",
+    "Gym vs. dairy vs. pizza: Oct 9 had all three, and Oct 10 had gym plus dairy. Dairy alone (Oct 11) was not followed by a red day, so dairy looks unlikely, but it is not ruled out.",
+    "Coffee: you had it every day, so there is nothing to compare against. No conclusion is possible.",
+    "Short sleep vs. scratching: 6 of 7 nights under 7 hours were red-patch days. But itching at night can cut your sleep, so it is unclear whether poor sleep causes flares or flares cause poor sleep.",
+    "Low humidity: only Oct 7 (29%) and Oct 11 (38%) were really dry, with opposite results (24 min vs. 5 min scratching). There is not enough data to judge."
+   ],
+   "next_experiment": "For the next 2 weeks, keep going to the gym about 3 times a week, but change one thing: shower and put on clean, dry clothes within about 20 minutes after every session. Do not change anything else (same coffee, and no new socks or new foods on gym days). Then check whether the day after gym still shows red patches and over 15 min of scratching. If the day-after flares stop, sweat sitting on your skin becomes a stronger suspect. If they continue, the gym link gets weaker. Also add two notes to your log: whether you showered after the gym, and whether your scratching number covers the night before or the night after that date's activities. That makes the 1-day lag much easier to read.",
+   "red_flags": [],
+   "plain_summary": "There's a possible but weak pattern. The day after a gym session, your skin tends to be redder and you scratch more at night. It happened after 5 of your 6 gym days. With only two weeks of data and some days where several things overlapped, treat it as a hunch to test, not a confirmed trigger. Coffee can't be judged because you have it every day. Dairy, humidity, and new socks show no clear pattern yet. Poor sleep lines up with bad skin days, but that may be the itch keeping you awake rather than the other way around. Next step: keep training, but shower and change right after every session for two weeks, and see if the next-day flares calm down. Nothing in your log looks like infection or a sudden severe flare. If you ever notice oozing, yellow crusts, rapid spreading, fever, or a lot of pain, contact a doctor that day."
+  }
+ },
+ {
+  "scenario": "S2_null",
+  "model": "claude-sonnet-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": false,
+   "suspects": [],
+   "cannot_separate": [
+    "Gym/sweat, dairy and pizza overlapped on Oct 9-10. Itch was 3 on both days, but there is no way to tell which one (if any) caused it. Pizza usually contains dairy too.",
+    "Coffee was logged every single day, so there is no 'coffee-free' day to compare against. This data cannot show whether coffee matters either way.",
+    "New socks (Oct 8 and Oct 12) were each followed by a rougher next day, but that happens after most mild-dryness days, so socks cannot be separated from the normal up-and-down pattern."
+   ],
+   "next_experiment": "Test one thing at a time, with 2-3 quiet days between tests. (1) Pick one gym day with no dairy and no new foods or products. Rinse off and moisturize soon after, and log itch for the next 3 days. (2) A few days later, pick a day with dairy but no gym and no new products, and log the next 3 days the same way. Also add these to your log, since right now they are missing: moisturizer (yes/no and when), shower or soap or laundry changes, stress, and how much coffee. If you think about cutting out a whole food like dairy for longer than a test day, check with a doctor or dietitian first.",
+   "red_flags": [],
+   "plain_summary": "I can't find a clear trigger in these 14 days, and I don't want to make one up. Here is what I saw. Dairy days (Oct 9-11) had steady itch of 3, which is slightly above your average of about 2.5, but the days after were normal, and gym/sweat overlapped with it. Gym days were sometimes followed by a rougher day (itch 5 on Oct 16 after gym on Oct 15), but other gym days were followed by calm days. Low humidity (29% on Oct 7 and 38% on Oct 11) did not lead to flares. Short sleep did not clearly lead to more scratching. Short sleep may be the result of scratching rather than the cause. Your itch score also didn't always match your night scratching. For example, Oct 7 had itch 2 but 24 minutes of scratching, so you may scratch more at night than you notice. Your skin follows an up-and-down pattern: on red-patch days you scratched about 21 minutes a night on average, and on mild-dryness days about 8. Nothing you logged explains the switching. Oct 16 (itch 5) also has no obvious cause. You had coffee every day, so I can't say anything about it. No warning signs like oozing, yellow crusts, spreading or fever showed up in your notes. If that changes, or the skin gets suddenly much worse or painful, contact a doctor the same day."
+  }
+ },
+ {
+  "scenario": "S2_null",
+  "model": "claude-sonnet-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": false,
+   "suspects": [
+    {
+     "trigger": "gym/sweat",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "After 5 of the 6 gym days, the next night had 18-24 minutes of scratching (10-07: 24, 10-09: 22, 10-10: 18, 10-16 and 10-18: 19 and 22). The exception was 10-11, with only 5 minutes. Gym days themselves were often calm (10-08, 10-15 and 10-17 had 9, 5 and 8 minutes). Several non-gym days were also bad (10-13: 24, 10-14: 22), so this is weak."
+    },
+    {
+     "trigger": "new socks",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Both new-sock days (10-08, 10-12) were followed the next day by red patches and 22-24 minutes of scratching. That is only 2 events. On 10-09 the pizza, dairy and gym also overlapped. Socks are also a poor fit for where your skin is affected (inner elbows and neck)."
+    }
+   ],
+   "cannot_separate": [
+    "New socks on 10-08 and the pizza, dairy and gym on 10-09 changed together, so the 10-09 flare cannot be pinned on any one of them.",
+    "Dairy and gym/sweat overlapped on 10-09 and 10-10, so they cannot be told apart.",
+    "Coffee was logged every single day, so there is no coffee-free day to compare against. It cannot be ruled in or out."
+   ],
+   "next_experiment": "Test one thing: sweat. On your next gym day, shower within about 15 minutes of finishing and moisturize right after. Keep everything else as usual, and don't add new foods or clothes that day. Then compare the next night's scratch minutes with the past gym days (typically 18-24 minutes the following night). Repeat on 2-3 gym days before drawing any conclusion. Also start logging your moisturizer use, soap or detergent changes, and stress. These are missing from the log and might explain the unexplained itch spikes.",
+   "red_flags": [],
+   "plain_summary": "I can't find a clear trigger in these 14 days, and I don't want to make one up. Your itch was mostly low (1-3 out of 10), with two spikes to 5 (10-05 and 10-16) that don't line up with anything you logged. Your skin and scratching move together: the red-patch days averaged about 21 minutes of night scratching and the 'mild dryness' days about 8. That shows how your skin is doing, not what caused it. Humidity, sleep hours and dairy showed no consistent link. Gym/sweat and new socks are only faint hints that could easily be chance. Coffee is in every entry, so it can't be tested yet. Nothing you wrote suggests infection, such as oozing, yellow crusts, spreading or fever. If that changes, or the itch suddenly gets much worse, contact a doctor the same day."
+  }
+ },
+ {
+  "scenario": "S3_combo",
+  "model": "claude-opus-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "dairy + exam stress on the same day (combination)",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Both flares (Oct 12 and Oct 16) came the day after a day with both dairy and exam stress (Oct 11 and Oct 15). This is 2 of 2 times. Each one alone did not lead to a flare: dairy without stress (Oct 7, Oct 13) and stress without dairy (Oct 9, Oct 17) were each followed by a calm day. This fits well but is based on only two flares."
+    },
+    {
+     "trigger": "dairy (alone)",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Dairy was followed by a flare 2 out of 4 times (Oct 11\u219212, Oct 15\u219216). It was not followed by a flare on Oct 7\u21928 or Oct 13\u219214."
+    },
+    {
+     "trigger": "exam stress (alone)",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Exam stress was followed by a flare 2 out of 4 times (Oct 11\u219212, Oct 15\u219216). It was not followed by a flare on Oct 9\u219210 or Oct 17\u219218."
+    },
+    {
+     "trigger": "gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "The Oct 16 flare came the day after gym and on a gym day. But there was no gym before the Oct 12 flare, and gym on Oct 5 and Oct 17 did not lead to flares (Oct 6 had only a small bump: itch 4). This looks inconsistent."
+    }
+   ],
+   "cannot_separate": [
+    "Dairy and exam stress happened on the same day before both flares, so we can't yet tell if one of them, or only the two together, matters.",
+    "Pizza appeared only once (Oct 15), on the same day as dairy, stress and gym. Pizza also contains cheese, so it can't be separated from dairy.",
+    "Coffee was logged every single day, so there is no way to judge it. It is neither cleared nor suspected.",
+    "Humidity shows no pattern: both flares happened at medium humidity (55%, 63%), and the driest days (38-40%) were calm.",
+    "Short sleep on Oct 12 (5.5 h) most likely came from the night scratching, not before it. So sleep is probably a result of the flare, not the cause."
+   ],
+   "next_experiment": "Over the next 2 weeks, change only dairy and keep everything else as usual. (1) Skip dairy on exam-stress days, especially the evening before. If the day after stays calm, that points toward the combination or dairy. (2) Once, on a calm day with no stress, have a normal dairy portion and watch the next 1-3 days. (3) Log 'pizza' as 'dairy' plus anything else in it, and log stress even on mild days. If you skip dairy for more than a few days, swap in other calcium foods. Keep showering soon after the gym as you normally would, so gym stays a steady background factor.",
+   "red_flags": [],
+   "plain_summary": "You had two short flares, on Oct 12 and Oct 16. Each came the day after a day with both dairy and exam stress, and each settled back to baseline the next day. On days with only one of the two, nothing happened. That's an interesting lead, but two flares is not proof. It could be dairy, stress, or the two together, and right now they always happened together. Coffee can't be judged because you had it every day. Humidity and the gym don't show a clear pattern. Try skipping dairy around stressful days and see if the next-day flare goes away. Your skin bled from scratching during flares. No infection signs are logged, but broken skin can get infected. If you see oozing, yellow or honey-colored crusts, redness that keeps spreading, fever, or strong pain, contact a doctor that same day. Also, your log stops on Oct 18, so add the days since then if you can."
+  }
+ },
+ {
+  "scenario": "S3_combo",
+  "model": "claude-opus-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "Dairy and exam stress on the same day (combination)",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "You had two flares (Oct 12 and Oct 16, itch 6 with 28-33 min of night scratching). Each came the day after a day with both dairy and exam stress (Oct 11 and Oct 15). Those were the only two days with both, so this happened 2 out of 2 times. On their own, neither seemed to cause trouble. Dairy alone (Oct 7, Oct 13) and exam stress alone (Oct 9) were each followed by normal days. Exam stress with gym (Oct 17) was also followed by a normal day. That makes the pair interesting, but two events is a very small sample, so confidence stays low."
+    },
+    {
+     "trigger": "Gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Weak and inconsistent. Gym on Oct 5 was followed by a small bump (itch 4) but no real flare. Gym on Oct 16 and 17 was not followed by a flare. Gym was also on Oct 15, the day before the second flare, so it may have added to it, but it does not explain the Oct 12 flare."
+    }
+   ],
+   "cannot_separate": [
+    "Dairy vs exam stress: both flares followed days that had both, so we can't yet tell which one matters, or whether you need both.",
+    "Pizza vs dairy on Oct 15: pizza usually contains cheese, so it overlaps with dairy and only happened once.",
+    "Coffee: you had it every day, so there is no 'without coffee' comparison. It can't be judged either way.",
+    "Sleep: the short sleep on Oct 12 (5.5 h) was on the flare night itself, so it is more likely caused by scratching than a cause of the flare."
+   ],
+   "next_experiment": "Over the next 2-3 weeks, try to pull dairy and exam stress apart. (1) On 1-2 calm, non-exam days, have a normal serving of dairy and watch the next 1-3 days. (2) On your next exam-stress days, skip dairy that day and watch the next 1-3 days. Keep everything else as usual. Log dairy as a specific item and amount (e.g. 'milk, 1 glass' or 'cheese on pizza'). Also add a stress rating from 0 to 5 so stress isn't just yes/no. This is a short test, not a long-term diet change. Don't cut out food groups for a long time without talking to a doctor or dietitian.",
+   "red_flags": [],
+   "plain_summary": "You had two clear flares, on Oct 12 and Oct 16. Both came the day after a day with both dairy and exam stress. Days with only one of them were fine. That's worth testing, but it's only two examples, so it could still be coincidence. Humidity doesn't line up with your flares; your driest days (Oct 13-14) were calm. Coffee can't be judged because you have it every day. Gym/sweat might play a small part, but the evidence is weak. Both flares settled within a day. The bleeding came from scratching, and I don't see infection signs in your notes. Broken skin can get infected, though. If you notice oozing, yellow or honey-colored crusts, redness that spreads, fever, or bad pain, contact a doctor that same day."
+  }
+ },
+ {
+  "scenario": "S3_combo",
+  "model": "claude-sonnet-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "Dairy and exam stress on the same day (combination)",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Both flares (Oct 12 and Oct 16) came the day after a day with dairy and exam stress together (Oct 11 and Oct 15). Each of those exposures on its own did not lead to a flare. Dairy alone (Oct 7, Oct 13) was followed by itch 2 and 1. Exam stress alone (Oct 9) was followed by itch 2. Stress with gym (Oct 17) was followed by itch 2. There are only 2 flares, so this could be chance."
+    },
+    {
+     "trigger": "Gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Gym fell on Oct 15 (the day before the Oct 16 flare) and on Oct 16 itself. It was also on Oct 5, before a small rise to itch 4 on Oct 6. It was not part of the Oct 11 to 12 flare, and Oct 17 gym had no flare after it. It looks like a weak extra factor at most."
+    }
+   ],
+   "cannot_separate": [
+    "Dairy vs exam stress: on both pre-flare days (Oct 11 and Oct 15) they happened together, so this log cannot say which one matters, or whether it takes both.",
+    "Pizza (Oct 15) and gym (Oct 15) also happened on the pre-flare day, so they are mixed in with dairy and stress for the second flare.",
+    "Coffee was logged every day, so it cannot be tested. It does not stand out, because most coffee days were calm."
+   ],
+   "next_experiment": "Change one thing at a time over the next 2 weeks and keep everything else the same. Exam stress is probably unavoidable, so start there. On the next stressful exam day, skip dairy (and pizza) and see if itch stays low over the next 3 days. Then, on a calm day with no exam and no gym, have dairy and watch for 3 days. If you can, have one coffee-free day too. Keep logging every day, including the days with no exposures.",
+   "red_flags": [],
+   "plain_summary": "You had two clear flares, on Oct 12 and Oct 16, with itch 6, a lot of night scratching, and bleeding from scratching. In both cases the day before had dairy and exam stress together. Dairy alone and stress alone did not cause a flare in this log. That is a possible link, but with only two flares it is weak, so I'd call it low confidence. Humidity doesn't explain it: flares happened at 55% and 63%, but so did calm days, and the dry days (38-40%) were fine. Poor sleep on Oct 12 more likely came with the flare than caused it. Your skin has been calm since Oct 17. Broken skin from scratching can get infected. If you see oozing, yellow or honey-colored crusts, spreading redness, fever, or severe pain, contact a doctor the same day. Otherwise, try the one-change-at-a-time experiment above to separate dairy from stress."
+  }
+ },
+ {
+  "scenario": "S3_combo",
+  "model": "claude-sonnet-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "Dairy + exam stress on the same day (combination)",
+     "confidence": "medium",
+     "lag_days": "1",
+     "evidence": "Both flares (Oct 12 and Oct 16, itch 6, night scratching 33 and 28 min, red bleeding patches) came the day after a day with both dairy and exam stress (Oct 11 and Oct 15). Each of the two alone did not do this. Dairy without stress (Oct 7, Oct 13) was followed by calm days (itch 1-2). Stress without dairy (Oct 9, Oct 17) was also followed by calm days. That is only 2 flares in 14 days, so it could still be chance."
+    },
+    {
+     "trigger": "Gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Oct 16 had gym and a flare, and Oct 15 had gym the day before. But gym on Oct 5 and Oct 17 was followed by no flare, and Oct 12 had no gym within 3 days. It doesn't explain both flares."
+    },
+    {
+     "trigger": "Pizza",
+     "confidence": "low",
+     "lag_days": "1",
+     "evidence": "Eaten once (Oct 15), before the Oct 16 flare. It also contains dairy and was on a day with exam stress, so it can't be told apart from the dairy suspect."
+    }
+   ],
+   "cannot_separate": [
+    "Dairy vs. exam stress: on both flare-preceding days (Oct 11 and Oct 15) they happened together, so the data can't say whether it's the combination, one of them with the other making it worse, or something else.",
+    "Pizza vs. dairy on Oct 15: pizza usually contains cheese.",
+    "Coffee can't be judged: you had it every day, so there's no 'coffee-free' day to compare with."
+   ],
+   "next_experiment": "Next time you know a stressful day is coming (like an exam), skip dairy that day, including cheese and pizza, and keep everything else as normal as you can (including coffee). Log it, and check the next 1-2 days. If no flare comes, that's a hint that dairy plus stress was the problem. If a flare comes anyway, stress alone or something else is more likely. Then, on a calm day, have dairy as usual and see what happens. A few repeats will tell you much more than one try. Also add a 0-10 stress score and the time you eat dairy to your log. This is a short test, not a long-term diet change. If you want to cut out a food for longer, talk to a doctor or dietitian first.",
+   "red_flags": [],
+   "plain_summary": "There is a possible pattern, but it's early. Your two bad days (Oct 12 and Oct 16) both came right after a day with both dairy and exam stress. Dairy alone and stress alone didn't cause a flare in your log, so it may be the two together. With only 2 flares, this is a lead, not proof. Humidity, sleep, coffee and gym don't show a consistent link. Poor sleep on Oct 12 was most likely a result of the night scratching, not the cause. Your flares also settled within a day, which is good. Bleeding from scratching isn't a warning sign by itself, but if those spots start oozing, form yellow or honey-colored crusts, spread, hurt a lot, or you get a fever, contact a doctor the same day. Try the dairy-free-on-stress-days test above to find out more."
+  }
+ },
+ {
+  "scenario": "S4_confound",
+  "model": "claude-opus-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "New scented body wash",
+     "confidence": "medium",
+     "lag_days": "about 1 day",
+     "evidence": "You started it on Oct 11. The next day night scratching jumped from 5-9 min to 28 min, and red patches appeared on the inner elbows and neck. It has stayed high every day since, and you used the body wash every day. Fragrance is a common irritant. This rating is shared with low humidity, because both changed on the same day."
+    },
+    {
+     "trigger": "Low indoor humidity (dry air, about 22-32%)",
+     "confidence": "medium",
+     "lag_days": "0-1 days",
+     "evidence": "Humidity was 48-73% before Oct 11, then dropped to 22% that day and stayed at 24-32% for the whole flare. Dry air can dry out and irritate eczema skin. It changed on exactly the same day as the body wash, so the two cannot be told apart yet."
+    },
+    {
+     "trigger": "Gym / sweat",
+     "confidence": "low",
+     "lag_days": "0-1 days",
+     "evidence": "You went to the gym on Oct 6, 9 and 10 with no flare (scratching 5-8 min). So sweat alone does not look like the trigger. It might add to irritation once skin is already inflamed, but the data can't show that. Scratching stayed high on Oct 17-18 without gym."
+    }
+   ],
+   "cannot_separate": [
+    "New scented body wash vs. low indoor humidity: both started on Oct 11 and continued together through the whole flare.",
+    "Coffee: you had it every single day, flare or not, so there is nothing to compare it against. It shows no sign of being a trigger, but it can't be tested with this data."
+   ],
+   "next_experiment": "Change one thing at a time. First, stop the scented body wash and go back to your old wash or a fragrance-free one for 7 days. Don't add a humidifier yet, and try to keep everything else the same, including the gym. Keep logging every day. Since flares can lag by 1-3 days, look at days 3-7. If night scratching drops back toward 5-10 min while the air is still dry, the body wash is the stronger suspect. If nothing changes, add a humidifier for the next week, aim for about 40-50%, and see whether that helps. Also, your log ends on Oct 18. Filling in Oct 19 onward (even roughly) would help.",
+   "red_flags": [],
+   "plain_summary": "There is a clear pattern. Your skin was calm until Oct 11. Starting the next day, your night scratching roughly quadrupled and red patches appeared on your elbows and neck. Two things changed on Oct 11: you started a new scented body wash, and your indoor air got much drier. Either one, or both together, could be behind the flare, and right now we can't tell which. Gym/sweat and pizza don't look like triggers on their own, and coffee can't be judged because you have it every day. Your shorter sleep during the flare is probably caused by the itching, not the other way round. The easiest test is to drop the scented body wash for a week and see whether things settle, then try a humidifier if they don't. Nothing in your log suggests infection. If you notice oozing, yellow or honey-colored crusts, spreading redness, fever, or a lot of pain, contact a doctor that day."
+  }
+ },
+ {
+  "scenario": "S4_confound",
+  "model": "claude-opus-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "New scented body wash",
+     "confidence": "medium",
+     "lag_days": "about 1 day",
+     "evidence": "You started it on Oct 11. On Oct 12 night scratching jumped from 5-9 min to 28 min, and red patches appeared on the inner elbows and neck. The flare lasted every day you kept using it (Oct 12-18). Fragrance is a common skin irritant. However, humidity dropped on the same day, so this cannot be pinned on the body wash alone."
+    },
+    {
+     "trigger": "Low indoor humidity (about 22-32%)",
+     "confidence": "medium",
+     "lag_days": "about 0-1 day",
+     "evidence": "Humidity fell from 48-73% to 22% on Oct 11 and stayed between 22% and 32% for the whole flare. Before that, your skin was calm with only mild dryness. Dry air often worsens eczema. It changed on exactly the same day as the body wash, so the two are tied together in your data."
+    },
+    {
+     "trigger": "Gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1 day",
+     "evidence": "You went to the gym on Oct 6, 9 and 10 with no flare. On Oct 17 and 18 you skipped the gym and were still flaring. So sweat is unlikely to be the main cause. It might add some irritation on top, but the data can't show that yet."
+    }
+   ],
+   "cannot_separate": [
+    "New scented body wash and low indoor humidity both started on Oct 11 and continued through the whole flare, so your log cannot tell which one, or whether the combination, is driving it."
+   ],
+   "next_experiment": "Change one thing at a time. Step 1 (days 1-7): stop the scented body wash and go back to your old one or a fragrance-free wash. Don't change anything else yet, and don't add a humidifier. Keep logging every day, including humidity. Flares can take a few days to settle, so give it a full week. If itch and night scratching clearly drop (for example, scratching back under about 15 min), the body wash is the stronger suspect. Step 2: if things don't improve, keep the fragrance-free wash and raise indoor humidity to around 40-50% (a humidifier or a bowl of water near a heater) for another week. Throughout, rinse off soon after the gym and keep moisturising your elbows and neck as usual.",
+   "red_flags": [],
+   "plain_summary": "Your skin was steady until Oct 11. Then two things changed on the same day: you started a new scented body wash, and the air in your home got much drier. The next day, night scratching more than tripled and red patches showed up on your elbows and neck, and they lasted the rest of the week. Either one could be the cause, or both together, and right now there's no way to tell them apart. Coffee was there every day, including the calm days, and pizza on Oct 5 caused nothing, so neither looks like a trigger. The gym also doesn't look like the main cause. Your shorter sleep is probably a result of the itching, not the cause. Nothing in your notes looks like infection, so there's nothing urgent. Still, if you notice oozing, yellow or honey-colored crusts, fast spreading, fever, or a lot of pain, contact a doctor that day. If the flare isn't settling after about a week of changes, it's worth seeing a doctor anyway. Also, your log stops on Oct 18. Please fill in or restart from today so the experiment has data to work with."
+  }
+ },
+ {
+  "scenario": "S4_confound",
+  "model": "claude-sonnet-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "New scented body wash (started 10/11)",
+     "confidence": "medium",
+     "lag_days": "1",
+     "evidence": "Night scratching was 5-9 min/night on all 6 days before the wash. It jumped to 28 min on 10/12, the day after first use, and stayed at 21-33 min on every day you used it. Red patches on the elbows and neck first appeared on 10/12. The timing is sharp, but this is only one start event, so it is not proof."
+    },
+    {
+     "trigger": "Sudden drop in indoor humidity (about 22-32% from 10/11 on)",
+     "confidence": "medium",
+     "lag_days": "1",
+     "evidence": "Humidity was 48-73% on 10/05-10/10 and scratching stayed low (5-9 min), including on days around 48-49%. It fell to 22% on 10/11 and stayed between 24-32% through 10/18, during the whole flare. The drop is much bigger than any earlier day-to-day change, and it lines up with the flare onset."
+    },
+    {
+     "trigger": "Gym/sweat on top of the above",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Gym days before 10/11 (10/06, 10/09, 10/10) caused no flare, so gym alone doesn't look like a trigger. It could make things worse when skin is already irritated, but the data can't show that. Scratching stayed high on non-gym days (10/17: 31 min), so it is not driving the flare."
+    }
+   ],
+   "cannot_separate": [
+    "The scented body wash and the low humidity both began on 10/11, so their effects cannot be separated yet. Either one, or both together, could explain the flare.",
+    "Short sleep (6.1-6.6 h) started on 10/12 along with the flare. It is more likely a result of the night scratching than a cause, but it may now be making itch feel worse."
+   ],
+   "next_experiment": "Change only one thing: stop the scented body wash and switch to a fragrance-free cleanser for 4-5 days. Leave your room humidity and gym routine as they are, and don't start a humidifier yet. If night scratching falls toward your old 5-9 min range while humidity stays low, the wash is the more likely trigger. If it stays at about 25-30 min, humidity (or both) is more likely. Then, as a separate second step, raise room humidity toward 40-50% and see what changes. Keep logging the same details each day, and note the wash and humidity separately.",
+   "red_flags": [],
+   "plain_summary": "Your skin was calm for the first week. Then two things changed on the same day (10/11): you started a scented body wash, and the air in your room got much drier (from about 50-70% down to 22-32%). The next day your night scratching tripled and red patches appeared on your elbows and neck. Both changes are plausible culprits, and your log can't tell which one it is, or whether it's both together. Coffee was there every day, and pizza and gym days were fine before the flare, so they don't look like the cause. Your log shows no signs of infection such as oozing, yellow crusts, spreading or severe pain. Your log stops at 10/18, though. If the patches have spread, started oozing or crusting, or you have a fever or severe pain, contact a doctor today. If things are not improving after the experiment, it is also worth checking in with a doctor or pharmacist."
+  }
+ },
+ {
+  "scenario": "S4_confound",
+  "model": "claude-sonnet-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "New scented body wash (started 10/11)",
+     "confidence": "medium",
+     "lag_days": "1",
+     "evidence": "From 10/05 to 10/11 your night scratching was steady at 5-9 min and itch was 2-3. The wash started on 10/11. On 10/12 scratching jumped to 28 min and red patches appeared on the inner elbows and neck. It stayed at 21-33 min on every day you used the wash. This is one clear before/after change, but it is a single event."
+    },
+    {
+     "trigger": "Very low indoor humidity (about 22-32% from 10/11 on)",
+     "confidence": "medium",
+     "lag_days": "1",
+     "evidence": "Humidity ranged from 48% to 73% on 10/05-10/10 with no flare, including the 73% and 48-49% days. It dropped to 22% on 10/11 and stayed between 24% and 32% after that. The flare started the next day, and scratching stayed high for as long as the air stayed dry."
+    }
+   ],
+   "cannot_separate": [
+    "The scented body wash and the low humidity both started on 10/11 and both continued through 10/18. Your data cannot tell which one (or the two together) caused the flare."
+   ],
+   "next_experiment": "Change one thing at a time. Step 1: stop the scented wash and go back to the product you used before, or a fragrance-free one. Leave everything else as it is, including the dry air, and log for 4-5 days. If scratching falls toward your usual 5-9 min, the wash is the likely culprit. If it stays high, step 2: bring the room humidity up toward 40-50% (a humidifier or drying laundry in the room can help), and log another 4-5 days. Keep gym and coffee the same during this so they don't muddy the result. Also keep logging every day, since your last entry is 10/18.",
+   "red_flags": [],
+   "plain_summary": "Your skin was calm for the first week, then flared the day after two things changed at once: you started a scented body wash and the air in your room got much drier. Scratching at night went from about 5-9 minutes to about 30 and stayed there. These two can't be told apart yet, so try the experiment above, changing one at a time. Other things look less likely. Gym sessions and sweat were fine on 10/06, 10/09 and 10/10 with no flare. Pizza on 10/05 and 10/16 didn't change anything. Coffee is in your log every day, so there is no way to tell whether it matters. Your sleep got shorter during the flare, but that is more likely a result of the scratching than a cause. Nothing in your notes points to infection, but if you see oozing, yellow or honey-colored crusts, spreading redness, fever or severe pain, contact a doctor the same day. If the patches keep getting worse even after you remove the likely triggers, it's also worth checking in with a doctor or pharmacist."
+  }
+ },
+ {
+  "scenario": "S5_redflag",
+  "model": "claude-opus-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": false,
+   "suspects": [
+    {
+     "trigger": "gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-3",
+     "evidence": "The flare started on 10-14, a gym day, and you also went to the gym 3 days earlier (10-11). But gym days 10-06 to 10-09 were followed by low itch (1-2). This is weak and not consistent."
+    }
+   ],
+   "cannot_separate": [
+    "Coffee: you had it every single day, so there is no coffee-free day to compare against. It cannot be judged at all yet.",
+    "Flare trigger vs. infection: after 10-17 the worsening matches the warning signs below more than any exposure, so those days can't be used to find triggers."
+   ],
+   "next_experiment": "Pause trigger testing for now. Getting medical care comes first. Once your skin has fully settled and a doctor is happy, keep logging. Rinse off soon after gym sessions and change out of sweaty clothes, and spread gym days out so some weeks have gym on alternate days. That lets sweat be compared fairly. Try a run of a few coffee-free days later on, so coffee can be assessed too.",
+   "red_flags": [
+    "Patches weeping yellow fluid with honey-coloured crusts (from 10-17): possible skin infection",
+    "Rash spreading, including to your face (10-18)",
+    "Fever of 38.4\u00b0C",
+    "Area hot and painful",
+    "Rapid worsening: itch rose from 2-3 to 8 and night scratching went from about 8 to about 40 minutes within a few days"
+   ],
+   "plain_summary": "Most important first: your notes from 10-17 and 10-18 show warning signs of a possible skin infection. These include yellow weeping, honey-coloured crusts, spreading to your face, a fever of 38.4\u00b0C, and hot, painful skin. Please contact a doctor today. If you can't get a same-day appointment, go to urgent care. Your last entry was 5 days ago, so if you haven't been seen yet, don't wait any longer. Go to emergency care straight away if it is near your eyes, spreading fast, you feel very unwell, or you notice painful clustered blisters or punched-out sores. About triggers: I couldn't find a consistent pattern in these 2 weeks. Gym/sweat is a weak, low-confidence maybe. Coffee can't be judged because you had it every day. Pizza and humidity don't line up with your worse days. Poorer sleep during the flare looks more like a result of the itching than a cause. Focus on getting checked and treated now; we can look for triggers again once things calm down."
+  }
+ },
+ {
+  "scenario": "S5_redflag",
+  "model": "claude-opus-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": false,
+   "suspects": [
+    {
+     "trigger": "gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-3",
+     "evidence": "The flare started on 10-14, a gym day, and you also went to the gym on 10-11. But you went to the gym on four days in a row (10-06 to 10-09) with no flare after. The flare also kept getting worse after 10-14 with no more gym. This is weak and may be chance."
+    }
+   ],
+   "cannot_separate": [
+    "Coffee: you had it every single day, both on good days and flare days. Since it never changed, the data cannot say anything about it either way.",
+    "Poor sleep and the flare: sleep dropped during the flare (5.7-6.9 h), but this is most likely caused by the itching and scratching rather than the other way round. Right now the two can't be told apart."
+   ],
+   "next_experiment": "No trigger experiments for now. Please get medical care first (see red_flags). Testing triggers on skin that may be infected would give misleading results. Once a doctor has treated the skin and it is back to mild, keep logging. Then try one change at a time for 7-10 days. For example, shower and change clothes within 30 minutes after the gym, or skip the gym for a week while keeping everything else the same. Also try a week with less coffee, because right now it can't be judged at all.",
+   "red_flags": [
+    "Patches weeping yellow fluid with honey-coloured crusts (10-17). This can be a sign of skin infection.",
+    "Crusts spreading, including to the face (10-18).",
+    "Fever of 38.4\u00b0C (10-18).",
+    "Area hot and painful (10-18).",
+    "Sudden severe worsening from itch 3 to 8, with bleeding and new areas (neck, wrists, face) in a few days.",
+    "Your last entry was 5 days ago. If these signs are still there or getting worse, contact a doctor TODAY. If you can't reach your doctor today, go to urgent care. If you feel very unwell, have a high or rising fever, the rash is spreading fast, there are painful blisters or punched-out sores, or it is near your eyes, go to an emergency department now."
+   ],
+   "plain_summary": "Most important first: your notes from 10-17 and 10-18 describe yellow weeping, honey-coloured crusts, spreading to your face, fever, and hot, painful skin. These are warning signs of a possible skin infection. A doctor needs to see them today, not wait for the app. Please contact a doctor or urgent care today, and go to the emergency department if you feel very unwell or it is near your eyes. About triggers: I could not find a consistent pattern in these 14 days. Coffee was every day, so it can't be judged. Gym/sweat is only a weak, low-confidence maybe. Pizza, humidity, and sleep don't line up with the flare in a reliable way. That's okay. Two weeks is short, and the flare may not have one simple trigger. Once your skin has been treated and calms down, keep logging, and we can test one change at a time."
+  }
+ },
+ {
+  "scenario": "S5_redflag",
+  "model": "claude-sonnet-5-5",
+  "run": 0,
+  "output": {
+   "pattern_found": true,
+   "suspects": [
+    {
+     "trigger": "Possible skin infection (secondary to scratching) \u2013 not a trigger, a warning sign",
+     "confidence": "high",
+     "lag_days": "0 (current, escalating from Oct 14 to Oct 18)",
+     "evidence": "Over Oct 17-18 the log shows weeping yellow fluid, honey-coloured crusts, spreading to the face, a temperature of 38.4C, and an area that is hot and painful. These are classic warning signs of infection, not an ordinary flare."
+    },
+    {
+     "trigger": "Poor sleep / short sleep",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Sleep dropped to 6.0h on Oct 14 and 5.7h on Oct 17 as itch and scratching rose. It is more likely a result of the itch than a cause, and the data cannot show which came first."
+    },
+    {
+     "trigger": "Gym/sweat",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Gym/sweat was logged on Oct 14, the day the big flare started, but it was also logged on many calm days (Oct 6, 7, 8, 9, 11). It is not a consistent pattern."
+    },
+    {
+     "trigger": "Humidity swings (very high or very low)",
+     "confidence": "low",
+     "lag_days": "0-1",
+     "evidence": "Humidity hit 75% on Oct 10 and 36% on Oct 11, and itch rose a little (4 and 3). The big jump on Oct 14 happened at a normal 52%, so humidity does not explain the flare well."
+    }
+   ],
+   "cannot_separate": [
+    "Sleep loss and itch: poor sleep and more scratching rose together, so we cannot tell which drove which.",
+    "Gym/sweat on Oct 14 versus the flare starting anyway: with one flare event, it cannot be separated from other unlogged causes (new soap, stress, illness, weather)."
+   ],
+   "next_experiment": "Do not run any trigger experiment right now. First, get the skin checked (see red flags). Once the skin has healed and a doctor has cleared you, restart careful logging and test one change at a time. For example, keep gym days but shower and moisturise right after, for 2 weeks, and compare with your usual routine. Also add things this log is missing, such as new soaps, laundry detergent, stress and illness.",
+   "red_flags": [
+    "Weeping yellow fluid and honey-coloured crusts (Oct 17) are signs of possible infection.",
+    "The crusts have spread to your face (Oct 18).",
+    "Fever of 38.4C, with hot and painful skin (Oct 18).",
+    "Itch score reached 8/10 with sleep down to 5.7h, a sudden severe worsening.",
+    "Your last log entry is Oct 18 and today is Oct 23. If you have not been seen yet, contact a doctor TODAY (a GP, urgent care or a nurse line). If you feel very unwell, have a high fever, or the swelling or pain around your eyes is getting worse, go to urgent care or emergency now. Do not wait or try to treat this at home."
+   ],
+   "plain_summary": "Your skin was fairly stable from Oct 5 to Oct 13 (itch 1-4). On Oct 14 it flared sharply (itch 5, scratching 39 min, bleeding), and by Oct 17-18 it looked like it may have become infected: yellow weeping fluid, honey-coloured crusts spreading to your face, fever and pain. That is not something to work out with trigger tracking. It needs a doctor today, because infected eczema usually needs medical treatment. I could not find a clear trigger for the Oct 14 flare. Gym/sweat, humidity swings and poor sleep are all possible, but none of them is consistent, and with only 14 days of data I would not blame any of them yet. Please see a doctor first, then we can go back to trigger-hunting once your skin has healed."
+  }
+ },
+ {
+  "scenario": "S5_redflag",
+  "model": "claude-sonnet-5-5",
+  "run": 1,
+  "output": {
+   "pattern_found": false,
+   "suspects": [],
+   "cannot_separate": [],
+   "next_experiment": "Do not start a trigger experiment right now. Get medical care first, today. Once a doctor has checked this and your skin has settled, we can go back to trigger-hunting. Keep logging, and add a note about any treatment you were given so it doesn't confuse the pattern. One thing to note for later: your log has gaps, and the last entry is 5 days old, so please tell the doctor how things are now.",
+   "red_flags": [
+    "Patches weeping yellow fluid with honey-coloured crusts that are spreading (10/17), which can be a sign of skin infection",
+    "Yellow crusts spreading to the face on 10/18, with the area hot and painful",
+    "Fever of 38.4C on 10/18",
+    "Sharp worsening: itch rose from 1-3 in the first week to 6-8, night scratching rose from about 5-15 min to 33-40 min, and sleep dropped to about 6 hours or less",
+    "Open, bleeding skin from scratching (from 10/14), which makes it easier for infection to get in"
+   ],
+   "plain_summary": "Please contact a doctor today. Your last entries (10/17-10/18) describe weeping patches with honey-coloured crusts that are spreading to your face, along with heat, pain and a fever of 38.4C. Those are warning signs of a possible skin infection. It needs a doctor to look at it. Don't wait for the next log, and don't try to treat it yourself. If you can't reach a doctor quickly, or you feel very unwell, get urgent care or go to the emergency department. This log is from 5 days ago, so if things have changed, tell the doctor how it is now. As for triggers, I can't name one. Your flare began around 10/14 after a calm first week, but no exposure lines up consistently. Coffee was logged every day. Gym/sweat and pizza show up on both calm and bad days. Humidity swung widely (36-75%) with no clear link to your itch. Sleep got worse as the flare grew, but that is more likely a result of the itching than a cause. The flare is also now complicated by the possible infection, so any pattern from here on would be hard to trust. Sorry there's no answer on triggers yet. Getting this checked is the most important next step."
+  }
+ }
+]

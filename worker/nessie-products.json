@@ -1,0 +1,191 @@
+{
+  "note": "Demo catalog for Douglas (scripted demo person). Ingredients come from product labels in our demo data; Nessie has no ingredient field.",
+  "products": {
+    "Everclean Free & Clear Liquid Detergent, 92 loads": {
+      "category": "household",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Alcohol Ethoxylate",
+        "Sodium Citrate",
+        "Sodium Benzoate",
+        "Enzymes"
+      ]
+    },
+    "Riverstone Daily Shampoo, 16 fl oz": {
+      "category": "personal care",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Cocamidopropyl Betaine",
+        "Glycerin",
+        "Fragrance (Parfum)",
+        "Sodium Benzoate",
+        "Citric Acid"
+      ]
+    },
+    "Coastline Mineral Sunscreen SPF 30": {
+      "category": "personal care",
+      "ingredients": [
+        "Zinc Oxide",
+        "Water",
+        "Caprylic/Capric Triglyceride",
+        "Glycerin",
+        "Phenoxyethanol",
+        "Tocopherol"
+      ]
+    },
+    "Peet's Major Dickason's Coffee Beans, 2 lb": {
+      "category": "grocery"
+    },
+    "Summit Peak Mint Shampoo, travel size 3 fl oz": {
+      "category": "personal care",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Cocamidopropyl Betaine",
+        "Fragrance (Parfum)",
+        "Menthol",
+        "Sodium Chloride",
+        "Methylchloroisothiazolinone",
+        "Methylisothiazolinone",
+        "Citric Acid"
+      ]
+    },
+    "Dermacalm Ceramide Cream, 16 oz": {
+      "category": "personal care",
+      "ingredients": [
+        "Water",
+        "Glycerin",
+        "Ceramide NP",
+        "Cetearyl Alcohol",
+        "Petrolatum",
+        "Phenoxyethanol"
+      ]
+    },
+    "Five Star Spiral Notebooks, 5 pack": {
+      "category": "school"
+    },
+    "Alder & Pine Cedar Deodorant": {
+      "category": "personal care",
+      "ingredients": [
+        "Propylene Glycol",
+        "Water",
+        "Sodium Stearate",
+        "Fragrance (Parfum)",
+        "Linalool",
+        "Limonene",
+        "Sodium Benzoate"
+      ]
+    },
+    "Bayline Cotton Pullover Hoodie": {
+      "category": "clothing",
+      "material": "80% cotton, 20% polyester"
+    },
+    "Colgate Total Toothpaste, 2 pack": {
+      "category": "personal care"
+    },
+    "Lumen Citrus Foaming Hand Soap": {
+      "category": "household",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Glycerin",
+        "Fragrance (Parfum)",
+        "Limonene",
+        "Methylisothiazolinone",
+        "Tetrasodium EDTA"
+      ]
+    },
+    "Anker USB-C Charging Cable, 6 ft": {
+      "category": "electronics"
+    },
+    "Bayline Crew T-Shirts, 3 pack": {
+      "category": "clothing",
+      "material": "100% cotton"
+    },
+    "RXBAR Protein Bars, 12 count": {
+      "category": "grocery"
+    },
+    "Harbor Oat Daily Lotion": {
+      "category": "personal care",
+      "ingredients": [
+        "Water",
+        "Glycerin",
+        "Colloidal Oatmeal",
+        "Cetearyl Alcohol",
+        "Dimethicone",
+        "Phenoxyethanol",
+        "Sodium Benzoate"
+      ]
+    },
+    "Willow Unscented Hand Soap Refill": {
+      "category": "household",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Glycerin",
+        "Cocamidopropyl Betaine",
+        "Sodium Benzoate",
+        "Citric Acid"
+      ]
+    },
+    "Brightwell Daily Moisturizing Lotion, 12 fl oz": {
+      "category": "personal care",
+      "ingredients": [
+        "Water",
+        "Glycerin",
+        "Cetearyl Alcohol",
+        "Dimethicone",
+        "Fragrance (Parfum)",
+        "Methylisothiazolinone",
+        "Carbomer"
+      ]
+    },
+    "Cloudrest Memory Foam Pillow": {
+      "category": "household",
+      "material": "polyurethane foam, polyester cover"
+    },
+    "Duracell AAA Batteries, 8 pack": {
+      "category": "school"
+    },
+    "Northfield Lambswool Crewneck Sweater": {
+      "category": "clothing",
+      "material": "100% lambswool"
+    },
+    "FreshMeadow Spring Bloom Detergent, trial size": {
+      "category": "household",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Alcohol Ethoxylate",
+        "Sodium Citrate",
+        "Fragrance",
+        "Methylisothiazolinone",
+        "Colorant"
+      ]
+    },
+    "Darn Tough Merino Wool Socks, 3 pairs": {
+      "category": "clothing",
+      "material": "54% merino wool, 43% nylon, 3% spandex"
+    },
+    "Nissin Top Ramen, 24 pack": {
+      "category": "grocery"
+    },
+    "Brightwell Sensitive Fragrance-Free Body Wash, 18 fl oz": {
+      "category": "personal care",
+      "ingredients": [
+        "Water",
+        "Sodium Laureth Sulfate",
+        "Cocamidopropyl Betaine",
+        "Glycerin",
+        "Sodium Chloride",
+        "Methylisothiazolinone",
+        "Citric Acid"
+      ]
+    },
+    "Philips LED Desk Lamp Bulb": {
+      "category": "household"
+    }
+  }
+}

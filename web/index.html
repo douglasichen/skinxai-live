@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkinXAI · Scratch Monitor</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='8' fill='none' stroke='%23e9efe4' stroke-width='3'/%3E%3Ccircle cx='21' cy='16' r='9.5' fill='%23f8a16f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/night.css">
+<link rel="stylesheet" href="/history.css">
+<link rel="stylesheet" href="/chat.css">
+</head>
+<body>
+<div id="app">
+  <header class="bar">
+    <div class="brand"><span class="logo"><i></i><i></i></span><b>SKINXAI</b><span class="sep">/</span><span id="pageName">SCRATCH MONITOR</span></div>
+    <nav class="tabs">
+      <span class="tab-ink" id="tabInk"></span>
+      <button data-page="monitor" class="on">Monitor</button>
+      <button data-page="night">Last night</button>
+      <button data-page="history">History</button>
+      <button data-page="claude">Claude</button>
+    </nav>
+    <div class="status">
+      <span class="live-pill" id="livePill"><span class="dot"></span><span id="liveText">WAITING FOR WATCH</span></span>
+      <span class="clock" id="clock">--:--:--</span>
+    </div>
+  </header>
+
+  <!-- MONITOR -->
+  <section class="page on" id="p-monitor">
+    <div class="patient">
+      <div class="field"><span class="k">PATIENT</span>DOUGLAS · BED 1</div>
+      <div class="field"><span class="k">SENSOR</span>APPLE WATCH · RIGHT WRIST · 50 HZ</div>
+      <div class="field"><span class="k">MODE</span><span id="modeText">LIVE</span></div>
+      <div class="pactions">
+        <button class="sound" id="sound" title="The monitor beeps after one click"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h3l4-3v10L5 10H2z" fill="currentColor"/><path d="M11.5 6l3 4m0-4l-3 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Click for sound</button>
+        <button class="recbtn" id="recBtn" title="Record a labelled test (T)"><i></i>Record test</button>
+      </div>
+    </div>
+    <div class="monitor">
+      <div class="trace-wrap idle" id="traceWrap">
+        <canvas id="traceGlow"></canvas>
+        <canvas id="trace"></canvas>
+        <div class="trace-label">WRIST MOTION · SCRATCH DETECTOR</div>
+        <div class="trace-legend"><span>MOTION</span><span class="hot">SCRATCHING</span></div>
+        <div class="trace-idle">NO SIGNAL · START MONITORING ON THE WATCH</div>
+        <div class="alarm" id="alarm"><span><i></i>SCRATCH DETECTED</span></div>
+        <div class="recov" id="recOv">
+          <div class="rk" id="recStep">TEST RECORDING</div>
+          <div class="rt" id="recText">Hold your arm still</div>
+          <div class="rn" id="recNum">10</div>
+          <div class="rp"><i id="recBar"></i></div>
+          <div class="rh" id="recHint">Esc to cancel</div>
+        </div>
+      </div>
+      <aside class="vitals">
+        <div class="vital big">
+          <div class="vk">SCRATCHES<span>THIS SESSION</span></div>
+          <div class="vbig"><i class="vflash" id="vFlash"></i><div class="vv" id="vCount">0</div></div>
+          <div class="vfoot"><div><span>INTENSE</span><b id="vIntense">0</b></div><div><span>LONGEST</span><b id="vLongest">0:00</b></div></div>
+        </div>
+        <div class="vital">
+          <div class="vk">SCRATCH TIME<span>MIN:SEC</span></div>
+          <div class="vv mid" id="vTime">0:00</div>
+        </div>
+        <div class="vital">
+          <div class="vk">INTENSITY</div>
+          <div class="meter"><i id="vMeter"></i></div>
+          <div class="vsub" id="vHz">— HZ</div>
+        </div>
+        <div class="vital">
+          <div class="vk">LAST SCRATCH</div>
+          <div class="vv small" id="vLast">—</div>
+        </div>
+      </aside>
+    </div>
+    <div class="strip"><div class="strip-k">SESSION</div><div class="strip-track" id="strip"></div><div class="strip-t" id="stripT">0:00</div></div>
+  </section>
+
+  <!-- LAST NIGHT -->
+  <section class="page" id="p-night">
+    <div class="ptitle"><div><div class="eyebrow" id="nightRange">LAST NIGHT</div><h1>Douglas scratched <span class="hl" id="nMin">0</span> minutes in his sleep.</h1></div>
+      <div class="chip warn" id="nRatio">▲ 3.4× his usual</div></div>
+    <div class="cards4">
+      <div class="card"><div class="ck">SCRATCH EPISODES</div><div class="cv" id="nEp">0</div></div>
+      <div class="card"><div class="ck">INTENSE</div><div class="cv orange" id="nInt">0</div></div>
+      <div class="card"><div class="ck">WOKE UP</div><div class="cv" id="nWake">0×</div></div>
+      <div class="card"><div class="ck">WORST HOURS</div><div class="cv small" id="nWorst">2–4 AM</div></div>
+    </div>
+    <div class="card grow"><div class="ck">MINUTES OF SCRATCHING · EACH HOUR</div><div class="bars" id="nightBars"></div>
+      <div class="note" id="nLive"></div></div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="page" id="p-history">
+    <div class="ptitle"><div><div class="eyebrow">LAST 14 NIGHTS · SAME WATCH, EVERY NIGHT</div>
+      <h1><span class="hs"><span id="hSince">Since Tuesday:</span> <span class="hl" id="hAvg">31</span> min a night.</span> <span class="hs">His usual is <span class="hu" id="hUsual">12</span>.</span></h1></div>
+      <div class="chip warn" id="hChange">▲ 2.6× his usual, 3 nights running</div></div>
+    <div class="card grow"><div class="ck">MINUTES OF SCRATCHING PER NIGHT</div>
+      <div class="hchart" id="hChart" role="img"><div class="hplot" id="hPlot"></div><div class="haxis" id="hAxis"></div></div></div>
+  </section>
+
+  <!-- CLAUDE -->
+  <section class="page" id="p-claude">
+    <div class="chat" id="chat">
+      <div class="chat-col">
+        <div class="thread" id="thread">
+          <div class="feed" id="feed"></div>
+          <div class="chat-empty" id="chatEmpty">
+            <div class="hello"><span class="spark"></span><span id="chatHello">Hello, Douglas</span></div>
+            <p class="lead">Claude can read your SkinXAI data and the apps you connected.</p>
+            <div class="servers" id="chatServers"></div>
+            <button class="suggest" id="chatSuggest" type="button"></button>
+          </div>
+          <div class="chat-toast" id="chatToast"></div>
+        </div>
+        <form class="composer" id="composer" autocomplete="off">
+          <textarea id="chatInput" rows="1" placeholder="How can I help you today?" aria-label="Message Claude"></textarea>
+          <span class="tag" id="chatTag">REPLAY</span>
+          <span class="model" id="chatModel"></span>
+          <button class="send" id="chatSend" type="submit" aria-label="Send" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></button>
+        </form>
+      </div>
+      <aside class="artifact" id="artifact">
+        <header class="art-bar">
+          <span class="art-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="3.5" width="15" height="17" rx="2.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span>
+          <div class="art-title"><b>Flare investigation</b><span>Artifact · from Douglas's data</span></div>
+          <nav class="art-tabs" id="artTabs"></nav>
+        </header>
+        <div class="art-view"><div class="art-track" id="artTrack">
+          <div class="art-page evidence"><div class="slot" id="slotTimeline"></div><div class="slot" id="slotProduct"></div></div>
+          <div class="art-page" id="slotConclusion"></div>
+        </div></div>
+      </aside>
+    </div>
+  </section>
+
+</div>
+<script src="/story.js"></script>
+<script src="/common.js"></script>
+<script src="/monitor.js"></script>
+<script src="/night.js"></script>
+<script src="/history.js"></script>
+<script src="/chat.js"></script>
+<script src="/rec.js"></script>
+</body>
+</html>

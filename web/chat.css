@@ -1,0 +1,300 @@
+/* Claude page (#p-claude): a Claude.ai-style chat in the monitor's dark theme. The thread (45%) starts centred and
+   slides left when the artifact panel (55%) comes in. Sizes follow --k: 1px at 1920×1080, smaller screens scale down. */
+#p-claude { --k: min(calc(100vw / 1920), calc(100vh / 1080)); --gap: calc(28 * var(--k)); --claude: var(--orange); padding-top: 16px; padding-bottom: 20px; }
+#p-claude .chat { position: relative; flex: 1; min-height: 0; transition: opacity .25s; }
+#p-claude .chat.wipe { opacity: 0; }
+#p-claude .chat.wipe .chat-col, #p-claude .chat.wipe .artifact, #p-claude .chat.wipe .art-track, #p-claude .chat.wipe .chat-empty { transition: none; }
+#p-claude .ek { font: 700 max(12px, calc(13 * var(--k))) "Space Mono"; letter-spacing: .14em; color: var(--muted); }
+
+/* ---------- thread column ---------- */
+#p-claude .chat-col { position: absolute; top: 0; bottom: 0; left: 0; width: calc(45% - var(--gap) / 2); display: flex; flex-direction: column;
+  transform: translateX(63%); transition: transform .9s cubic-bezier(.65, 0, .35, 1); }
+#p-claude .chat.open .chat-col { transform: none; }
+#p-claude .thread { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+#p-claude .thread.over { -webkit-mask-image: linear-gradient(transparent, #000 calc(70 * var(--k))); mask-image: linear-gradient(transparent, #000 calc(70 * var(--k))); }
+#p-claude .feed { position: absolute; left: 0; right: 0; top: 0; padding: calc(4 * var(--k)) calc(6 * var(--k)) calc(28 * var(--k)); transition: transform .6s cubic-bezier(.22, .8, .25, 1); }
+
+#p-claude .msg { display: flex; gap: calc(16 * var(--k)); margin-top: calc(24 * var(--k)); animation: chatRise .45s cubic-bezier(.2, .8, .25, 1) backwards; }
+#p-claude .msg:first-child { margin-top: calc(6 * var(--k)); }
+@keyframes chatRise { from { opacity: 0; transform: translateY(14px); } }
+#p-claude .msg.user { justify-content: flex-end; }
+#p-claude .bubble { max-width: 82%; white-space: pre-wrap; background: #e4ebdd; color: #111512; font-size: calc(21 * var(--k)); line-height: 1.45; padding: calc(12 * var(--k)) calc(20 * var(--k));
+  border-radius: calc(22 * var(--k)) calc(22 * var(--k)) calc(6 * var(--k)) calc(22 * var(--k)); }
+#p-claude .msg .av { flex: none; width: calc(32 * var(--k)); height: calc(32 * var(--k)); color: var(--claude); }
+#p-claude .msg .av svg { width: 100%; height: 100%; display: block; }
+#p-claude .msg .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: calc(12 * var(--k)); }
+#p-claude .say { font-size: calc(22 * var(--k)); line-height: 1.5; }
+#p-claude .say > * + * { margin-top: .45em; }
+#p-claude .say ul, #p-claude .say ol { padding-left: 1.2em; }
+#p-claude .say b { color: #fff; }
+#p-claude .c { opacity: 0; transition: opacity .18s linear; }
+#p-claude .c.on { opacity: 1; }
+#p-claude .say li:has(.c):not(:has(.c.on))::marker { color: transparent; }   /* a bullet shows up with its line */
+
+/* "Claude is thinking…": the sparkle turns and breathes */
+#p-claude .msg.thinking .av svg { animation: chatSparkle 1.5s cubic-bezier(.45, 0, .55, 1) infinite; }
+@keyframes chatSparkle { 50% { transform: rotate(45deg) scale(.7); } 100% { transform: rotate(90deg); } }
+#p-claude .think { font-size: calc(19 * var(--k)); line-height: calc(32 * var(--k)); color: var(--muted); }
+#p-claude .think i { font-style: normal; animation: chatDot 1.2s infinite; }
+#p-claude .think i:nth-child(2) { animation-delay: .2s; }
+#p-claude .think i:nth-child(3) { animation-delay: .4s; }
+@keyframes chatDot { 0%, 100% { opacity: .15; } 40% { opacity: 1; } }
+
+/* tool calls: server icon · call(args) · spinner → check · one-line summary */
+#p-claude .tool { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: calc(14 * var(--k)); row-gap: calc(2 * var(--k)); align-items: center;
+  padding: calc(10 * var(--k)) calc(16 * var(--k)) calc(10 * var(--k)) calc(11 * var(--k)); border: 1px solid var(--line); border-radius: calc(14 * var(--k));
+  background: #0b0f0d; color: var(--text); font: inherit; text-align: left; animation: chatRise .35s cubic-bezier(.2, .8, .25, 1) backwards; }
+#p-claude .tool .ico { grid-row: 1 / 3; width: calc(42 * var(--k)); height: calc(42 * var(--k)); border-radius: calc(11 * var(--k)); display: grid; place-items: center;
+  color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); }
+#p-claude .tool .ico svg { width: 56%; height: 56%; }
+#p-claude .tool .call { font: 400 max(12px, calc(15 * var(--k))) "Space Mono"; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#p-claude .tool .call b { color: var(--text); font-weight: 700; }
+#p-claude .tool .call .srv { color: var(--c); }
+#p-claude .tool .st { grid-row: 1 / 3; grid-column: 3; position: relative; width: calc(24 * var(--k)); height: calc(24 * var(--k)); }
+#p-claude .tool .spin { position: absolute; inset: 1px; border-radius: 50%; border: 2.5px solid rgba(233, 239, 228, .14); border-top-color: var(--c); animation: chatSpin .75s linear infinite; transition: opacity .2s; }
+#p-claude .tool .st svg { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--lime); opacity: 0; transform: scale(.3); transition: opacity .2s, transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+#p-claude .tool.done .spin { opacity: 0; }
+#p-claude .tool.done .st svg { opacity: 1; transform: none; }
+@keyframes chatSpin { to { transform: rotate(360deg); } }
+#p-claude .tool .sum { grid-column: 2; display: grid; font-size: calc(17 * var(--k)); line-height: 1.35; }
+#p-claude .tool .sum > span { grid-area: 1 / 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: opacity .3s, transform .4s cubic-bezier(.2, .8, .25, 1); }
+#p-claude .tool .sum .wait { color: var(--muted); }
+#p-claude .tool .sum .res { opacity: 0; transform: translateY(5px); }
+#p-claude .tool.done .sum .wait { opacity: 0; transition-duration: .12s; }
+#p-claude .tool.done .sum .res { opacity: 1; transform: none; transition-delay: .1s; }
+/* artifact cards in the thread (Claude.ai style): click to bring that artifact forward */
+#p-claude .tool.art { cursor: pointer; border-color: color-mix(in srgb, var(--c) 30%, transparent); background: color-mix(in srgb, var(--c) 5%, #0b0f0d); transition: border-color .2s; }
+#p-claude .tool.art:hover { border-color: var(--c); }
+#p-claude .tool.art .call { font: 600 calc(18 * var(--k)) "Space Grotesk"; color: var(--text); display: flex; align-items: center; gap: calc(10 * var(--k)); }
+#p-claude .tool.art .call b { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+#p-claude .tool .kind { flex: none; font: 700 max(12px, calc(11 * var(--k))) "Space Mono"; letter-spacing: .14em; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+  border-radius: 4px; padding: 1px 6px; }
+
+/* ask_user: a question with answer buttons */
+#p-claude .ask { padding: calc(16 * var(--k)) calc(20 * var(--k)) calc(18 * var(--k)); border: 1px solid rgba(255, 212, 64, .34); border-radius: calc(16 * var(--k));
+  background: linear-gradient(rgba(255, 212, 64, .07), rgba(255, 212, 64, .02)); animation: chatRise .4s cubic-bezier(.2, .8, .25, 1) backwards; }
+#p-claude .ask .q { font-size: calc(22 * var(--k)); font-weight: 600; line-height: 1.4; }
+#p-claude .opts { display: flex; flex-wrap: wrap; gap: calc(10 * var(--k)); margin-top: calc(14 * var(--k)); }
+#p-claude .opt { font: 600 calc(19 * var(--k))/1.3 "Space Grotesk"; color: var(--text); background: rgba(233, 239, 228, .05); border: 1.5px solid rgba(233, 239, 228, .3);
+  border-radius: 999px; padding: calc(9 * var(--k)) calc(20 * var(--k)); cursor: pointer; animation: chatRise .35s cubic-bezier(.2, .8, .25, 1) calc(var(--d) * 80ms) backwards;
+  transition: background-color .2s, border-color .2s, color .2s, opacity .35s, transform .15s; }
+#p-claude .opt.wrap { text-align: left; border-radius: calc(16 * var(--k)); }   /* a long answer on two lines (chat.js askUser) */
+#p-claude .opts:not(.fresh) .opt:hover:not(:disabled) { border-color: var(--yellow); color: var(--yellow); }
+#p-claude .opt:active:not(:disabled), #p-claude .opt.press { transform: scale(.95); }
+#p-claude .opt:disabled { cursor: default; }
+#p-claude .opt.picked { background: var(--yellow); border-color: var(--yellow); color: #141111; }
+#p-claude .ask.answered .opt:not(.picked) { opacity: .28; }
+
+/* error bubble */
+#p-claude .msg.error .av { display: grid; place-items: center; border: 2px solid var(--red); border-radius: 50%; color: var(--red); font: 700 calc(18 * var(--k)) "Space Mono"; }
+#p-claude .err { display: flex; align-items: center; flex-wrap: wrap; gap: calc(6 * var(--k)) calc(14 * var(--k)); padding: calc(12 * var(--k)) calc(14 * var(--k)) calc(12 * var(--k)) calc(18 * var(--k));
+  border: 1px solid rgba(249, 114, 100, .45); background: rgba(249, 114, 100, .08); border-radius: calc(14 * var(--k)); font-size: calc(19 * var(--k)); }
+#p-claude .err b { color: var(--red); }
+#p-claude .err span { font: 400 max(12px, calc(14 * var(--k))) "Space Mono"; color: var(--muted); }
+#p-claude .err button { margin-left: auto; font: 700 calc(17 * var(--k)) "Space Grotesk"; color: #141111; background: var(--red); border: 0; border-radius: 999px;
+  padding: calc(8 * var(--k)) calc(18 * var(--k)); cursor: pointer; }
+
+/* empty state: greeting, connected apps, one suggestion. On the first message the greeting fades quickly and the clicked
+   suggestion goes at once: Douglas's bubble takes its place and flies up from there (chat.js userSays). */
+#p-claude .chat-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(20 * var(--k));
+  padding-bottom: calc(120 * var(--k)); text-align: center; transition: opacity .15s; }
+#p-claude .chat-empty.gone { opacity: 0; pointer-events: none; }
+#p-claude .chat-empty.gone .suggest { visibility: hidden; }
+#p-claude .hello { display: flex; align-items: center; gap: calc(18 * var(--k)); font: 600 calc(52 * var(--k)) "Space Grotesk"; letter-spacing: -.02em; }
+#p-claude .hello .spark { width: calc(52 * var(--k)); height: calc(52 * var(--k)); color: var(--claude); }
+#p-claude .hello .spark svg { width: 100%; height: 100%; display: block; animation: chatSparkle 6s cubic-bezier(.45, 0, .55, 1) infinite; }
+#p-claude .lead { font-size: calc(20 * var(--k)); color: var(--muted); }
+#p-claude .servers { display: flex; flex-wrap: wrap; justify-content: center; gap: calc(8 * var(--k)); }   /* all five on one row at 1920 and 1440 */
+#p-claude .server { display: inline-flex; align-items: center; gap: calc(8 * var(--k)); padding: calc(5 * var(--k)) calc(12 * var(--k)) calc(5 * var(--k)) calc(5 * var(--k));
+  border: 1px solid var(--line); border-radius: 999px; background: #0b0f0d; font: 400 max(12px, calc(14 * var(--k))) "Space Mono"; }
+#p-claude .server i { width: calc(28 * var(--k)); height: calc(28 * var(--k)); border-radius: 50%; display: grid; place-items: center; color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); }
+#p-claude .server svg { width: 60%; height: 60%; }
+#p-claude .suggest { position: absolute; left: 0; right: 0; bottom: calc(10 * var(--k)); display: flex; align-items: center; gap: calc(14 * var(--k)); text-align: left;
+  font: 500 calc(19 * var(--k)) "Space Grotesk"; line-height: 1.4; color: var(--text); background: rgba(255, 212, 64, .06); border: 1.5px solid rgba(255, 212, 64, .42);
+  border-radius: calc(16 * var(--k)); padding: calc(14 * var(--k)) calc(20 * var(--k)) calc(14 * var(--k)) calc(14 * var(--k)); cursor: pointer; transition: border-color .2s, transform .15s; }
+#p-claude .suggest:hover { border-color: var(--yellow); }
+#p-claude .suggest:active, #p-claude .suggest.press { transform: scale(.98); }
+#p-claude .sg-ico { flex: none; width: calc(36 * var(--k)); height: calc(36 * var(--k)); border-radius: calc(10 * var(--k)); display: grid; place-items: center; color: #141111; background: var(--yellow); }
+#p-claude .sg-ico svg { width: 55%; height: 55%; }
+/* the suggested reply under a turn that stopped early (offerNudge): the same chip, compact and on Douglas's side */
+#p-claude .msg.nudge { justify-content: flex-end; }
+#p-claude .msg.nudge .suggest { position: static; padding: calc(7 * var(--k)) calc(20 * var(--k)) calc(7 * var(--k)) calc(7 * var(--k)); border-radius: 999px; font-weight: 600; }
+#p-claude .msg.nudge .sg-ico { width: calc(32 * var(--k)); height: calc(32 * var(--k)); border-radius: 50%; }
+#p-claude .chat-toast { position: absolute; z-index: 5; left: 50%; top: calc(14 * var(--k)); transform: translate(-50%, -10px); opacity: 0; pointer-events: none; white-space: nowrap;
+  font: 700 max(12px, calc(14 * var(--k))) "Space Mono"; color: #141111; background: var(--yellow); border-radius: 6px; padding: 8px 14px; transition: opacity .25s, transform .25s; }
+#p-claude .chat-toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* composer */
+#p-claude .composer { flex: none; display: flex; align-items: center; gap: calc(14 * var(--k)); margin-top: calc(8 * var(--k)); padding: calc(9 * var(--k)) calc(9 * var(--k)) calc(9 * var(--k)) calc(24 * var(--k));
+  background: #0f1412; border: 1px solid rgba(233, 239, 228, .17); border-radius: calc(22 * var(--k)); box-shadow: 0 calc(14 * var(--k)) calc(44 * var(--k)) rgba(0, 0, 0, .5); transition: border-color .2s; }
+#p-claude .composer:focus-within { border-color: rgba(233, 239, 228, .38); }
+/* one line that grows to three as Douglas types (chat.js sets the height), so a long answer never scrolls sideways;
+   no padding, so a longer answer scrolls by whole lines */
+#p-claude .composer textarea { flex: 1; min-width: 0; display: block; max-height: calc(3 * 1.4em); margin: calc(8 * var(--k)) 0; padding: 0; resize: none; overflow: hidden;
+  background: none; border: 0; outline: 0; color: var(--text); font: 400 calc(20 * var(--k))/1.4 "Space Grotesk"; }
+#p-claude .composer textarea::placeholder { color: rgba(233, 239, 228, .42); }
+#p-claude .composer .model { font: 400 max(12px, calc(13 * var(--k))) "Space Mono"; color: var(--muted); white-space: nowrap; }
+#p-claude .composer .tag { display: none; font: 700 max(12px, calc(11 * var(--k))) "Space Mono"; letter-spacing: .14em; color: var(--yellow); border: 1px solid rgba(255, 212, 64, .5); border-radius: 4px; padding: 2px 7px; }
+#p-claude .composer .tag.on { display: inline-block; }
+#p-claude .send { flex: none; width: calc(46 * var(--k)); height: calc(46 * var(--k)); border-radius: calc(13 * var(--k)); border: 0; background: var(--claude); color: #141111;
+  display: grid; place-items: center; cursor: pointer; transition: opacity .2s, transform .15s; }
+#p-claude .send svg { width: 50%; height: 50%; }
+#p-claude .send:disabled { opacity: .28; cursor: default; }
+#p-claude .send:active:not(:disabled) { transform: scale(.93); }
+
+/* ---------- artifact panel ---------- */
+/* It starts exactly one centring offset to the right (translateX 63% of the thread = 51.4% of the panel), so thread
+   and panel slide left together and never overlap. */
+#p-claude .artifact { position: absolute; top: 0; bottom: 0; right: 0; width: calc(55% - var(--gap) / 2); display: flex; flex-direction: column; overflow: hidden;
+  background: var(--panel); border: 1px solid var(--line); border-radius: calc(18 * var(--k)); box-shadow: 0 30px 90px rgba(0, 0, 0, .55);
+  opacity: 0; transform: translateX(51.4%); pointer-events: none; transition: opacity .5s, transform .9s cubic-bezier(.65, 0, .35, 1); }
+#p-claude .chat.open .artifact { opacity: 1; transform: none; pointer-events: auto; }
+#p-claude .art-bar { flex: none; display: flex; align-items: center; gap: calc(14 * var(--k)); padding: calc(13 * var(--k)) calc(16 * var(--k)) calc(13 * var(--k)) calc(18 * var(--k)); border-bottom: 1px solid var(--line); background: #090c0b; }
+#p-claude .art-ico { flex: none; width: calc(40 * var(--k)); height: calc(40 * var(--k)); border-radius: calc(10 * var(--k)); display: grid; place-items: center; background: rgba(233, 239, 228, .07); }
+#p-claude .art-ico svg { width: 55%; height: 55%; }
+#p-claude .art-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+#p-claude .art-title b { font: 600 calc(19 * var(--k)) "Space Grotesk"; }
+#p-claude .art-title span { font: 400 max(12px, calc(13 * var(--k))) "Space Mono"; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#p-claude .art-tabs { margin-left: auto; display: flex; gap: calc(6 * var(--k)); }
+#p-claude .art-tabs button { display: inline-flex; align-items: center; gap: calc(7 * var(--k)); font: 600 max(12px, calc(15 * var(--k))) "Space Grotesk"; color: var(--muted); white-space: nowrap;
+  background: transparent; border: 1px solid transparent; border-radius: calc(9 * var(--k)); padding: calc(6 * var(--k)) calc(12 * var(--k)); cursor: pointer;
+  animation: chatRise .4s cubic-bezier(.2, .8, .25, 1) backwards; transition: color .2s, background-color .2s, border-color .2s; }
+#p-claude .art-tabs button svg { flex: none; width: calc(18 * var(--k)); height: calc(18 * var(--k)); color: var(--c); }
+#p-claude .art-tabs button span { max-width: calc(170 * var(--k)); overflow: hidden; text-overflow: ellipsis; }
+#p-claude .art-tabs button.on { color: var(--text); background: rgba(233, 239, 228, .07); border-color: var(--line); }
+#p-claude .art-view { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+#p-claude .art-track { height: 100%; transition: transform .8s cubic-bezier(.65, 0, .35, 1); }
+#p-claude .art-page { height: 100%; display: flex; flex-direction: column; gap: calc(16 * var(--k)); padding: calc(18 * var(--k)); }
+#p-claude .evidence .slot { min-height: 0; display: flex; transition: transform .8s cubic-bezier(.65, 0, .35, 1); }
+#p-claude .evidence .slot:first-child { flex: 55 1 0; }
+#p-claude .evidence .slot:last-child { flex: 45 1 0; }
+#p-claude .art-card { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; padding: calc(18 * var(--k)) calc(22 * var(--k));
+  border: 1px solid var(--line); border-radius: calc(14 * var(--k)); background: rgba(233, 239, 228, .02);
+  opacity: 0; transform: translateY(18px); transition: opacity .5s, transform .7s cubic-bezier(.2, .8, .25, 1); }
+#p-claude .art-card.on { opacity: 1; transform: none; }
+#p-claude .art-card.tight { --k: calc(min(calc(100vw / 1920), calc(100vh / 1080)) * .88); }
+#p-claude .art-card.tighter { --k: calc(min(calc(100vw / 1920), calc(100vh / 1080)) * .76); }
+#p-claude .art-card .rv { opacity: 0; transform: translateY(10px); transition: opacity .5s var(--t), transform .6s cubic-bezier(.2, .8, .25, 1) var(--t); }
+#p-claude .art-card.on .rv { opacity: 1; transform: none; }
+#p-claude .art-note { font-size: calc(18 * var(--k)); line-height: 1.4; color: var(--text); }
+/* long model text never pushes a card out of shape */
+#p-claude .art-note, #p-claude .ruled li > span, #p-claude .try p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+
+/* timeline: the History chart (usual band and line, calm grey, hot orange above his usual) plus Claude's marker on the
+   change and a bracket to the rise */
+#p-claude .tl { --margin: calc(104 * var(--k)); --lab: calc(40 * var(--k)); --flag: calc(30 * var(--k)); }
+#p-claude .tl .art-head { display: flex; align-items: center; justify-content: space-between; gap: calc(16 * var(--k)); }
+#p-claude .legend { display: flex; gap: calc(16 * var(--k)); font: 400 max(12px, calc(13 * var(--k))) "Space Mono"; color: var(--muted); white-space: nowrap; }
+#p-claude .legend i { display: inline-block; width: calc(12 * var(--k)); height: calc(12 * var(--k)); border-radius: 2px; margin-right: calc(6 * var(--k)); vertical-align: -1px; }
+#p-claude .lg-band { background: rgba(169, 216, 119, .35); }
+#p-claude .lg-hot { background: var(--orange); }
+#p-claude .legend .lg-mark { width: 3px; background: var(--pink); }
+#p-claude .tl-plot { position: relative; flex: 1; min-height: 0; margin-top: calc(14 * var(--k)); padding-right: var(--margin); }
+#p-claude .tl-band { position: absolute; left: 0; right: var(--margin); background: rgba(169, 216, 119, .1); opacity: 0; transition: opacity .6s .1s; }
+#p-claude .tl-usual { position: absolute; left: 0; right: var(--margin); z-index: 2; height: 2px; margin-bottom: -1px;
+  background: repeating-linear-gradient(90deg, rgba(169, 216, 119, .85) 0 10px, transparent 10px 17px); opacity: 0; transition: opacity .6s .2s; }
+#p-claude .tl-usual span { position: absolute; left: calc(100% + 14 * var(--k)); top: 50%; transform: translateY(-50%); line-height: 1.1;
+  font: 700 calc(19 * var(--k)) "Space Grotesk"; white-space: nowrap; }
+#p-claude .tl-usual span b { display: block; font: 700 max(12px, calc(12 * var(--k))) "Space Mono"; letter-spacing: .14em; color: var(--muted); }
+#p-claude .art-card.on .tl-band, #p-claude .art-card.on .tl-usual { opacity: 1; }
+#p-claude .tl-cols { position: absolute; inset: 0 var(--margin) 0 0; display: grid; grid-template-columns: repeat(14, 1fr); border-bottom: 1px solid rgba(233, 239, 228, .2); }
+#p-claude .tl-col { position: relative; }
+#p-claude .tl-col i { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; width: 58%; margin: 0 auto; border-radius: calc(5 * var(--k)) calc(5 * var(--k)) 0 0; background: #484d49;
+  transform: scaleY(0); transform-origin: bottom; transition: transform .75s cubic-bezier(.22, 1, .36, 1) calc(var(--i) * 45ms + .15s); }
+#p-claude .tl-col.mark i { background: #8a4a63; }
+#p-claude .tl-col.hot i { background: #a5623b; }
+#p-claude .tl-col u { position: absolute; left: 0; right: 0; top: 0; border-radius: inherit; background: var(--orange); box-shadow: 0 0 26px rgba(248, 161, 111, .45); }
+#p-claude .tl-col b { position: absolute; left: 50%; z-index: 3; margin-bottom: calc(8 * var(--k)); padding: 0 calc(4 * var(--k)); border-radius: 3px; background: #101412; line-height: 1.15;
+  font: 700 max(12px, calc(15 * var(--k))) "Space Mono"; color: var(--muted); transform: translateX(-50%); opacity: 0; transition: opacity .4s calc(var(--i) * 45ms + .7s); }
+#p-claude .tl-col.mark b { color: var(--pink); }
+#p-claude .tl-col.hot b { font: 700 calc(30 * var(--k)) "Space Grotesk"; letter-spacing: -.02em; color: var(--text); margin-bottom: calc(6 * var(--k)); }
+#p-claude .art-card.on .tl-col i { transform: none; }
+#p-claude .art-card.on .tl-col b { opacity: 1; }
+#p-claude .tl-mark { position: absolute; top: calc(var(--flag) / 2); bottom: 0; z-index: 0; width: 2px; margin-left: -1px; background: var(--pink); box-shadow: 0 0 12px rgba(254, 125, 168, .6);
+  transform: scaleY(0); transform-origin: top; transition: transform .6s cubic-bezier(.2, .8, .25, 1) 1.1s; }
+/* the flag: Claude's label, shortened with … when it must be, then the date, which always stays */
+#p-claude .tl-flag { position: absolute; top: 0; z-index: 3; display: flex; gap: 1ch; height: var(--flag); padding: 0 calc(10 * var(--k)); margin-left: -1px; white-space: nowrap;
+  font: 700 max(12px, calc(14 * var(--k)))/var(--flag) "Space Mono"; color: #141111; background: var(--pink); border-radius: calc(5 * var(--k));
+  opacity: 0; transform: translateY(-6px); transition: opacity .4s 1.35s, transform .5s cubic-bezier(.2, .8, .25, 1) 1.35s; }
+#p-claude .tl-flag span { flex: none; }
+#p-claude .tl-flag .lbl { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+#p-claude .tl-flag.left { margin: 0 -1px 0 0; }
+#p-claude .art-card.on .tl-mark, #p-claude .art-card.on .tl-flag { opacity: 1; transform: none; }
+#p-claude .tl-lag { position: absolute; z-index: 3; top: calc(var(--flag) / 2 - 1px); height: calc(12 * var(--k)); }
+#p-claude .tl-lag.low { top: calc(var(--flag) + 14 * var(--k)); }
+#p-claude .tl-lag::before { content: ""; position: absolute; inset: 0; border: 2px solid var(--orange); border-bottom: 0; border-radius: 3px 3px 0 0;
+  transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2, .8, .25, 1) 1.75s; }
+#p-claude .tl-lag span { position: absolute; left: 100%; top: 0; transform: translateY(-50%); margin-left: calc(10 * var(--k)); white-space: nowrap;
+  font: 700 max(12px, calc(14 * var(--k))) "Space Mono"; color: var(--orange); opacity: 0; transition: opacity .4s 2.1s; }
+/* a low bracket (marker in the left half) runs over to the hot nights: its label sits inside it, centred under the line,
+   clear of the flag above and the hot values to the right */
+#p-claude .tl-lag.low span { left: 50%; top: calc(6 * var(--k)); transform: translateX(-50%); margin-left: 0; }
+#p-claude .tl-drop { position: absolute; z-index: 1; top: calc(var(--flag) / 2 + 10 * var(--k)); width: 0; margin-left: -1px; border-left: 2px dashed rgba(248, 161, 111, .7);
+  transform: scaleY(0); transform-origin: top; transition: transform .5s cubic-bezier(.2, .8, .25, 1) 2.05s; }
+#p-claude .tl-drop.low { top: calc(var(--flag) + 26 * var(--k)); }
+#p-claude .art-card.on .tl-lag::before, #p-claude .art-card.on .tl-drop { transform: none; }
+#p-claude .art-card.on .tl-lag span { opacity: 1; }
+#p-claude .tl-axis { display: grid; grid-template-columns: repeat(14, 1fr); margin-right: var(--margin); padding-top: calc(10 * var(--k)); }
+#p-claude .tl-axis span { text-align: center; font: 500 calc(16 * var(--k)) "Space Grotesk"; line-height: 1.2; color: rgba(233, 239, 228, .7); }
+#p-claude .tl-axis span b { display: block; margin-bottom: calc(2 * var(--k)); font: 700 max(12px, calc(12 * var(--k))) "Space Mono"; letter-spacing: .1em; color: var(--muted); }
+#p-claude .tl-axis .hot, #p-claude .tl-axis .hot b { color: var(--text); }
+#p-claude .tl-axis .mark, #p-claude .tl-axis .mark b { color: var(--pink); }
+#p-claude .tl .art-note { margin-top: calc(12 * var(--k)); }
+
+/* product: a generic bottle, first purchase, the ingredients with the allergens lit up */
+#p-claude .prod { flex-direction: row; align-items: center; gap: calc(26 * var(--k)); }
+#p-claude .prod-pic { flex: none; position: relative; width: calc(150 * var(--k)); height: 100%; max-height: calc(290 * var(--k)); display: grid; place-items: center; }
+#p-claude .prod-pic::before { content: ""; position: absolute; width: 150%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(rgba(254, 125, 168, .2), transparent 62%); }
+#p-claude .bottle { position: relative; height: 100%; max-width: 100%; opacity: 0; transform: translateY(24px) rotate(-8deg); transition: opacity .5s .1s, transform .9s cubic-bezier(.34, 1.4, .64, 1) .1s; }
+#p-claude .art-card.on .bottle { opacity: 1; transform: none; }
+#p-claude .prod-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: calc(8 * var(--k)); }
+#p-claude .prod-info h3 { font: 700 calc(44 * var(--k)) "Space Grotesk"; letter-spacing: -.02em; line-height: 1.05; }
+#p-claude .prod-info h3.long { font-size: calc(32 * var(--k)); }
+#p-claude .prod-meta { font-size: calc(18 * var(--k)); color: var(--muted); }
+#p-claude .prod-meta b { color: var(--pink); font-weight: 700; }
+#p-claude .ingr-head { display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--k)); margin-top: calc(8 * var(--k)); }
+#p-claude .prod-hint { display: inline-flex; align-items: center; gap: calc(7 * var(--k)); font: 400 max(12px, calc(13 * var(--k))) "Space Mono"; color: var(--orange); white-space: nowrap; }
+#p-claude .prod-hint i { width: calc(10 * var(--k)); height: calc(10 * var(--k)); border-radius: 50%; background: var(--orange); }
+#p-claude .ingr { display: flex; flex-wrap: wrap; gap: calc(7 * var(--k)); }
+#p-claude .ingr span { font: 500 max(12px, calc(15 * var(--k))) "Space Grotesk"; padding: calc(4 * var(--k)) calc(11 * var(--k)); border-radius: 999px; border: 1px solid rgba(233, 239, 228, .2); color: var(--muted); }
+#p-claude .ingr span.flag { transition: opacity .5s var(--t), transform .6s cubic-bezier(.2, .8, .25, 1) var(--t), background-color .35s var(--f), color .35s var(--f), border-color .35s var(--f), box-shadow .35s var(--f); }
+#p-claude .art-card.on .ingr span.flag { background: var(--orange); border-color: var(--orange); color: #141111; font-weight: 700; box-shadow: 0 0 18px rgba(248, 161, 111, .45); }
+#p-claude .prod .art-note { margin-top: calc(6 * var(--k)); color: var(--muted); font-size: calc(17 * var(--k)); }
+
+/* conclusion: the cause, a confidence meter, what was ruled out, what to try, the disclaimer */
+#p-claude .concl { gap: calc(14 * var(--k)); padding: calc(26 * var(--k)) calc(30 * var(--k)); }
+#p-claude .concl-top { display: flex; align-items: center; gap: calc(28 * var(--k)); margin-bottom: calc(10 * var(--k)); }
+#p-claude .concl-cause { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: calc(12 * var(--k)); }
+#p-claude .concl-pic { flex: none; position: relative; width: calc(104 * var(--k)); height: calc(200 * var(--k)); display: grid; place-items: center; }
+#p-claude .concl-pic::before { content: ""; position: absolute; width: 150%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(rgba(254, 125, 168, .2), transparent 62%); }
+#p-claude .concl-pic .bottle { opacity: 1; transform: none; }
+#p-claude .cause { font: 700 calc(52 * var(--k)) "Space Grotesk"; letter-spacing: -.02em; line-height: 1.1; color: #fff; }
+#p-claude .cause.m { font-size: calc(44 * var(--k)); }
+#p-claude .cause.s { font-size: calc(36 * var(--k)); }
+#p-claude .cause.xs { font-size: calc(30 * var(--k)); }
+#p-claude .conf { display: flex; align-items: center; gap: calc(16 * var(--k)); margin-top: calc(4 * var(--k)); }
+#p-claude .meter3 { display: flex; gap: calc(6 * var(--k)); }
+#p-claude .meter3 i { position: relative; width: calc(84 * var(--k)); height: calc(14 * var(--k)); border-radius: 3px; overflow: hidden; background: rgba(233, 239, 228, .1); }
+#p-claude .meter3 i::after { content: ""; position: absolute; inset: 0; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .4s ease-out; }
+#p-claude .meter3 i:nth-child(1)::after { transition-delay: .8s; }
+#p-claude .meter3 i:nth-child(2)::after { transition-delay: 1.15s; }
+#p-claude .meter3 i:nth-child(3)::after { transition-delay: 1.5s; }
+#p-claude .art-card.on .meter3 i:nth-child(1)::after, #p-claude .art-card.on .meter3.lv2 i:nth-child(2)::after, #p-claude .art-card.on .meter3.lv3 i:nth-child(-n+3)::after { transform: none; }
+#p-claude .conf b { font: 700 max(12px, calc(17 * var(--k))) "Space Mono"; letter-spacing: .14em; color: var(--yellow); }
+#p-claude .ruled { list-style: none; display: grid; gap: calc(10 * var(--k)) calc(12 * var(--k)); }
+#p-claude .ruled.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#p-claude .ruled.two li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+#p-claude .ruled li { min-width: 0; padding: calc(13 * var(--k)) calc(16 * var(--k)); border: 1px solid var(--line); border-radius: calc(12 * var(--k)); background: rgba(233, 239, 228, .025); }
+/* the strike is drawn left to right, across every line of a long item */
+#p-claude .ruled s { text-decoration: none; font: 700 calc(22 * var(--k))/1.25 "Space Grotesk"; color: rgba(233, 239, 228, .8);
+  background: linear-gradient(var(--red), var(--red)) no-repeat 0 58% / 0 2px; transition: background-size .5s cubic-bezier(.2, .8, .25, 1) calc(var(--t) + .35s); }
+#p-claude .art-card.on .ruled s { background-size: 100% 2px; }
+#p-claude .ruled li > span { margin-top: calc(5 * var(--k)); font-size: calc(18 * var(--k)); line-height: 1.35; color: var(--muted); }
+#p-claude .try { margin-top: calc(8 * var(--k)); padding: calc(16 * var(--k)) calc(20 * var(--k)); border: 1.5px solid rgba(169, 216, 119, .5); border-radius: calc(14 * var(--k)); background: rgba(169, 216, 119, .07); }
+#p-claude .try .ek { color: var(--lime); }
+#p-claude .try p { margin-top: calc(6 * var(--k)); font-size: calc(22 * var(--k)); line-height: 1.4; }
+#p-claude .disc { margin-top: auto; padding-top: calc(10 * var(--k)); font: 400 max(12px, calc(15 * var(--k))) "Space Mono"; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  #p-claude *, #p-claude *::before, #p-claude *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+}

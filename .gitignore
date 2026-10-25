@@ -1,0 +1,8 @@
+node_modules/
+.wrangler/
+.dev.vars
+*.secret
+
+__pycache__/
+*.py[cod]
+.DS_Store

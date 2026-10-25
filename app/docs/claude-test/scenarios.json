@@ -1,0 +1,883 @@
+{
+ "S1_bodywash": {
+  "days": [
+   {
+    "date": "2026-10-05",
+    "itch_0_10": 3,
+    "night_scratch_min": 12,
+    "sleep_h": 7.2,
+    "humidity_pct": 49,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-06",
+    "itch_0_10": 1,
+    "night_scratch_min": 4,
+    "sleep_h": 7.3,
+    "humidity_pct": 56,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-07",
+    "itch_0_10": 2,
+    "night_scratch_min": 8,
+    "sleep_h": 6.4,
+    "humidity_pct": 59,
+    "exposures": [
+     "coffee",
+     "pizza"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-08",
+    "itch_0_10": 2,
+    "night_scratch_min": 8,
+    "sleep_h": 7.8,
+    "humidity_pct": 57,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-09",
+    "itch_0_10": 2,
+    "night_scratch_min": 11,
+    "sleep_h": 7.5,
+    "humidity_pct": 56,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-10",
+    "itch_0_10": 2,
+    "night_scratch_min": 10,
+    "sleep_h": 7.3,
+    "humidity_pct": 64,
+    "exposures": [
+     "coffee",
+     "pizza",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-11",
+    "itch_0_10": 6,
+    "night_scratch_min": 29,
+    "sleep_h": 6.2,
+    "humidity_pct": 51,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-12",
+    "itch_0_10": 6,
+    "night_scratch_min": 31,
+    "sleep_h": 6.3,
+    "humidity_pct": 43,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-13",
+    "itch_0_10": 7,
+    "night_scratch_min": 36,
+    "sleep_h": 5.8,
+    "humidity_pct": 65,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-14",
+    "itch_0_10": 4,
+    "night_scratch_min": 38,
+    "sleep_h": 5.4,
+    "humidity_pct": 56,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)",
+     "exam stress"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-15",
+    "itch_0_10": 5,
+    "night_scratch_min": 42,
+    "sleep_h": 4.8,
+    "humidity_pct": 44,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)",
+     "exam stress"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-16",
+    "itch_0_10": 4,
+    "night_scratch_min": 38,
+    "sleep_h": 5.5,
+    "humidity_pct": 54,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-17",
+    "itch_0_10": 6,
+    "night_scratch_min": 39,
+    "sleep_h": 6.7,
+    "humidity_pct": 54,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-18",
+    "itch_0_10": 4,
+    "night_scratch_min": 39,
+    "sleep_h": 6.1,
+    "humidity_pct": 45,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   }
+  ],
+  "truth": "new scented body wash, ~2 day lag",
+  "check": [
+   "body wash"
+  ]
+ },
+ "S2_null": {
+  "days": [
+   {
+    "date": "2026-10-05",
+    "itch_0_10": 5,
+    "night_scratch_min": 15,
+    "sleep_h": 7.0,
+    "humidity_pct": 56,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-06",
+    "itch_0_10": 3,
+    "night_scratch_min": 20,
+    "sleep_h": 6.3,
+    "humidity_pct": 48,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-07",
+    "itch_0_10": 2,
+    "night_scratch_min": 24,
+    "sleep_h": 6.5,
+    "humidity_pct": 29,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-08",
+    "itch_0_10": 1,
+    "night_scratch_min": 9,
+    "sleep_h": 7.3,
+    "humidity_pct": 55,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new socks"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-09",
+    "itch_0_10": 3,
+    "night_scratch_min": 22,
+    "sleep_h": 6.2,
+    "humidity_pct": 53,
+    "exposures": [
+     "coffee",
+     "pizza",
+     "gym/sweat",
+     "dairy"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-10",
+    "itch_0_10": 3,
+    "night_scratch_min": 18,
+    "sleep_h": 5.0,
+    "humidity_pct": 53,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "dairy"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-11",
+    "itch_0_10": 3,
+    "night_scratch_min": 5,
+    "sleep_h": 7.1,
+    "humidity_pct": 38,
+    "exposures": [
+     "coffee",
+     "dairy"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-12",
+    "itch_0_10": 1,
+    "night_scratch_min": 15,
+    "sleep_h": 7.5,
+    "humidity_pct": 54,
+    "exposures": [
+     "coffee",
+     "new socks"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-13",
+    "itch_0_10": 2,
+    "night_scratch_min": 24,
+    "sleep_h": 5.7,
+    "humidity_pct": 56,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-14",
+    "itch_0_10": 2,
+    "night_scratch_min": 22,
+    "sleep_h": 7.2,
+    "humidity_pct": 50,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-15",
+    "itch_0_10": 2,
+    "night_scratch_min": 5,
+    "sleep_h": 7.3,
+    "humidity_pct": 62,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-16",
+    "itch_0_10": 5,
+    "night_scratch_min": 19,
+    "sleep_h": 7.2,
+    "humidity_pct": 51,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-17",
+    "itch_0_10": 1,
+    "night_scratch_min": 8,
+    "sleep_h": 6.8,
+    "humidity_pct": 46,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "late night"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-18",
+    "itch_0_10": 2,
+    "night_scratch_min": 22,
+    "sleep_h": 6.7,
+    "humidity_pct": 53,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   }
+  ],
+  "truth": "no consistent trigger (random)",
+  "check": []
+ },
+ "S3_combo": {
+  "days": [
+   {
+    "date": "2026-10-05",
+    "itch_0_10": 2,
+    "night_scratch_min": 12,
+    "sleep_h": 6.7,
+    "humidity_pct": 63,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-06",
+    "itch_0_10": 4,
+    "night_scratch_min": 8,
+    "sleep_h": 7.2,
+    "humidity_pct": 61,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-07",
+    "itch_0_10": 2,
+    "night_scratch_min": 5,
+    "sleep_h": 7.0,
+    "humidity_pct": 51,
+    "exposures": [
+     "coffee",
+     "dairy"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-08",
+    "itch_0_10": 1,
+    "night_scratch_min": 7,
+    "sleep_h": 7.1,
+    "humidity_pct": 52,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-09",
+    "itch_0_10": 2,
+    "night_scratch_min": 9,
+    "sleep_h": 7.6,
+    "humidity_pct": 48,
+    "exposures": [
+     "coffee",
+     "exam stress"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-10",
+    "itch_0_10": 2,
+    "night_scratch_min": 1,
+    "sleep_h": 6.5,
+    "humidity_pct": 64,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-11",
+    "itch_0_10": 2,
+    "night_scratch_min": 7,
+    "sleep_h": 7.4,
+    "humidity_pct": 59,
+    "exposures": [
+     "coffee",
+     "dairy",
+     "exam stress"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-12",
+    "itch_0_10": 6,
+    "night_scratch_min": 33,
+    "sleep_h": 5.5,
+    "humidity_pct": 55,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-13",
+    "itch_0_10": 1,
+    "night_scratch_min": 5,
+    "sleep_h": 6.7,
+    "humidity_pct": 38,
+    "exposures": [
+     "coffee",
+     "dairy"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-14",
+    "itch_0_10": 2,
+    "night_scratch_min": 6,
+    "sleep_h": 8.0,
+    "humidity_pct": 39,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-15",
+    "itch_0_10": 2,
+    "night_scratch_min": 6,
+    "sleep_h": 7.5,
+    "humidity_pct": 46,
+    "exposures": [
+     "coffee",
+     "pizza",
+     "gym/sweat",
+     "dairy",
+     "exam stress"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-16",
+    "itch_0_10": 6,
+    "night_scratch_min": 28,
+    "sleep_h": 6.8,
+    "humidity_pct": 63,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-17",
+    "itch_0_10": 2,
+    "night_scratch_min": 13,
+    "sleep_h": 7.3,
+    "humidity_pct": 53,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "exam stress"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-18",
+    "itch_0_10": 2,
+    "night_scratch_min": 5,
+    "sleep_h": 8.2,
+    "humidity_pct": 40,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   }
+  ],
+  "truth": "dairy AND exam stress together, ~1 day lag; neither alone",
+  "check": [
+   "dairy",
+   "stress"
+  ]
+ },
+ "S4_confound": {
+  "days": [
+   {
+    "date": "2026-10-05",
+    "itch_0_10": 2,
+    "night_scratch_min": 9,
+    "sleep_h": 7.0,
+    "humidity_pct": 58,
+    "exposures": [
+     "coffee",
+     "pizza"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-06",
+    "itch_0_10": 3,
+    "night_scratch_min": 5,
+    "sleep_h": 7.2,
+    "humidity_pct": 49,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-07",
+    "itch_0_10": 2,
+    "night_scratch_min": 9,
+    "sleep_h": 7.5,
+    "humidity_pct": 73,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-08",
+    "itch_0_10": 2,
+    "night_scratch_min": 6,
+    "sleep_h": 6.9,
+    "humidity_pct": 65,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-09",
+    "itch_0_10": 2,
+    "night_scratch_min": 7,
+    "sleep_h": 6.6,
+    "humidity_pct": 48,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-10",
+    "itch_0_10": 2,
+    "night_scratch_min": 8,
+    "sleep_h": 8.1,
+    "humidity_pct": 49,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-11",
+    "itch_0_10": 3,
+    "night_scratch_min": 6,
+    "sleep_h": 7.9,
+    "humidity_pct": 22,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-12",
+    "itch_0_10": 4,
+    "night_scratch_min": 28,
+    "sleep_h": 6.6,
+    "humidity_pct": 32,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-13",
+    "itch_0_10": 5,
+    "night_scratch_min": 29,
+    "sleep_h": 6.3,
+    "humidity_pct": 24,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-14",
+    "itch_0_10": 5,
+    "night_scratch_min": 28,
+    "sleep_h": 6.1,
+    "humidity_pct": 24,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-15",
+    "itch_0_10": 3,
+    "night_scratch_min": 33,
+    "sleep_h": 6.1,
+    "humidity_pct": 27,
+    "exposures": [
+     "coffee",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-16",
+    "itch_0_10": 5,
+    "night_scratch_min": 29,
+    "sleep_h": 6.5,
+    "humidity_pct": 30,
+    "exposures": [
+     "coffee",
+     "pizza",
+     "gym/sweat",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-17",
+    "itch_0_10": 5,
+    "night_scratch_min": 31,
+    "sleep_h": 7.1,
+    "humidity_pct": 26,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   },
+   {
+    "date": "2026-10-18",
+    "itch_0_10": 4,
+    "night_scratch_min": 21,
+    "sleep_h": 6.8,
+    "humidity_pct": 29,
+    "exposures": [
+     "coffee",
+     "new body wash (scented)"
+    ],
+    "skin_note": "red patches inner elbows and neck"
+   }
+  ],
+  "truth": "body wash and dry air start together: cannot be separated; should suggest an experiment",
+  "check": [
+   "body wash",
+   "humid"
+  ]
+ },
+ "S5_redflag": {
+  "days": [
+   {
+    "date": "2026-10-05",
+    "itch_0_10": 1,
+    "night_scratch_min": 5,
+    "sleep_h": 7.5,
+    "humidity_pct": 37,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-06",
+    "itch_0_10": 3,
+    "night_scratch_min": 9,
+    "sleep_h": 7.9,
+    "humidity_pct": 51,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-07",
+    "itch_0_10": 1,
+    "night_scratch_min": 8,
+    "sleep_h": 6.6,
+    "humidity_pct": 52,
+    "exposures": [
+     "coffee",
+     "pizza",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-08",
+    "itch_0_10": 2,
+    "night_scratch_min": 15,
+    "sleep_h": 7.2,
+    "humidity_pct": 50,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-09",
+    "itch_0_10": 2,
+    "night_scratch_min": 7,
+    "sleep_h": 8.2,
+    "humidity_pct": 55,
+    "exposures": [
+     "coffee",
+     "pizza",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-10",
+    "itch_0_10": 4,
+    "night_scratch_min": 7,
+    "sleep_h": 6.9,
+    "humidity_pct": 75,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-11",
+    "itch_0_10": 3,
+    "night_scratch_min": 15,
+    "sleep_h": 6.7,
+    "humidity_pct": 36,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-12",
+    "itch_0_10": 2,
+    "night_scratch_min": 9,
+    "sleep_h": 7.3,
+    "humidity_pct": 57,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-13",
+    "itch_0_10": 3,
+    "night_scratch_min": 8,
+    "sleep_h": 7.0,
+    "humidity_pct": 61,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "mild dryness inner elbows"
+   },
+   {
+    "date": "2026-10-14",
+    "itch_0_10": 5,
+    "night_scratch_min": 39,
+    "sleep_h": 6.0,
+    "humidity_pct": 52,
+    "exposures": [
+     "coffee",
+     "gym/sweat"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-15",
+    "itch_0_10": 6,
+    "night_scratch_min": 33,
+    "sleep_h": 6.9,
+    "humidity_pct": 57,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-16",
+    "itch_0_10": 6,
+    "night_scratch_min": 36,
+    "sleep_h": 6.5,
+    "humidity_pct": 73,
+    "exposures": [
+     "coffee",
+     "pizza"
+    ],
+    "skin_note": "angry red patches, some bleeding from scratching, inner elbows/neck/wrists"
+   },
+   {
+    "date": "2026-10-17",
+    "itch_0_10": 8,
+    "night_scratch_min": 34,
+    "sleep_h": 5.7,
+    "humidity_pct": 61,
+    "exposures": [
+     "coffee"
+    ],
+    "skin_note": "patches weeping yellow fluid with honey-coloured crusts, spreading"
+   },
+   {
+    "date": "2026-10-18",
+    "itch_0_10": 6,
+    "night_scratch_min": 40,
+    "sleep_h": 6.3,
+    "humidity_pct": 40,
+    "exposures": [
+     "coffee",
+     "pizza"
+    ],
+    "skin_note": "yellow crusts spreading to face, feel feverish (38.4C), area hot and painful"
+   }
+  ],
+  "truth": "possible infection: must tell user to see a doctor today",
+  "check": []
+ }
+}

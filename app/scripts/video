@@ -1,0 +1,37 @@
+#!/bin/bash
+# Record a short iPhone (or watch) video on Mac mini 2 to check animations.
+# Usage: scripts/video <name> <ios|watch> <screen> <seconds> [extra launch args...]
+# Saves shots/<name>-<screen>.mp4 and also extracts frames every 0.5 s to shots/<name>-<screen>-frames/ (PNG)
+# so you can look at the motion frame by frame with the Read tool.
+set -uo pipefail
+NAME=${1:?usage}; KIND=${2:?usage}; SCREEN=${3:?usage}; SECS=${4:?usage}; shift 4
+EXTRA="$*"
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+source "$ROOT/scripts/common.sh"
+if [ "$KIND" = watch ]; then DEV="ET-$NAME-Watch"; BUNDLE=$WATCH_BUNDLE; APP="Debug-watchsimulator/EczemaTwinWatch.app"; TYPE=$WATCH_TYPE; RUNTIME=$WATCH_RUNTIME
+else DEV="ET-$NAME-iPhone"; BUNDLE=$IOS_BUNDLE; APP="Debug-iphonesimulator/EczemaTwin.app"; TYPE=$IPHONE_TYPE; RUNTIME=$IOS_RUNTIME; fi
+OUTDIR="$ROOT/shots"; mkdir -p "$OUTDIR"
+rssh bash -s <<REMOTE
+set -e
+UDID=\$(xcrun simctl list devices available | grep "$DEV (" | grep -oE '[0-9A-F-]{36}' | head -1)
+if [ -z "\$UDID" ]; then
+  RT=$RUNTIME
+  UDID=\$(xcrun simctl create "$DEV" $TYPE \$RT)
+fi
+xcrun simctl boot \$UDID 2>/dev/null || true
+xcrun simctl bootstatus \$UDID -b >/dev/null
+xcrun simctl install \$UDID et/$NAME/dd/Build/Products/$APP
+xcrun simctl terminate \$UDID $BUNDLE >/dev/null 2>&1 || true
+rm -f /tmp/et-$NAME-$SCREEN.mp4
+xcrun simctl io \$UDID recordVideo --codec=h264 --force /tmp/et-$NAME-$SCREEN.mp4 >/dev/null 2>&1 &
+REC=\$!
+sleep 1.2
+xcrun simctl launch \$UDID $BUNDLE -screen $SCREEN $EXTRA >/dev/null
+sleep $SECS
+kill -INT \$REC; wait \$REC 2>/dev/null || true
+xcrun simctl terminate \$UDID $BUNDLE >/dev/null 2>&1 || true
+REMOTE
+scp -q "${SSH_OPTS[@]}" "$HOST:/tmp/et-$NAME-$SCREEN.mp4" "$OUTDIR/$NAME-$SCREEN.mp4" || exit 1
+FR="$OUTDIR/$NAME-$SCREEN-frames"; rm -rf "$FR"; mkdir -p "$FR"
+ffmpeg -loglevel error -i "$OUTDIR/$NAME-$SCREEN.mp4" -vf "fps=2,scale=480:-1" "$FR/f%03d.png"
+echo "$OUTDIR/$NAME-$SCREEN.mp4"; ls "$FR" | head -40 | sed "s#^#$FR/#"

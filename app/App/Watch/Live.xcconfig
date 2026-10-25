@@ -1,0 +1,5 @@
+// Big-screen relay for live streaming. Empty here (no streaming); the real host and key live in the
+// untracked Secrets.xcconfig next to this file, which overrides them when present.
+TWIN_LIVE_HOST =
+TWIN_LIVE_KEY =
+#include? "Secrets.xcconfig"

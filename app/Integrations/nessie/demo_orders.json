@@ -1,0 +1,156 @@
+{
+  "note": "Demo purchase history for Douglas. Dates are relative: the newest order is placed 2 days before \"today\" when seeding. Amounts are approximate demo prices (Nessie stores whole dollars).",
+  "anchor_date": "2026-10-22",
+  "orders": [
+    {
+      "date": "2026-08-11",
+      "item": "Everclean Free & Clear Liquid Detergent, 92 loads",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-08-13",
+      "item": "Riverstone Daily Shampoo, 16 fl oz",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-08-15",
+      "item": "Coastline Mineral Sunscreen SPF 30",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-08-19",
+      "item": "Peet's Major Dickason's Coffee Beans, 2 lb",
+      "amount": 18.99
+    },
+    {
+      "date": "2026-08-24",
+      "item": "Summit Peak Mint Shampoo, travel size 3 fl oz",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-08-26",
+      "item": "Dermacalm Ceramide Cream, 16 oz",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-08-31",
+      "item": "Five Star Spiral Notebooks, 5 pack",
+      "amount": 9.99
+    },
+    {
+      "date": "2026-09-02",
+      "item": "Alder & Pine Cedar Deodorant",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-09-05",
+      "item": "Bayline Cotton Pullover Hoodie",
+      "amount": 29.99
+    },
+    {
+      "date": "2026-09-07",
+      "item": "Colgate Total Toothpaste, 2 pack",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-09-10",
+      "item": "Everclean Free & Clear Liquid Detergent, 92 loads",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-09-12",
+      "item": "Lumen Citrus Foaming Hand Soap",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-09-16",
+      "item": "Anker USB-C Charging Cable, 6 ft",
+      "amount": 12.99
+    },
+    {
+      "date": "2026-09-19",
+      "item": "Bayline Crew T-Shirts, 3 pack",
+      "amount": 29.99
+    },
+    {
+      "date": "2026-09-20",
+      "item": "RXBAR Protein Bars, 12 count",
+      "amount": 18.99
+    },
+    {
+      "date": "2026-09-22",
+      "item": "Harbor Oat Daily Lotion",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-09-24",
+      "item": "Riverstone Daily Shampoo, 16 fl oz",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-09-25",
+      "item": "Willow Unscented Hand Soap Refill",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-09-27",
+      "item": "Brightwell Daily Moisturizing Lotion, 12 fl oz",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-10-01",
+      "item": "Cloudrest Memory Foam Pillow",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-10-02",
+      "item": "Duracell AAA Batteries, 8 pack",
+      "amount": 9.99
+    },
+    {
+      "date": "2026-10-05",
+      "item": "Northfield Lambswool Crewneck Sweater",
+      "amount": 29.99
+    },
+    {
+      "date": "2026-10-05",
+      "item": "FreshMeadow Spring Bloom Detergent, trial size",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-10-12",
+      "item": "Peet's Major Dickason's Coffee Beans, 2 lb",
+      "amount": 18.99
+    },
+    {
+      "date": "2026-10-13",
+      "item": "Everclean Free & Clear Liquid Detergent, 92 loads",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-10-15",
+      "item": "Darn Tough Merino Wool Socks, 3 pairs",
+      "amount": 29.99
+    },
+    {
+      "date": "2026-10-17",
+      "item": "Nissin Top Ramen, 24 pack",
+      "amount": 18.99
+    },
+    {
+      "date": "2026-10-19",
+      "item": "Brightwell Sensitive Fragrance-Free Body Wash, 18 fl oz",
+      "amount": 11.49
+    },
+    {
+      "date": "2026-10-21",
+      "item": "Philips LED Desk Lamp Bulb",
+      "amount": 14.99
+    },
+    {
+      "date": "2026-10-22",
+      "item": "RXBAR Protein Bars, 12 count",
+      "amount": 18.99
+    }
+  ]
+}

@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eczema Twin — prototype v5</title>
+<style>
+@font-face { font-family: "Space Grotesk"; src: url(fonts/SpaceGrotesk.ttf) format("truetype"); font-weight: 300 700; }
+@font-face { font-family: "Space Mono"; src: url(fonts/SpaceMono-Regular.ttf); font-weight: 400; }
+@font-face { font-family: "Space Mono"; src: url(fonts/SpaceMono-Bold.ttf); font-weight: 700; }
+:root {
+  --ink: #141111; --muted: rgba(20,17,17,.68); --hint: rgba(20,17,17,.55);
+  --hair: rgba(20,17,17,.15); --seam: rgba(20,17,17,.45);
+  --frame: #ffd440; --cream: #fffaef; --paper: #ffffff; --fill: #f3f3f3;
+  --yellow: #ffd440; --yellow-soft: #fff0bd;
+  --pink: #fe7da8; --pink-soft: #ffd6e2; --pink-strong: #c00064;
+  --cyan: #27ccf3; --cyan-soft: #d7f2fe; --cyan-strong: #06414f;
+  --orange: #f8a16f; --orange-soft: #fde6de; --orange-strong: #5b310f;
+  --lime: #a9d877; --lime-soft: #dcfac1; --lime-strong: #344522;
+  --r-sticker: 3px; --r-chip: 4px; --r-control: 6px; --r-card: 10px; --r-dialog: 16px;
+  --slide: cubic-bezier(.22,.9,.24,1); --spring: cubic-bezier(.34,1.56,.64,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+body { font-family: "Space Grotesk", system-ui, sans-serif; color: var(--ink); background: #ece9e1;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 22px 16px 40px; gap: 16px; }
+.mono { font-family: "Space Mono", ui-monospace, monospace; }
+.muted { color: var(--muted); } .hint { color: var(--hint); }
+.intro { text-align: center; max-width: 860px; }
+.intro h1 { font-size: 22px; letter-spacing: -.01em; }
+.intro p { color: var(--muted); font-size: 14px; margin-top: 4px; line-height: 1.5; }
+.stage { display: flex; gap: 44px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.pick { font: 600 13px "Space Grotesk"; padding: 8px 12px; border: 1.5px solid var(--ink); border-radius: var(--r-control); background: var(--paper); }
+.pick:active { transform: scale(.97); }
+
+/* ---------- phone ---------- */
+.phone { width: 390px; height: 844px; border-radius: 54px; background: #111; padding: 12px; box-shadow: 0 30px 60px rgba(0,0,0,.25);
+  position: relative; flex: none; transition: width .55s var(--slide), height .55s var(--slide), border-radius .4s; }
+.phone.landscape { width: 844px; height: 390px; animation: turn .6s var(--slide); }
+@keyframes turn { from { transform: rotate(90deg) scale(.86); } to { transform: none; } }
+.glass { width: 100%; height: 100%; border-radius: 44px; overflow: hidden; position: relative; background: var(--paper); }
+.notch { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 120px; height: 34px; background: #111; border-radius: 20px; z-index: 95; transition: opacity .2s; }
+.landscape .notch { opacity: 0; }
+.statusbar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; justify-content: space-between; align-items: flex-end;
+  padding: 0 30px 7px 36px; font: 600 15px "Space Grotesk"; z-index: 90; pointer-events: none; }
+.statusbar .icons { display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.statusbar .batt { width: 24px; height: 11px; border: 1.5px solid var(--ink); border-radius: 3px; position: relative; }
+.statusbar .batt::after { content: ""; position: absolute; inset: 1.5px; right: 5px; background: var(--ink); border-radius: 1px; }
+.landscape .statusbar { opacity: 0; }
+
+.screens { position: absolute; inset: 0; }
+.scr { position: absolute; inset: 0; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transform: translateX(24px);
+  transition: opacity .32s var(--slide), transform .38s var(--slide); }
+.scr.on { opacity: 1; pointer-events: auto; transform: none; }
+.scr.left { transform: translateX(-24px); }
+.topbar { background: var(--frame); padding: 54px 20px 14px; border-bottom: 1px solid var(--seam); flex: none; }
+.topbar .row { display: flex; justify-content: space-between; align-items: center; }
+.topbar h2 { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; }
+.topbar .date { font: 400 12px "Space Mono"; color: #564919; margin-top: 3px; letter-spacing: .04em; }
+.avatar { width: 38px; height: 38px; border-radius: var(--r-sticker); border: 1.5px solid var(--ink); background: var(--pink);
+  display: grid; place-items: center; font-weight: 700; font-size: 16px; transition: transform .25s var(--spring); }
+.avatar:active { transform: scale(.92); }
+.content { flex: 1; overflow-y: auto; padding: 16px 16px 112px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; }
+.content::-webkit-scrollbar { display: none; }
+.content > * { flex-shrink: 0; }
+.card { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--r-card); padding: 16px; }
+.card.cream { background: var(--cream); }
+.eyebrow { font: 700 11px "Space Mono"; letter-spacing: .06em; text-transform: uppercase; color: var(--hint); }
+.erow { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.sticker { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--ink); border-radius: var(--r-sticker);
+  padding: 3px 8px; font: 700 12px "Space Grotesk"; white-space: nowrap; }
+.s-yellow { background: var(--yellow); } .s-pink { background: var(--pink); } .s-cyan { background: var(--cyan); }
+.s-orange { background: var(--orange); } .s-lime { background: var(--lime); } .s-paper { background: var(--paper); }
+.big { font-size: 56px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 36px; padding: 0 12px; border: 1.5px solid var(--ink);
+  border-radius: var(--r-control); font: 700 14px "Space Grotesk"; transition: transform .18s var(--spring); white-space: nowrap; }
+.btn:active { transform: scale(.96); }
+.btn.yellow { background: var(--yellow); } .btn.paper { background: var(--paper); } .btn.pink { background: var(--pink); }
+.sq { display: inline-block; width: 10px; height: 10px; border: 1.5px solid var(--ink); border-radius: 2px; vertical-align: -1px; }
+.sq.orange { background: var(--orange); } .sq.lime { background: var(--lime); }
+.rise { opacity: 0; transform: translateY(14px); }
+.scr.on .rise, .page.on .rise { animation: rise .55s var(--slide) forwards; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* today: live card */
+.tbr { display: flex; gap: 10px; align-items: center; }
+.livepill { display: none; height: 30px; padding: 0 10px; font-size: 13px; }
+.livepill.show { display: inline-flex; animation: pop .45s var(--spring); }
+.livecard { border: 1.5px solid var(--ink); border-radius: var(--r-card); background: var(--cyan-soft); padding: 14px 14px 12px;
+  display: none; flex-direction: column; gap: 8px; cursor: pointer; }
+.livecard.show { display: flex; animation: drop .55s var(--spring); }
+@keyframes drop { from { opacity: 0; transform: translateY(-16px) scale(.97); } to { opacity: 1; transform: none; } }
+.livecard .top { display: flex; justify-content: space-between; align-items: center; }
+.livedot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); animation: blinkdot 1.2s infinite; }
+@keyframes blinkdot { 50% { opacity: .25; } }
+.livecard b.t { font-size: 18px; letter-spacing: -.01em; }
+.livecard canvas { width: 100%; height: 46px; display: block; background: var(--paper); border: 1px solid var(--hair); border-radius: var(--r-chip); }
+.livecard .foot { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+
+/* today: hero */
+.hero { display: flex; gap: 16px; align-items: center; margin-top: 12px; }
+.ring { width: 132px; height: 132px; position: relative; flex: none; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .val { transition: stroke-dashoffset 1.4s var(--slide); }
+.ring .center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.ring .center b { font-size: 44px; letter-spacing: -.04em; line-height: 1; }
+.ring .center span { font: 400 11px "Space Mono"; color: var(--hint); }
+.heroside { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.heroside .line { font-size: 15px; line-height: 1.35; color: var(--muted); }
+.heroside .line b { color: var(--ink); }
+.nightbars { display: flex; align-items: flex-end; gap: 2px; height: 86px; margin-top: 14px; border-bottom: 1px solid var(--hair); }
+.nightbars i { flex: 1; background: var(--ink); opacity: .15; border-radius: 1.5px 1.5px 0 0; height: 0; transition: height .7s var(--spring); }
+.nightbars i.hot { background: var(--orange); opacity: 1; box-shadow: inset 0 0 0 1px var(--ink); }
+.axis { display: flex; justify-content: space-between; font: 400 10px "Space Mono"; color: var(--hint); margin-top: 6px; }
+
+/* claude CTA */
+.cta { border: 1.5px solid var(--ink); border-radius: var(--r-card); background: var(--pink-soft); padding: 14px; display: flex; gap: 12px;
+  align-items: center; cursor: pointer; position: relative; overflow: hidden; text-align: left; width: 100%; }
+.cta .dot { width: 36px; height: 36px; border-radius: var(--r-sticker); border: 1.5px solid var(--ink); background: var(--pink); display: grid; place-items: center; flex: none; font-size: 18px; }
+.cta .t { font-weight: 700; font-size: 17px; }
+.cta::before { content: ""; position: absolute; inset: -2px; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.7) 50%, transparent 70%);
+  transform: translateX(-100%); animation: sweep 3s 1.2s ease-in-out infinite; }
+@keyframes sweep { 60%,100% { transform: translateX(100%); } }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mini b { font-size: 34px; letter-spacing: -.03em; }
+.mini .sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+/* tab bar */
+.tabbar { position: absolute; left: 0; right: 0; bottom: 0; height: 86px; background: var(--paper); border-top: 1px solid var(--seam);
+  display: flex; justify-content: space-around; padding: 8px 24px 26px; z-index: 30; }
+.tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font: 600 11px "Space Grotesk"; color: var(--muted); }
+.tab .ic { width: 48px; height: 30px; border-radius: var(--r-control); display: grid; place-items: center; border: 1.5px solid transparent;
+  transition: background .25s var(--slide), border-color .25s, transform .3s var(--spring); }
+.tab.on { color: var(--ink); }
+.tab.on .ic { background: var(--yellow); border-color: var(--ink); transform: translateY(-2px); }
+
+/* trends */
+.seg { display: flex; border: 1.5px solid var(--ink); border-radius: var(--r-control); background: var(--paper); padding: 3px; gap: 3px; }
+.seg button { flex: 1; height: 34px; border-radius: 4px; font: 600 14px "Space Grotesk"; color: var(--muted); }
+.seg button.on { background: var(--yellow); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.bigrow { display: flex; align-items: baseline; gap: 8px; margin-top: 6px; }
+.trendwrap { position: relative; margin-top: 64px; }
+.tmonth { font: 700 9px "Space Mono"; color: var(--hint); margin-top: 6px; letter-spacing: .05em; }
+.trend { display: flex; align-items: flex-end; gap: 4px; height: 170px; position: relative; border-bottom: 1px solid var(--hair); }
+.trend .col { flex: 1; height: 100%; display: flex; align-items: flex-end; cursor: pointer; position: relative; }
+.trend .col i { width: 100%; background: var(--ink); opacity: .15; border-radius: 2px 2px 0 0; height: 0; transition: height .8s var(--spring); }
+.trend .col.hot i { background: var(--orange); opacity: 1; box-shadow: inset 0 0 0 1px var(--ink); }
+.trend .col.sel i { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.trend .baseline { position: absolute; left: 0; right: 0; border-top: 1.5px dashed var(--seam); pointer-events: none; }
+.tdays { display: flex; gap: 4px; margin-top: 2px; }
+.tdays span { flex: 1; text-align: center; font: 400 9px "Space Mono"; color: var(--hint); }
+.tdays span.last { color: var(--ink); font-weight: 700; }
+.marker { position: absolute; display: flex; flex-direction: column; align-items: center; pointer-events: none; z-index: 2; }
+.marker .sticker { font-size: 10px; padding: 2px 5px; }
+.marker .stem { width: 0; border-left: 1.5px dotted var(--seam); margin-top: 4px; }
+.legendrow { display: flex; gap: 14px; font: 400 10px "Space Mono"; color: var(--hint); margin-top: 10px; align-items: center; }
+.legendrow .dash { width: 18px; border-top: 1.5px dashed var(--seam); display: inline-block; vertical-align: 3px; }
+.daydetail { margin-top: 12px; padding: 12px; border-radius: var(--r-card); background: var(--cyan-soft); border: 1px solid var(--hair);
+  display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.changes { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; font-size: 14px; }
+.changes .it { display: flex; gap: 10px; align-items: center; }
+.changes .tile { width: 34px; height: 34px; display: grid; place-items: center; border: 1.5px solid var(--ink); border-radius: var(--r-sticker); flex: none; font-size: 16px; }
+
+/* insight / chat */
+.chatlist { flex: 1; overflow-y: auto; padding: 16px 16px 186px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; scroll-behavior: smooth; }
+.chatlist::-webkit-scrollbar { display: none; }
+.chatlist > * { flex-shrink: 0; }
+.who { display: flex; align-items: center; gap: 6px; font: 700 11px "Space Mono"; letter-spacing: .06em; color: var(--hint); margin-bottom: 4px; }
+.who .cl { width: 20px; height: 20px; border-radius: var(--r-sticker); border: 1.5px solid var(--ink); background: var(--pink); display: grid; place-items: center; font-size: 11px; color: var(--ink); }
+.cmsg { font-size: 16px; line-height: 1.45; animation: pop .35s var(--slide); }
+.umsg { align-self: flex-end; max-width: 82%; background: var(--yellow); border: 1.5px solid var(--ink); border-radius: 10px 10px 2px 10px; padding: 10px 12px;
+  font-size: 15px; line-height: 1.4; animation: pop .35s var(--spring); }
+@keyframes pop { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.suggest { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.chip { border: 1.5px solid var(--ink); border-radius: var(--r-control); padding: 9px 12px; font: 600 14px "Space Grotesk"; background: var(--paper);
+  text-align: left; transition: transform .2s var(--spring), background .15s; }
+.chip:active { transform: scale(.96); }
+.chip.on { background: var(--yellow); }
+.chip[disabled] { opacity: .45; cursor: default; }
+.chip.on[disabled] { opacity: 1; }
+.thinking { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; }
+.pix { display: grid; grid-template-columns: repeat(3, 5px); gap: 2px; }
+.pix b { width: 5px; height: 5px; background: var(--ink); animation: pix 1s infinite; }
+.pix b:nth-child(2){animation-delay:.1s}.pix b:nth-child(3){animation-delay:.2s}.pix b:nth-child(6){animation-delay:.3s}
+.pix b:nth-child(9){animation-delay:.4s}.pix b:nth-child(8){animation-delay:.5s}.pix b:nth-child(7){animation-delay:.6s}.pix b:nth-child(4){animation-delay:.7s}
+.pix b:nth-child(5){opacity:0;animation:none}
+@keyframes pix { 0%,100% { opacity: .15; } 30% { opacity: 1; } }
+.tools { border: 1px solid var(--hair); border-radius: var(--r-card); background: var(--cream); overflow: hidden; animation: pop .35s var(--slide); }
+.tool { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-top: 1px solid var(--hair); font-size: 13px; animation: pop .3s var(--slide); }
+.tool:first-child { border-top: none; }
+.tool .tile { width: 26px; height: 26px; display: grid; place-items: center; border: 1.5px solid var(--ink); border-radius: var(--r-sticker); background: var(--paper); flex: none; font-size: 13px; }
+.tool .name { font-weight: 700; }
+.tool .res { color: var(--muted); font-size: 12px; }
+.tool .st { margin-left: auto; flex: none; width: 18px; height: 18px; display: grid; place-items: center; }
+.spin { width: 14px; height: 14px; border: 2px solid var(--hair); border-top-color: var(--ink); border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.okmark { width: 18px; height: 18px; border-radius: var(--r-sticker); background: var(--lime); border: 1.5px solid var(--ink); display: grid; place-items: center; font-size: 11px; font-weight: 700; animation: pop .3s var(--spring); }
+.acard { border: 1.5px solid var(--ink); border-radius: var(--r-card); background: var(--paper); padding: 14px; animation: card .55s var(--spring); }
+@keyframes card { from { opacity: 0; transform: translateY(24px) scale(.97); } to { opacity: 1; transform: none; } }
+.acard.yellowsoft { background: var(--yellow-soft); }
+.minitl { position: relative; height: 92px; display: flex; align-items: flex-end; gap: 3px; margin-top: 30px; border-bottom: 1px solid var(--hair); }
+.minitl i { flex: 1; background: var(--ink); opacity: .15; border-radius: 1.5px 1.5px 0 0; height: 0; transition: height .7s var(--spring); }
+.minitl i.hot { background: var(--orange); opacity: 1; box-shadow: inset 0 0 0 1px var(--ink); }
+.minitl .pin { position: absolute; bottom: 100%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+.minitl .pin .sticker { font-size: 10px; padding: 2px 5px; }
+.minitl .pin .stem { height: 6px; border-left: 1.5px solid var(--ink); }
+.prod { display: flex; gap: 12px; align-items: flex-start; }
+.bottle { width: 56px; height: 76px; flex: none; position: relative; }
+.bottle .body { position: absolute; left: 8px; right: 8px; bottom: 0; height: 56px; background: var(--pink); border: 1.5px solid var(--ink); border-radius: 8px 8px 6px 6px; }
+.bottle .label { position: absolute; left: 13px; right: 13px; bottom: 12px; height: 26px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: 2px; }
+.bottle .neck { position: absolute; left: 22px; width: 12px; bottom: 54px; height: 12px; background: var(--paper); border: 1.5px solid var(--ink); }
+.bottle .pump { position: absolute; left: 14px; width: 26px; bottom: 64px; height: 7px; background: var(--ink); border-radius: 2px; }
+.ingr { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.ingr span { font-size: 11px; padding: 2px 6px; border: 1px solid var(--hair); border-radius: var(--r-chip); color: var(--muted); }
+.ingr span.flag { border: 1.5px solid var(--ink); background: var(--orange); color: var(--ink); font-weight: 700; }
+.askcard { border: 1.5px solid var(--ink); border-radius: var(--r-card); background: var(--cream); padding: 12px; animation: card .45s var(--spring); }
+.askcard .q { font-weight: 700; font-size: 15px; }
+.askcard .opts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.conc .cause { font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; margin-top: 6px; }
+.conf { height: 6px; background: var(--fill); border-radius: 2px; overflow: hidden; margin-top: 10px; }
+.conf i { display: block; height: 100%; width: 0; background: var(--cyan); transition: width 1.1s var(--slide); }
+.ruled { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.ruled .r { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.ruled .r b { color: var(--ink); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.trythis { margin-top: 12px; padding: 10px 12px; background: var(--lime-soft); border: 1.5px solid var(--ink); border-radius: var(--r-control); font-size: 14px; line-height: 1.4; }
+.disc { font-size: 11px; color: var(--hint); margin-top: 10px; }
+.composer { position: absolute; left: 0; right: 0; bottom: 86px; padding: 10px 12px 8px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 30%); z-index: 20; }
+.composer .box { display: flex; align-items: center; gap: 8px; border: 1.5px solid var(--ink); border-radius: var(--r-control); background: var(--paper); padding: 6px 6px 6px 12px; }
+.composer input { flex: 1; border: none; outline: none; font: 400 15px "Space Grotesk"; background: transparent; min-width: 0; }
+.composer .send { width: 34px; height: 34px; border-radius: var(--r-control); border: 1.5px solid var(--ink); background: var(--pink); font-weight: 700; font-size: 16px; flex: none; }
+.composer .pw { font: 400 9px "Space Mono"; color: var(--hint); text-align: center; margin-top: 5px; letter-spacing: .06em; }
+
+/* pages pushed over the tabs (data sources) */
+.page { position: absolute; inset: 0; background: var(--paper); z-index: 50; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform .42s var(--slide); }
+.page.on { transform: none; }
+.back { font: 600 15px "Space Grotesk"; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+.perm { background: var(--paper); }
+.permtop { background: var(--frame); border-bottom: 1px solid var(--seam); padding: 54px 18px 22px; flex: none; }
+.permbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.permbar .back { margin: 0; }
+.brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; }
+.brand .mark { width: 26px; height: 15px; position: relative; }
+.brand .mark::before, .brand .mark::after { content: ""; position: absolute; top: 0; width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid var(--ink); }
+.brand .mark::before { left: 0; } .brand .mark::after { right: 0; background: var(--orange); }
+.permrows { display: flex; flex-direction: column; gap: 8px; }
+.prow { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: var(--paper); border: 1.5px solid var(--ink); border-radius: var(--r-card); }
+.prow .pic { width: 40px; height: 40px; display: grid; place-items: center; background: var(--cream); border: 1.5px solid var(--ink); border-radius: var(--r-sticker); font-size: 16px; flex: none; }
+.prow .pt { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.prow .pt b { font-size: 15px; } .prow .pt span { font-size: 12px; color: var(--muted); }
+.permbottom { flex: 1; overflow-y: auto; padding: 22px 20px 30px; display: flex; flex-direction: column; gap: 8px; }
+.permbottom h3 { font-size: 30px; line-height: 1.1; letter-spacing: -.02em; }
+.permbottom p { font-size: 16px; line-height: 1.45; }
+.profile { display: flex; gap: 12px; align-items: center; }
+.profile .avatar { width: 52px; height: 52px; font-size: 22px; }
+.src { display: flex; gap: 12px; align-items: flex-start; padding: 13px 14px; }
+.src .tile { width: 38px; height: 38px; display: grid; place-items: center; border: 1.5px solid var(--ink); border-radius: var(--r-sticker); flex: none; font-size: 18px; background: var(--paper); }
+.src .main { flex: 1; min-width: 0; }
+.src .name { font-weight: 700; font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.src .what { font-size: 13px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+.src .meta { font: 400 10px "Space Mono"; color: var(--hint); margin-top: 6px; letter-spacing: .03em; }
+.version { text-align: center; font: 400 11px "Space Mono"; color: var(--hint); padding: 16px 0 4px; user-select: none; cursor: default; }
+.demo { border: 1.5px dashed var(--seam); display: none; }
+.demo.show { display: block; animation: pop .35s var(--slide); }
+.demo .rowd { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-top: 1px solid var(--hair); font-size: 14px; }
+.demo .rowd:first-of-type { border-top: none; }
+.switch { width: 44px; height: 26px; border-radius: 13px; background: var(--lime); border: 1.5px solid var(--ink); position: relative; }
+.switch::after { content: ""; position: absolute; top: 2px; right: 2px; width: 19px; height: 19px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--ink); }
+
+/* ---------- live monitor (landscape) ---------- */
+.live { position: absolute; inset: 0; background: var(--paper); z-index: 80; display: none; flex-direction: column; padding: 14px 22px 14px; gap: 10px; }
+.live.on { display: flex; animation: fadein .5s .15s var(--slide) both; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.lv-top { display: flex; justify-content: space-between; align-items: center; }
+.lv-top .l { display: flex; gap: 10px; align-items: center; }
+.lv-top .l b { font-size: 18px; letter-spacing: -.01em; }
+.lv-main { flex: 1; display: flex; gap: 10px; min-height: 0; }
+.lv-chart { flex: 1; position: relative; border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; background: var(--paper); }
+.lv-chart canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lv-flag { position: absolute; top: 10px; left: 12px; opacity: 0; transform: translateY(-6px); transition: all .25s var(--slide); }
+.lv-flag.on { opacity: 1; transform: none; }
+.lv-legend { position: absolute; top: 12px; right: 12px; display: flex; gap: 10px; font: 400 10px "Space Mono"; color: var(--hint); }
+.lv-side { width: 190px; display: flex; flex-direction: column; gap: 8px; }
+.lv-countcard { flex: 1; display: flex; flex-direction: column; }
+.lv-countcard .lv-count { margin: auto 0; align-self: center; }
+.lv-countcard .lv-count { font-size: 96px; }
+.lv-big { flex: 1; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 4px; position: relative;
+  border: 1px solid var(--hair); border-radius: var(--r-card); }
+.lv-big .lv-count { font-size: 150px; }
+.lv-big .lv-flag { top: 12px; left: 50%; transform: translate(-50%, -6px); }
+.lv-big .lv-flag.on { transform: translate(-50%, 0); }
+.mon-b .lv-chart, .mon-b .lv-side { display: none; }
+.mon-b .lv-big { display: flex; }
+.mon-b .lv-strip { height: 34px; }
+.variant { display: flex; border: 1.5px solid var(--ink); border-radius: var(--r-control); background: var(--paper); padding: 3px; gap: 3px; }
+.variant button { padding: 6px 10px; border-radius: 4px; font: 600 12px "Space Grotesk"; color: var(--muted); }
+.variant button.on { background: var(--yellow); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.lv-side .card { padding: 10px 12px; }
+.lv-count { font-size: 64px; font-weight: 700; letter-spacing: -.05em; line-height: 1; display: inline-block; transition: transform .3s var(--spring); color: var(--ink); }
+.lv-count.bump { transform: scale(1.18); color: #e2733a; }
+.lv-countcard { position: relative; overflow: hidden; }
+.ripple { position: absolute; left: 50%; top: 56%; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; border: 5px solid var(--orange);
+  pointer-events: none; animation: ripple 1.1s var(--slide) forwards; }
+@keyframes ripple { from { transform: scale(.7); opacity: 1; } 35% { opacity: .8; } to { transform: scale(2.2); opacity: 0; } }
+.lv-side b.v { font-size: 26px; letter-spacing: -.02em; }
+.lv-strip { height: 16px; border: 1px solid var(--hair); border-radius: var(--r-chip); position: relative; overflow: hidden; background: var(--fill); }
+.lv-strip i { position: absolute; top: 0; bottom: 0; background: var(--orange); border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+
+.toast { position: absolute; left: 50%; bottom: 100px; transform: translate(-50%, 30px); background: #252429; color: #f3f3f5; padding: 10px 14px;
+  border-radius: var(--r-chip); font: 600 13px "Space Grotesk"; opacity: 0; transition: all .4s var(--spring); z-index: 99; white-space: nowrap; pointer-events: none; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- watch (build 9 one-screen UI) ---------- */
+.watchcol { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 250px; }
+.watch { width: 222px; height: 268px; border-radius: 58px; background: #1a1a1a; padding: 13px; box-shadow: 0 24px 50px rgba(0,0,0,.3); position: relative; }
+.watch::after { content: ""; position: absolute; right: -9px; top: 70px; width: 10px; height: 40px; background: #2a2a2a; border-radius: 4px; }
+.face { width: 100%; height: 100%; border-radius: 46px; background: #000; overflow: hidden; position: relative; color: #fff;
+  display: flex; flex-direction: column; align-items: center; padding: 34px 12px 12px; }
+.w-title { position: absolute; top: 12px; left: 26px; font: 700 14px "Space Grotesk"; color: var(--yellow); display: flex; align-items: center; gap: 5px; }
+.w-mark { width: 16px; height: 9px; position: relative; }
+.w-mark::before, .w-mark::after { content: ""; position: absolute; top: 0; width: 9px; height: 9px; border-radius: 50%; }
+.w-mark::before { left: 0; border: 1.5px solid #fff; } .w-mark::after { right: 0; background: var(--orange); }
+.w-time { position: absolute; top: 12px; right: 26px; font: 600 14px "Space Grotesk"; }
+.w-btn { width: 106px; height: 106px; border-radius: 50%; background: var(--pink); color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font: 700 22px "Space Grotesk"; position: relative; transition: background .3s, transform .2s var(--spring); }
+.w-btn:active { transform: scale(.94); }
+.w-btn small { font: 400 12px "Space Mono"; }
+.w-btn.on { background: #1c1c1e; color: #fff; box-shadow: inset 0 0 0 4px var(--cyan); }
+.w-btn.on::before { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--cyan); animation: wping 2s infinite; }
+.w-btn.on.scratch::before { border-color: var(--orange); animation-duration: .9s; }
+@keyframes wping { from { transform: scale(1); opacity: .8; } to { transform: scale(1.35); opacity: 0; } }
+.w-count { display: flex; align-items: baseline; gap: 6px; margin-top: 10px; }
+.w-count b { font-size: 30px; letter-spacing: -.03em; display: inline-block; transition: transform .25s var(--spring); }
+.w-count b.bump { transform: scale(1.25); color: var(--orange); }
+.w-count span { font: 400 10px "Space Mono"; color: #aaa; }
+.w-status { font: 600 11px "Space Grotesk"; color: #8e8e93; margin-top: 2px; }
+.w-status.ok { color: var(--cyan); }
+.howto { font-size: 13px; color: var(--muted); line-height: 1.5; text-align: center; }
+.howto b { color: var(--ink); }
+
+/* ---------- small screens: the prototype becomes the app itself ---------- */
+.fabwatch { display: none; }
+@media (max-width: 620px) {
+  body { padding: 0; background: var(--paper); }
+  .intro, .watchcol { display: none; }
+  .stage { display: block; }
+  .phone, .phone.landscape { width: 100vw; height: 100dvh; border-radius: 0; padding: 0; box-shadow: none; animation: none; }
+  .glass { border-radius: 0; }
+  .notch, .statusbar { display: none; }
+  .topbar { padding-top: max(16px, env(safe-area-inset-top)); }
+  .phone.landscape .live { width: 100dvh; height: 100vw; inset: auto; top: 0; left: 0; transform-origin: top left; transform: rotate(90deg) translateY(-100%); }
+  .fabwatch { display: grid; position: absolute; left: 14px; bottom: 98px; width: 46px; height: 46px; z-index: 40; border: 1.5px solid var(--ink);
+    border-radius: 14px; background: #111; color: #fff; place-items: center; font-size: 20px; }
+  .watchsheet { position: absolute; left: 12px; right: 12px; bottom: 150px; z-index: 60; display: none; justify-content: center; }
+  .watchsheet.on { display: flex; }
+}
+@media (max-width: 620px) and (orientation: landscape) {
+  .phone.landscape .live { width: 100vw; height: 100dvh; transform: none; }
+}
+</style>
+</head>
+<body>
+<header class="intro">
+  <h1>Eczema Twin · prototype v5 (based on the iPhone app)</h1>
+  <p>Press <b>Start</b> on the watch, then <b>Simulate a scratch</b>. Tap the small <b>● Live</b> next to D to turn the phone sideways. Press <b>Stop</b> to wake up.
+    Ask Claude on the Insight tab. Tap <b>D</b> for what the app can read; tap the version number 5 times for the hidden demo controls.</p>
+</header>
+
+<div class="stage">
+<div class="phone" id="phone"><div class="glass">
+  <div class="notch"></div>
+  <div class="statusbar"><span id="sbTime">9:41</span><span class="icons">▂▄▆ <span class="mono">5G</span> <span class="batt"></span></span></div>
+
+  <div class="screens">
+  <!-- TODAY -->
+  <section class="scr on" id="s-today">
+    <header class="topbar"><div class="row"><div><h2>Today</h2><div class="date" id="todayDate">SAT · OCT 24</div></div>
+      <div class="tbr"><button class="sticker s-cyan livepill" id="livePill" data-live="open"><i class="livedot"></i>Live</button><button class="avatar" data-page="sources">D</button></div></div></header>
+    <div class="content" id="todayContent">
+      <div class="card rise" id="nightCard" style="animation-delay:.05s">
+        <div class="erow"><span class="eyebrow">Last night</span><span class="eyebrow" style="letter-spacing:.02em">11:04 PM – 6:52 AM</span></div>
+        <div class="hero">
+          <div class="ring">
+            <svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="58" fill="none" stroke="#f3f3f3" stroke-width="16"/>
+              <circle class="val" id="nightRing" cx="70" cy="70" r="58" fill="none" stroke="#f8a16f" stroke-width="16" stroke-dasharray="364.4" stroke-dashoffset="364.4"/></svg>
+            <div class="center"><b class="count" data-to="41">0</b><span>MIN</span></div>
+          </div>
+          <div class="heroside">
+            <span class="sticker s-orange">▲ 3.4× your usual</span>
+            <div class="line">Worst <b>2–4 AM</b>.<br>23 episodes, 7 intense.</div>
+            <div class="mono hint" style="font-size:11px">YOUR USUAL · 12 MIN</div>
+          </div>
+        </div>
+        <div class="nightbars" id="nightBars"></div>
+        <div class="axis"><span>11p</span><span>1a</span><span>3a</span><span>5a</span><span>7a</span></div>
+      </div>
+
+      <button class="cta rise" style="animation-delay:.16s" data-go="insight">
+        <div class="dot">✶</div>
+        <div style="flex:1"><div class="t">Up 3 nights in a row</div><div class="muted" style="font-size:14px">Ask Claude what changed</div></div>
+        <div style="font-size:22px">→</div>
+      </button>
+
+      <div class="grid2 rise" style="animation-delay:.27s">
+        <div class="card mini"><div class="eyebrow">Sleep</div><b class="count" data-to="5.1" data-dec="1">0</b><span class="hint"> h</span><div class="sub"><i class="sq orange"></i> woke up 4×</div></div>
+        <div class="card mini"><div class="eyebrow">Stress (HRV)</div><b class="count" data-to="38">0</b><span class="hint"> ms</span><div class="sub"><i class="sq orange"></i> lower than usual</div></div>
+      </div>
+      <div class="card cream rise" style="animation-delay:.38s">
+        <div class="eyebrow">Around you · auto</div>
+        <div class="chips">
+          <span class="sticker s-orange">💧 Humidity 29% · dry</span>
+          <span class="sticker s-paper">🍃 Air quality 41 · good</span>
+          <span class="sticker s-paper">🌼 Pollen · low</span>
+          <span class="sticker s-paper">🌡 68°F</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDS -->
+  <section class="scr" id="s-trends">
+    <header class="topbar"><div class="row"><div><h2>Trends</h2><div class="date">LAST 14 NIGHTS</div></div><button class="avatar" data-page="sources">D</button></div></header>
+    <div class="content">
+      <div class="seg rise"><button>7 nights</button><button class="on">14 nights</button><button>All</button></div>
+      <div class="card rise" style="animation-delay:.08s">
+        <div class="eyebrow">Minutes scratching per night</div>
+        <div class="bigrow"><span class="big count" data-to="22">0</span><span class="muted">min / night this week</span></div>
+        <span class="sticker s-orange" style="margin-top:8px">▲ up 91% from last week</span>
+        <div class="trendwrap"><div class="trend" id="trend"></div><div class="tmonth" id="tmonth">OCT</div><div class="tdays" id="tdays"></div></div>
+        <div class="legendrow"><span><i class="sq orange"></i> above usual</span><span><span class="dash"></span> your usual · 12 min</span></div>
+        <div class="daydetail" id="dayDetail"></div>
+      </div>
+      <div class="card rise" style="animation-delay:.18s">
+        <div class="eyebrow">What changed</div>
+        <div class="changes" id="changes"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT: ask Claude -->
+  <section class="scr" id="s-insight">
+    <header class="topbar"><div class="row"><div><h2>Insight</h2><div class="date">ASK ABOUT YOUR SKIN</div></div><span class="sticker s-pink">✶ Claude</span></div></header>
+    <div class="chatlist" id="chat">
+      <div class="cmsg" id="hello"><div class="who"><span class="cl">✶</span>CLAUDE</div>
+        Hi Douglas. I can read your scratching, sleep, weather, calendar and orders. Ask me anything about your skin.</div>
+      <div class="suggest" id="suggest">
+        <button class="chip" data-ask="Why has my eczema been so bad the last few nights?">Why has my eczema been so bad the last few nights?</button>
+        <button class="chip" data-ask="How did I sleep this week?">How did I sleep this week?</button>
+      </div>
+    </div>
+    <div class="composer"><div class="box"><input id="chatInput" placeholder="Ask Claude…" autocomplete="off"><button class="send" id="sendBtn">↑</button></div>
+      <div class="pw">POWERED BY CLAUDE · NOT A DIAGNOSIS</div></div>
+  </section>
+  </div>
+
+  <nav class="tabbar" id="tabbar">
+    <button class="tab on" data-go="today"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#141111" stroke-width="1.8"><circle cx="10" cy="10" r="7"/><path d="M10 3a7 7 0 0 1 7 7h-7z" fill="#141111"/></svg></div>Today</button>
+    <button class="tab" data-go="trends"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="#141111"><rect x="3" y="11" width="3" height="6"/><rect x="8.5" y="6" width="3" height="11"/><rect x="14" y="3" width="3" height="14"/></svg></div>Trends</button>
+    <button class="tab" data-go="insight"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="#141111"><path d="M10 2l1.8 6.2L18 10l-6.2 1.8L10 18l-1.8-6.2L2 10l6.2-1.8z"/></svg></div>Insight</button>
+  </nav>
+
+  <!-- WHAT IT CAN READ (avatar): the onboarding permissions page, unchanged -->
+  <section class="page perm" id="p-sources">
+    <div class="permtop">
+      <div class="permbar"><button class="back" data-back>‹ Today</button><span class="brand"><span class="mark"></span>Eczema Twin</span></div>
+      <div class="permrows">
+        <div class="prow rise" style="animation-delay:.10s"><span class="pic">♥</span><div class="pt"><b>Apple Health</b><span>Sleep, HRV, resting pulse</span></div><span class="sticker s-lime">✓ On</span></div>
+        <div class="prow rise" style="animation-delay:.18s"><span class="pic">➤</span><div class="pt"><b>Location</b><span>Air, humidity, pollen near you</span></div><span class="sticker s-lime">✓ On</span></div>
+        <div class="prow rise" style="animation-delay:.26s"><span class="pic">🔔︎</span><div class="pt"><b>Notifications</b><span>A heads-up when a flare starts</span></div><span class="sticker s-lime">✓ On</span></div>
+        <div class="prow rise" style="animation-delay:.34s"><span class="pic">⌚︎</span><div class="pt"><b>Apple Watch</b><span>Counts scratching, even asleep</span></div><span class="sticker s-lime">✓ Paired</span></div>
+        <div class="prow rise" style="animation-delay:.42s"><span class="pic">▦</span><div class="pt"><b>Calendar</b><span>Exams, deadlines and travel</span></div><span class="sticker s-lime">✓ On</span></div>
+        <div class="prow rise" style="animation-delay:.50s"><span class="pic">▣</span><div class="pt"><b>Amazon orders</b><span>What you bought, and what's new to you</span></div><span class="sticker s-lime">✓ Connected</span></div>
+      </div>
+    </div>
+    <div class="permbottom">
+      <div class="eyebrow">Your choice</div>
+      <h3>You decide what it can read.</h3>
+      <p class="muted">Claude only reads what you turn on here, and only when you ask.</p>
+      <div class="version" id="version">Eczema Twin 1.0 (9)</div>
+      <div class="card demo" id="demoCard">
+        <div class="eyebrow" style="margin-bottom:6px">Demo controls · hidden</div>
+        <div class="rowd"><span>Demo story (Douglas, 14 nights)</span><span class="switch"></span></div>
+        <div class="rowd"><span>Reset tonight's count</span><button class="btn paper" style="height:30px" id="demoReset">Reset</button></div>
+        <div class="rowd"><span>Replay last Claude chat (offline)</span><button class="btn paper" style="height:30px">Replay</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE MONITOR (landscape) -->
+  <section class="live" id="live">
+    <div class="lv-top">
+      <div class="l"><span class="sticker s-cyan"><i class="livedot"></i>LIVE</span><b>Sleep tracking</b><span class="mono hint" id="lvElapsed">0:00</span></div>
+      <div class="l"><span class="mono hint" style="font-size:11px">APPLE WATCH · RIGHT WRIST</span><button class="btn paper" data-live="close">Done</button></div>
+    </div>
+    <div class="lv-main">
+      <div class="lv-chart" id="lvChart"><canvas id="lvCanvas"></canvas>
+        <div class="lv-flag" id="lvFlag"><span class="sticker s-orange">✋ Scratching</span></div>
+      </div>
+      <div class="lv-big" id="lvBig"><div class="lv-flag" id="lvFlagB"><span class="sticker s-orange">✋ Scratching</span></div>
+        <b class="lv-count" id="lvCountB">0</b><div class="eyebrow">Scratches tonight</div></div>
+      <div class="lv-side"><div class="card lv-countcard"><div class="eyebrow">Scratches tonight</div><b class="lv-count" id="lvCount">0</b></div></div>
+    </div>
+    <div class="lv-strip" id="lvStrip"></div>
+  </section>
+
+  <button class="fabwatch" id="fabWatch">⌚</button>
+  <div class="watchsheet" id="watchSheet"></div>
+  <div class="toast" id="toast"></div>
+</div></div>
+
+<div class="watchcol" id="watchCol">
+  <div class="watch" id="watch"><div class="face">
+    <div class="w-title"><span class="w-mark"></span>Twin</div><div class="w-time" id="wTime">11:04</div>
+    <button class="w-btn" id="wBtn"><span id="wLabel">Start</span><small id="wSub"></small></button>
+    <div class="w-count"><b id="wCount">0</b><span>TONIGHT</span></div>
+    <div class="w-status" id="wStatus">Not monitoring</div>
+  </div></div>
+  <button class="pick" id="simScratch">✋ Simulate a scratch</button>
+  <p class="howto">The watch is the real build 9 screen.<br><b>S</b> on the keyboard also simulates a scratch.</p>
+  <div class="howto" style="margin-top:8px"><b>Live monitor:</b> which one?</div>
+  <div class="variant" id="variant"><button class="on" data-mon="d">D · bars</button><button data-mon="e">E · bars ↑</button><button data-mon="c">C</button><button data-mon="a">A</button><button data-mon="b">B</button></div>
+  <p class="howto" style="font-size:12px"><b>D</b>: a row of short bars that gently rise and fall, like a voice recording. When the watch decides it's a scratch, the new bars grow long and turn orange (the same bars as the charts in the app), then shrink back.<br><b>E</b>: the same bars standing on a baseline, like the Last night chart.<br>C: breathing line · A: flat line · B: count only.</p>
+</div>
+</div>
+
+<script>
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const DAY = 86400000;
+
+// ---------- the story (same numbers Claude's tools read) ----------
+const NIGHTS = [9, 14, 11, 8, 15, 12, 10, 16, 13, 11, 17, 24, 29, 41];   // minutes, oldest → last night
+const USUAL = 12, WASH = 10, DRY = 13, EXAMS = [1, 3];
+const LAST_NIGHT_HOURS = [1, 3, 6, 10, 11, 6, 3, 1];                       // 11 PM … 6 AM
+const nightDate = (i) => { const d = new Date(); d.setHours(12, 0, 0, 0); return new Date(d - (NIGHTS.length - i) * DAY); };
+const wd = (d) => d.toLocaleDateString("en-US", { weekday: "short" });
+const md = (d) => d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+function rng(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+
+// ---------- helpers ----------
+function countUp(el, to = parseFloat(el.dataset.to)) {
+  const dec = +el.dataset.dec || 0, t0 = performance.now(), d = 1100;
+  (function f(t) { const p = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - p, 3); el.textContent = (to * e).toFixed(dec); if (p < 1) requestAnimationFrame(f); })(t0);
+}
+let toastTimer;
+function toast(text) { const t = $("#toast"); t.textContent = text; t.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200); }
+const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+
+// ---------- navigation ----------
+const order = ["today", "trends", "insight"];
+let cur = "today";
+function enter(name) {
+  const s = $("#s-" + name);
+  s.querySelectorAll(".rise").forEach((r) => { r.style.animation = "none"; r.offsetHeight; r.style.animation = ""; });
+  s.querySelectorAll(".count").forEach((c) => countUp(c));
+  if (name === "today") drawNight();
+  if (name === "trends") drawTrend();
+  if (name === "insight") setTimeout(() => $("#chatInput").focus({ preventScroll: true }), 400);
+}
+function go(name) {
+  if (name === cur) { enter(name); return; }
+  const a = order.indexOf(cur), b = order.indexOf(name), prev = $("#s-" + cur), next = $("#s-" + name);
+  prev.classList.remove("on"); prev.classList.toggle("left", b > a);
+  next.classList.remove("left"); next.style.transform = b > a ? "translateX(24px)" : "translateX(-24px)";
+  requestAnimationFrame(() => { next.style.transform = ""; next.classList.add("on"); });
+  $$(".tab").forEach((t) => t.classList.toggle("on", t.dataset.go === name));
+  cur = name; enter(name);
+}
+$$("[data-go]").forEach((el) => el.addEventListener("click", () => go(el.dataset.go)));
+$$("[data-page]").forEach((el) => el.addEventListener("click", () => openPage(el.dataset.page)));
+$$("[data-back]").forEach((el) => el.addEventListener("click", () => $$(".page").forEach((p) => p.classList.remove("on"))));
+function openPage(id) { const p = $("#p-" + id); p.classList.add("on"); p.querySelectorAll(".rise").forEach((r) => { r.style.animation = "none"; r.offsetHeight; r.style.animation = ""; }); }
+
+// ---------- today: last night ----------
+function drawNight() {
+  setTimeout(() => $("#nightRing").style.strokeDashoffset = 364.4 * (1 - Math.min(1, 41 / (USUAL * 3.6))), 120);
+  const r = rng(7), buckets = [];
+  LAST_NIGHT_HOURS.forEach((m) => { let w = [r(), r(), r(), r()].map((x) => (x < .18 ? 0 : x)); const s = w.reduce((a, b) => a + b, 0) || 1; w.forEach((x) => buckets.push(m * x / s)); });
+  const max = Math.max(...buckets), box = $("#nightBars");
+  box.innerHTML = buckets.map((v) => `<i class="${v > 2.2 ? "hot" : ""}"></i>`).join("");
+  [...box.children].forEach((b, i) => setTimeout(() => b.style.height = Math.max(2, buckets[i] / max * 100) + "%", 180 + i * 22));
+}
+
+// ---------- trends ----------
+function drawTrend() {
+  const tr = $("#trend"), max = 48, H = 170;
+  tr.innerHTML = "";
+  NIGHTS.forEach((m, i) => {
+    const c = document.createElement("div"); c.className = "col" + (m > USUAL * 1.5 ? " hot" : "") + (i === NIGHTS.length - 1 ? " sel" : "");
+    c.innerHTML = "<i></i>"; c.onclick = () => select(i); tr.appendChild(c);
+    setTimeout(() => c.firstChild.style.height = (m / max * 100) + "%", 120 + i * 40);
+  });
+  const base = document.createElement("div"); base.className = "baseline"; base.style.bottom = (USUAL / max * 100) + "%"; tr.appendChild(base);
+  // markers: a sticker on one of two rows above the chart, a dotted stem down to the top of that night's bar
+  const mk = (i, label, cls, row, align) => {
+    const m = document.createElement("div"); m.className = "marker";
+    const top = row === 0 ? -56 : -30, barTop = H - NIGHTS[i] / max * H;
+    m.style.left = ((i + .5) / NIGHTS.length * 100) + "%"; m.style.top = top + "px"; m.style.bottom = "auto";
+    m.style.alignItems = align === "right" ? "flex-end" : "center";
+    m.style.transform = align === "right" ? "translateX(calc(-100% + 6px))" : "translateX(-50%)";
+    m.innerHTML = `<span class="sticker ${cls}">${label}</span><span class="stem" style="height:${barTop - top - 24}px;${align === "right" ? "margin-right:5px" : ""}"></span>`;
+    tr.appendChild(m);
+  };
+  mk(2, "📚 exams", "s-paper", 0);
+  mk(WASH, "🧴 new wash", "s-pink", 0);
+  mk(DRY, "💧 dry air", "s-orange", 1, "right");
+  $("#tmonth").textContent = nightDate(0).toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+  $("#tdays").innerHTML = NIGHTS.map((_, i) => `<span class="${i === NIGHTS.length - 1 ? "last" : ""}">${nightDate(i).getDate()}</span>`).join("");
+  select(NIGHTS.length - 1);
+  $("#changes").innerHTML = [
+    ["🧴", "s-pink", "New body wash", `first used ${wd(nightDate(WASH))} ${md(nightDate(WASH))}`],
+    ["💧", "s-orange", "Dry air", `humidity 29% on ${wd(nightDate(DRY))} ${md(nightDate(DRY))}`],
+    ["📚", "s-paper", "Midterm exams", `${md(nightDate(EXAMS[0]))}–${nightDate(EXAMS[1]).getDate()}`],
+  ].map(([e, c, t, s]) => `<div class="it"><span class="tile ${c}">${e}</span><div><b>${t}</b> <span class="muted">· ${s}</span></div></div>`).join("");
+}
+function select(i) {
+  $$("#trend .col").forEach((c, k) => c.classList.toggle("sel", k === i));
+  const m = NIGHTS[i], d = nightDate(i), hot = m > USUAL * 1.5;
+  $("#dayDetail").innerHTML = `<div><div class="eyebrow">${i === NIGHTS.length - 1 ? "Last night" : "Night of " + wd(d) + " " + md(d)}</div>
+    <b style="font-size:20px">${m} min</b> <span class="muted">· ${hot ? "2–4 AM worst" : "calm"}</span></div>
+    <span class="sticker ${hot ? "s-orange" : "s-lime"}">${hot ? "▲ " + (m / USUAL).toFixed(1) + "× usual" : "normal"}</span>`;
+}
+
+// ---------- live: watch → phone ----------
+const live = { tracking: false, start: 0, count: 0, scratchSecs: 0, last: 0, episodes: [], scratchUntil: 0, level: 0, soft: 0, buf: [] };
+let mon = "d";
+const BUF = 900;
+for (let i = 0; i < BUF; i++) live.buf.push({ v: 0.08, s: false, w: .26, k: 0 });
+
+function watchToggle() {
+  if (!live.tracking) {
+    Object.assign(live, { tracking: true, start: performance.now(), count: 0, scratchSecs: 0, last: 0, episodes: [] });
+    $("#wBtn").classList.add("on"); $("#wLabel").textContent = "Stop"; $("#wStatus").textContent = "Connected to iPhone"; $("#wStatus").classList.add("ok");
+    ["#wCount", "#lvCount", "#lvCountB"].forEach((q) => $(q).textContent = "0");
+    $("#lvStrip").innerHTML = "";
+    if (cur !== "today") go("today");
+    $$(".page").forEach((p) => p.classList.remove("on"));
+    $("#livePill").classList.add("show");
+    toast("Sleep tracking started on your watch");
+  } else {
+    live.tracking = false; live.scratchUntil = 0;
+    $("#wBtn").classList.remove("on", "scratch"); $("#wLabel").textContent = "Start"; $("#wSub").textContent = ""; $("#wStatus").textContent = "Not monitoring"; $("#wStatus").classList.remove("ok");
+    closeLive();
+    $("#livePill").classList.remove("show");
+    go("today"); enter("today");
+    toast("Good morning, Douglas · last night is ready");
+  }
+}
+function scratch() {
+  if (!live.tracking) { toast("Press Start on the watch first"); return; }
+  const now = performance.now(), dur = 2200 + Math.random() * 1800;
+  if (now > live.scratchUntil) {
+    live.count++; live.last = now; live.episodes.push({ t: now, d: dur });
+    for (const el of [$("#wCount"), $("#lvCount"), $("#lvCountB")]) { el.textContent = live.count; el.classList.add("bump"); setTimeout(() => el.classList.remove("bump"), 320); }
+    if (mon !== "a" && mon !== "b") { const r = document.createElement("span"); r.className = "ripple"; $(".lv-countcard").appendChild(r); setTimeout(() => r.remove(), 1200); }
+  }
+  live.scratchUntil = Math.max(live.scratchUntil, now + dur);
+}
+$("#wBtn").onclick = watchToggle;
+$("#simScratch").onclick = scratch;
+document.addEventListener("keydown", (e) => { if (e.target.tagName !== "INPUT" && (e.key === "s" || e.key === "S")) scratch(); });
+
+function openLive() { $("#phone").classList.add("landscape"); $("#live").classList.add("on"); }
+function closeLive() { $("#phone").classList.remove("landscape"); $("#live").classList.remove("on"); }
+$$("[data-live=open]").forEach((el) => el.addEventListener("click", openLive));
+$$("[data-live=close]").forEach((el) => el.addEventListener("click", closeLive));
+
+function sizeCanvas(c) { /* layout size: unaffected by the rotation used for the sideways monitor on a phone */
+  const w = c.clientWidth, h = c.clientHeight, dpr = devicePixelRatio || 1; if (c.width !== Math.round(w * dpr) || c.height !== Math.round(h * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); } return [c.getContext("2d"), w, h, dpr]; }
+function drawTrace(c, buf, opts) {
+  const [g, w, h, dpr] = sizeCanvas(c); if (!w || !h) return;
+  g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+  if (opts.grid) { g.strokeStyle = "rgba(20,17,17,.06)"; g.lineWidth = 1; for (let x = 0; x < w; x += 48) { g.beginPath(); g.moveTo(x + .5, 0); g.lineTo(x + .5, h); g.stroke(); } for (let y = h; y > 0; y -= 48) { g.beginPath(); g.moveTo(0, y + .5); g.lineTo(w, y + .5); g.stroke(); } }
+  const n = buf.length, X = (i) => i / (n - 1) * w, Y = (v) => h - 6 - v * (h - 16);
+  // orange fill under scratching runs
+  g.fillStyle = "rgba(248,161,111,.28)";
+  for (let i = 0; i < n; i++) { if (!buf[i].s) continue; let j = i; while (j < n && buf[j].s) j++;
+    g.beginPath(); g.moveTo(X(i), h); for (let k = i; k < j; k++) g.lineTo(X(k), Y(buf[k].v)); g.lineTo(X(j - 1), h); g.closePath(); g.fill(); i = j; }
+  g.lineJoin = "round"; g.lineCap = "round";
+  for (let i = 1; i < n; i++) { /* draw in runs of the same colour */
+    let j = i; const s = buf[i].s; while (j < n && buf[j].s === s) j++;
+    g.beginPath(); g.moveTo(X(i - 1), Y(buf[i - 1].v)); for (let k = i; k < j; k++) g.lineTo(X(k), Y(buf[k].v));
+    g.strokeStyle = s ? "#e2733a" : "#141111"; g.lineWidth = opts.lw * (s ? 1.4 : 1); g.stroke(); i = j - 1; }
+  const last = buf[n - 1]; g.fillStyle = last.s ? "#e2733a" : "#141111"; g.beginPath(); g.arc(X(n - 1) - 3, Y(last.v), opts.lw * 2.2, 0, Math.PI * 2); g.fill();
+}
+// D / E: bars of different lengths, like a voice recording. Calm: short ink bars that rise and fall gently.
+// The watch's decision makes the new bars long and orange (the app's chart bars: orange, ink edge).
+const bars = { list: [], last: 0, every: 140, n: 0 };
+const hash = (i) => { const x = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); };
+function pushBar(t) {
+  const i = bars.n++, k = live.tracking ? live.soft * live.soft * (3 - 2 * live.soft) : 0;
+  const calm = live.tracking ? .07 + .06 * (.5 + .5 * Math.sin(t / 650)) + .05 * hash(i) : .03;
+  const hot = .38 + .40 * hash(i + 999);
+  bars.list.push({ h: calm * (1 - k) + hot * k, hot: k > .5 });
+  if (bars.list.length > 400) bars.list.shift();
+}
+function drawBars(c, t, mode) {
+  const [g, w, h, dpr] = sizeCanvas(c); if (!w || !h) return;
+  g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+  while (t - bars.last >= bars.every) { bars.last += bars.every; pushBar(bars.last); }
+  const bw = 6, gap = 5, step = bw + gap, frac = (t - bars.last) / bars.every;
+  const mid = mode === "center" ? h / 2 : h - 14, maxH = mode === "center" ? h - 40 : h - 40;
+  g.strokeStyle = "rgba(20,17,17,.10)"; g.lineWidth = 1;
+  g.beginPath(); g.moveTo(0, mid + .5); g.lineTo(w, mid + .5); g.stroke();
+  const n = Math.ceil(w / step) + 1;
+  for (let j = 0; j < n && j < bars.list.length; j++) {
+    const b = bars.list[bars.list.length - 1 - j];
+    const x = w - 16 - j * step - frac * step;
+    if (x < -bw) break;
+    const bh = Math.max(4, b.h * maxH), y = mode === "center" ? mid - bh / 2 : mid - bh;
+    const r = Math.min(3, bw / 2);
+    g.beginPath(); g.roundRect(x, y, bw, bh, mode === "center" ? r : [r, r, 0, 0]);
+    if (b.hot) { g.fillStyle = "#f8a16f"; g.fill(); g.strokeStyle = "#141111"; g.lineWidth = 1; g.stroke(); }
+    else { g.fillStyle = "rgba(20,17,17,.16)"; g.fill(); }
+  }
+}
+
+// C: a calm breathing line (not wrist motion); the watch's decision swells it softly into orange.
+function drawSoft(c, buf, t) {
+  const [g, w, h, dpr] = sizeCanvas(c); if (!w || !h) return;
+  g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+  const n = buf.length, X = (i) => i / (n - 1) * w, Y = (v) => h - 10 - v * (h - 24);
+  g.strokeStyle = "rgba(20,17,17,.10)"; g.lineWidth = 1; g.setLineDash([4, 6]);
+  g.beginPath(); g.moveTo(0, Y(.26) + .5); g.lineTo(w, Y(.26) + .5); g.stroke(); g.setLineDash([]);
+  const fill = g.createLinearGradient(0, 0, w, 0), line = g.createLinearGradient(0, 0, w, 0);
+  for (let i = 0; i < n; i += 12) {
+    const k = buf[i].k, p = i / (n - 1);
+    fill.addColorStop(p, `rgba(248,161,111,${(.34 * k).toFixed(3)})`);
+    const r = Math.round(20 + (226 - 20) * k), gg = Math.round(17 + (115 - 17) * k), b = Math.round(17 + (58 - 17) * k);
+    line.addColorStop(p, `rgba(${r},${gg},${b},${(.5 + .5 * k).toFixed(3)})`);
+  }
+  g.beginPath(); g.moveTo(0, h); for (let i = 0; i < n; i += 2) g.lineTo(X(i), Y(buf[i].w)); g.lineTo(w, Y(buf[n - 1].w)); g.lineTo(w, h); g.closePath();
+  g.fillStyle = fill; g.fill();
+  g.beginPath(); for (let i = 0; i < n; i += 2) (i ? g.lineTo(X(i), Y(buf[i].w)) : g.moveTo(0, Y(buf[0].w))); g.lineTo(w, Y(buf[n - 1].w));
+  g.strokeStyle = line; g.lineWidth = 3; g.lineJoin = "round"; g.lineCap = "round"; g.stroke();
+  const last = buf[n - 1], pr = 4.5 + 1.5 * Math.sin(t / 260);
+  g.fillStyle = last.k > .3 ? "#e2733a" : "#141111"; g.globalAlpha = .18; g.beginPath(); g.arc(w - 6, Y(last.w), pr * 2.4, 0, Math.PI * 2); g.fill();
+  g.globalAlpha = 1; g.beginPath(); g.arc(w - 6, Y(last.w), 4.5, 0, Math.PI * 2); g.fill();
+}
+let lastT = performance.now();
+function tick(t) {
+  const dt = Math.min(.05, (t - lastT) / 1000); lastT = t;
+  const scratching = live.tracking && t < live.scratchUntil;
+  const target = scratching ? .66 : .08;
+  live.level += (target - live.level) * Math.min(1, dt * (scratching ? 7 : 5));
+  const v = live.tracking ? live.level : .08;   // the watch's decision only: no raw wrist motion
+  live.soft += ((scratching ? 1 : 0) - live.soft) * Math.min(1, dt * (scratching ? 3.2 : 1.7));
+  const e = live.soft * live.soft * (3 - 2 * live.soft), sec = t / 1000;
+  const fadeIn = live.tracking ? Math.min(1, (t - live.start) / 1800) : 0;
+  const breathe = fadeIn * (.05 * Math.sin(2 * Math.PI * sec / 3.8) + .018 * Math.sin(2 * Math.PI * sec / 1.9 + 1));
+  live.buf.push({ v, s: live.level > .2 && live.tracking, w: .26 + breathe * (1 - .5 * e) + .34 * e, k: live.tracking ? e : 0 });
+  if (live.buf.length > BUF) live.buf.shift();
+  if (scratching) live.scratchSecs += dt;
+  if (live.tracking) {
+    const el = (t - live.start) / 1000;
+    $("#lvElapsed").textContent = fmt(el); $("#wSub").textContent = fmt(el);
+    $("#wBtn").classList.toggle("scratch", scratching);
+    $("#lvFlag").classList.toggle("on", scratching); $("#lvFlagB").classList.toggle("on", scratching);
+    const span = Math.max(30000, t - live.start);
+    $("#lvStrip").innerHTML = live.episodes.map((e) => `<i style="left:${(e.t - live.start) / span * 100}%;width:${Math.max(.6, Math.min(e.d, t - e.t) / span * 100)}%"></i>`).join("");
+  }
+  if (!bars.last) bars.last = t;
+  if ($("#live").classList.contains("on") && mon !== "b") {
+    if (mon === "d" || mon === "e") drawBars($("#lvCanvas"), t, mon === "d" ? "center" : "bottom");
+    else if (mon === "c") drawSoft($("#lvCanvas"), live.buf, t);
+    else drawTrace($("#lvCanvas"), live.buf, { grid: true, lw: 2.2 });
+  } else { while (t - bars.last >= bars.every) { bars.last += bars.every; pushBar(bars.last); } }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+// ---------- Claude (scripted in the prototype; the app talks to the real Claude) ----------
+const chat = { started: false, waiting: null, busy: false };
+const list = $("#chat");
+function scrollDown() { list.scrollTop = list.scrollHeight; }
+function add(html, cls) { const d = document.createElement("div"); d.className = cls; d.innerHTML = html; list.appendChild(d); scrollDown(); return d; }
+async function thinking(ms) { const d = add(`<div class="pix">${"<b></b>".repeat(9)}</div><span>Thinking…</span>`, "thinking"); await sleep(ms); d.remove(); }
+async function say(text) {
+  const d = add(`<div class="who"><span class="cl">✶</span>CLAUDE</div><span class="txt"></span>`, "cmsg"), out = $(".txt", d), words = text.split(" ");
+  for (let i = 0; i < words.length; i++) { out.textContent = words.slice(0, i + 1).join(" "); scrollDown(); await sleep(28); }
+  await sleep(250);
+}
+async function tools(items) {
+  const box = add("", "tools");
+  for (const [ico, name, res] of items) {
+    const row = document.createElement("div"); row.className = "tool";
+    row.innerHTML = `<span class="tile">${ico}</span><div><div class="name">${name}</div><div class="res">Reading…</div></div><span class="st"><span class="spin"></span></span>`;
+    box.appendChild(row); scrollDown(); await sleep(520 + Math.random() * 380);
+    $(".res", row).textContent = res; $(".st", row).innerHTML = `<span class="okmark">✓</span>`; await sleep(120);
+  }
+  await sleep(300);
+}
+function timelineCard() {
+  const max = 44, bars = NIGHTS.map((m) => `<i class="${m > USUAL * 1.5 ? "hot" : ""}" data-h="${m / max * 100}"></i>`).join("");
+  const d = add(`<div class="erow"><span class="eyebrow">Your nights · last 14</span><span class="sticker s-pink" style="font-size:10px">✶ FROM CLAUDE</span></div>
+    <div class="minitl">${bars}<div class="pin" style="left:${(WASH + .5) / NIGHTS.length * 100}%"><span class="sticker s-pink">🧴 started new body wash</span><span class="stem"></span></div></div>
+    <div class="axis"><span>${md(nightDate(0))}</span><span>${md(nightDate(WASH))}</span><span>last night</span></div>
+    <div class="muted" style="font-size:13px;margin-top:8px">Scratching started rising the first night you used it, and climbed every night since.</div>`, "acard");
+  $$(".minitl i", d).forEach((b, i) => setTimeout(() => b.style.height = b.dataset.h + "%", 120 + i * 35));
+}
+function productCard() {
+  add(`<div class="prod"><div class="bottle"><div class="pump"></div><div class="neck"></div><div class="body"></div><div class="label"></div></div>
+    <div style="flex:1"><div class="erow"><span class="eyebrow">From your orders</span><span class="sticker s-yellow" style="font-size:10px">FIRST TIME</span></div>
+    <b style="font-size:19px;display:block;margin-top:4px">Body wash, 18 fl oz</b>
+    <div class="muted" style="font-size:13px">Ordered ${wd(nightDate(WASH - 1))} ${md(nightDate(WASH - 1))} · you had never bought one before</div></div></div>
+    <div class="ingr"><span>Water</span><span>Sodium Laureth Sulfate</span><span>Cocamidopropyl Betaine</span><span class="flag">Fragrance (Parfum)</span><span>Glycerin</span><span>Sodium Chloride</span><span class="flag">Methylisothiazolinone</span><span>Citric Acid</span></div>
+    <div class="muted" style="font-size:12px;margin-top:8px"><i class="sq orange"></i> common contact allergens</div>`, "acard yellowsoft");
+}
+function ask(q, opts) {
+  const d = add(`<div class="q">${q}</div><div class="opts">${opts.map((o) => `<button class="chip">${o}</button>`).join("")}</div>`, "askcard");
+  $$(".chip", d).forEach((b) => b.onclick = () => { if (chat.waiting) answer(b.textContent, b); });
+  chat.waiting = d;
+}
+function conclusion() {
+  const d = add(`<div class="erow"><span class="eyebrow">Most likely cause</span><span class="sticker s-yellow">Medium–high</span></div>
+    <div class="cause">The new body wash</div><div class="conf"><i></i></div>
+    <div class="ruled">
+      <div class="r"><b>Laundry detergent</b> — same fragrance-free one every month for two years.</div>
+      <div class="r"><b>Stress</b> — midterms ${md(nightDate(EXAMS[0]))}–${nightDate(EXAMS[1]).getDate()} were stressful and your scratching didn't change.</div>
+      <div class="r"><b>Dry air</b> — the dry night came after your scratching was already up.</div>
+      <div class="r"><b>Wool socks</b> — they only touch your feet.</div>
+    </div>
+    <div class="trythis"><b>Try this:</b> go back to your old soap for 5 nights and keep the watch on. If scratching falls back toward 12 minutes, that's your answer.</div>
+    <div class="disc">Not a diagnosis. A dermatologist can confirm it with a patch test.</div>`, "acard conc");
+  setTimeout(() => $(".conf i", d).style.width = "78%", 300);
+}
+async function start(q) {
+  if (chat.started || chat.busy) return; chat.started = true; chat.busy = true;
+  $("#suggest").remove(); add(q, "umsg"); await thinking(900);
+  await say("Let me look at your data before I guess.");
+  await tools([["⌚", "Scratch history · 14 nights", "Up 3 nights in a row · last night 41 min (usual 12)"],
+               ["📦", "Amazon orders · 120 days", "17 orders · 1 personal-care item you never bought before"],
+               ["🌤", "Weather · Berkeley", "Humidity 46–55% most days · 29% last night"],
+               ["📅", "Calendar", `Midterms ${md(nightDate(EXAMS[0]))}–${nightDate(EXAMS[1]).getDate()} · project deadline`],
+               ["🛏", "Sleep · Apple Health", "5.1 h last night · woke up 4×"]]);
+  await say(`Your scratching started climbing on ${wd(nightDate(WASH))} night. The day before, you ordered a body wash for the first time — something that touches your skin every day.`);
+  timelineCard(); await sleep(1300); productCard(); await sleep(900);
+  await say("Before I say it's the body wash, let me rule out a few other things.");
+  ask("Did you change your laundry detergent recently?", ["No, same one", "Yes", "Not sure"]);
+  chat.busy = false; chat.step = 1;
+}
+async function answer(text, btn) {
+  if (chat.busy || !chat.waiting) return; chat.busy = true;
+  $$(".chip", chat.waiting).forEach((b) => { b.disabled = true; if (b === btn) b.classList.add("on"); });
+  chat.waiting = null; add(text, "umsg"); await thinking(800);
+  if (chat.step === 1) {
+    await say("Your orders agree: the same fragrance-free detergent every month for two years. So it's not the detergent.");
+    ask("Has this week been more stressful than usual?", ["About the same", "More stressful", "Less"]);
+  } else if (chat.step === 2) {
+    await say(`Your midterms on ${md(nightDate(EXAMS[0]))}–${nightDate(EXAMS[1]).getDate()} were a stressful week, and your scratching didn't move. So stress alone doesn't explain this.`);
+    ask("Where is the itch worst?", ["Chest and arms", "Hands", "Feet"]);
+  } else if (chat.step === 3) {
+    await say("That's exactly where a body wash touches you in the shower. Here is what I think.");
+    conclusion(); await sleep(900);
+    await say("I'll keep an eye on your nights and tell you how the test goes.");
+  }
+  chat.step++; chat.busy = false;
+}
+$$("#suggest .chip").forEach((b) => b.onclick = () => start(b.dataset.ask));
+function send() { const v = $("#chatInput").value.trim(); if (!v) return; $("#chatInput").value = "";
+  if (!chat.started) start(v); else if (chat.waiting) answer(v); }
+$("#sendBtn").onclick = send;
+$("#chatInput").addEventListener("keydown", (e) => { if (e.key === "Enter") send(); });
+
+// ---------- hidden demo controls: tap the version 5 times ----------
+let taps = 0, tapTimer;
+$("#version").onclick = () => { taps++; clearTimeout(tapTimer); tapTimer = setTimeout(() => taps = 0, 1500);
+  if (taps >= 5) { $("#demoCard").classList.toggle("show"); taps = 0; } };
+$("#demoReset").onclick = () => { live.count = 0; live.episodes = []; live.scratchSecs = 0; ["#wCount", "#lvCount", "#lvCountB"].forEach((s) => $(s).textContent = "0"); toast("Tonight's count reset"); };
+function setMon(m) { mon = m; $$("#variant button").forEach((x) => x.classList.toggle("on", x.dataset.mon === m)); $("#live").classList.toggle("mon-b", m === "b"); }
+$$("#variant button").forEach((b) => b.onclick = () => setMon(b.dataset.mon));
+if (new URLSearchParams(location.search).get("mon")) setMon(new URLSearchParams(location.search).get("mon"));
+
+// ---------- small screens: a floating watch button stands in for the real watch ----------
+$("#fabWatch").onclick = () => { const s = $("#watchSheet"); if (s.classList.toggle("on")) { s.appendChild($("#watch")); s.appendChild($("#simScratch")); } };
+
+// ---------- clock / dates ----------
+function clock() { const d = new Date(); $("#sbTime").textContent = d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }).replace(/ [AP]M/, "");
+  $("#todayDate").textContent = d.toLocaleDateString("en-US", { weekday: "short" }).toUpperCase() + " · " + d.toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase(); }
+clock(); setInterval(clock, 15000);
+
+function fit() { const st = $(".stage"); if (innerWidth <= 620) { st.style.zoom = ""; return; } st.style.zoom = 1;
+  const avail = innerHeight - st.getBoundingClientRect().top - 14; st.style.zoom = Math.max(.62, Math.min(1, avail / 868)); }
+addEventListener("resize", fit); fit();
+const params = new URLSearchParams(location.search);
+window.addEventListener("load", () => {
+  enter("today");
+  if (params.get("s")) go(params.get("s"));
+  if (params.get("page")) openPage(params.get("page"));
+});
+</script>
+</body>
+</html>

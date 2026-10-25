@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Launch screen = the app's first frame without its words: the yellow frame top bar with its seam,
+  white paper, and the seam of the tab bar. Measured from the running app (Today, iPhone 16 Plus):
+  the top bar ends 74.33 pt below the top safe area, the tab bar starts 62.33 pt above the bottom
+  safe area. Constraints keep it right on every iPhone size. Colors are the Twin.Palette sRGB tokens
+  (frame #FFD440, seam = ink #141111 at 45%, paper white).
+  SpringBoard only shows a launch storyboard from a signed bundle (scripts/rb signs simulator builds
+  ad hoc). The simulator replays its cached launch snapshot a little too saturated (#FDD100); the
+  first launch after a fresh install and color-managed devices show the exact colors.
+-->
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ETL-vc-001">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="ETL-sc-001">
+            <objects>
+                <viewController id="ETL-vc-001" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ETL-vw-001">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETL-bar-001" userLabel="Frame">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="133.33"/>
+                                <color key="backgroundColor" red="1" green="0.83137254901960789" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETL-sea-001" userLabel="Frame seam">
+                                <rect key="frame" x="0.0" y="132.33" width="393" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ETL-c05"/>
+                                </constraints>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.066666666666666666" blue="0.066666666666666666" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ETL-tab-001" userLabel="Tab bar seam">
+                                <rect key="frame" x="0.0" y="755.67" width="393" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ETL-c09"/>
+                                </constraints>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.066666666666666666" blue="0.066666666666666666" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ETL-saf-001"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ETL-bar-001" firstAttribute="top" secondItem="ETL-vw-001" secondAttribute="top" id="ETL-c01"/>
+                            <constraint firstItem="ETL-bar-001" firstAttribute="leading" secondItem="ETL-vw-001" secondAttribute="leading" id="ETL-c02"/>
+                            <constraint firstItem="ETL-bar-001" firstAttribute="trailing" secondItem="ETL-vw-001" secondAttribute="trailing" id="ETL-c03"/>
+                            <constraint firstItem="ETL-bar-001" firstAttribute="bottom" secondItem="ETL-saf-001" secondAttribute="top" constant="74.33" id="ETL-c04"/>
+                            <constraint firstItem="ETL-sea-001" firstAttribute="leading" secondItem="ETL-vw-001" secondAttribute="leading" id="ETL-c06"/>
+                            <constraint firstItem="ETL-sea-001" firstAttribute="trailing" secondItem="ETL-vw-001" secondAttribute="trailing" id="ETL-c07"/>
+                            <constraint firstItem="ETL-sea-001" firstAttribute="bottom" secondItem="ETL-bar-001" secondAttribute="bottom" id="ETL-c08"/>
+                            <constraint firstItem="ETL-tab-001" firstAttribute="leading" secondItem="ETL-vw-001" secondAttribute="leading" id="ETL-c10"/>
+                            <constraint firstItem="ETL-tab-001" firstAttribute="trailing" secondItem="ETL-vw-001" secondAttribute="trailing" id="ETL-c11"/>
+                            <constraint firstItem="ETL-tab-001" firstAttribute="top" secondItem="ETL-saf-001" secondAttribute="bottom" constant="-62.33" id="ETL-c12"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ETL-fr-001" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

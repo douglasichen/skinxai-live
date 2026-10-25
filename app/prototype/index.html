@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eczema Twin — UI prototype</title>
+<style>
+@font-face { font-family: "Space Grotesk"; src: url(fonts/SpaceGrotesk.ttf) format("truetype"); font-weight: 300 700; }
+@font-face { font-family: "Space Mono"; src: url(fonts/SpaceMono-Regular.ttf); font-weight: 400; }
+@font-face { font-family: "Space Mono"; src: url(fonts/SpaceMono-Bold.ttf); font-weight: 700; }
+:root {
+  --ink: #141111; --muted: rgba(20,17,17,.68); --hint: rgba(20,17,17,.55);
+  --hair: rgba(20,17,17,.15); --seam: rgba(20,17,17,.45);
+  --frame: #ffd440; --cream: #fffaef; --paper: #ffffff; --fill: #f3f3f3;
+  --yellow: #ffd440; --yellow-soft: #fff0bd;
+  --pink: #fe7da8; --pink-soft: #ffd6e2; --pink-strong: #c00064;
+  --cyan: #27ccf3; --cyan-soft: #d7f2fe; --cyan-strong: #06414f;
+  --orange: #f8a16f; --orange-soft: #fde6de; --orange-strong: #5b310f;
+  --lime: #a9d877; --lime-soft: #dcfac1; --lime-strong: #344522;
+  --red: #f97264;
+  --r-sticker: 3px; --r-chip: 4px; --r-control: 6px; --r-card: 10px; --r-dialog: 16px;
+  --slide: cubic-bezier(.22,.9,.24,1); --spring: cubic-bezier(.34,1.56,.64,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Space Grotesk", system-ui, sans-serif; color: var(--ink); background: #ece9e1;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px 60px; gap: 18px; }
+.mono { font-family: "Space Mono", ui-monospace, monospace; }
+h1.page { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.page-sub { color: var(--muted); font-size: 14px; margin-top: -10px; text-align: center; max-width: 720px; }
+.stage { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; justify-content: center; }
+.label-under { text-align: center; font-size: 12px; color: var(--hint); margin-top: 10px; }
+.screen-picker { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.pick { font: 600 13px "Space Grotesk"; padding: 7px 12px; border: 1.5px solid var(--ink); border-radius: var(--r-control);
+  background: var(--paper); cursor: pointer; transition: background .12s; }
+.pick.on { background: var(--yellow); }
+.pick:hover { background: var(--yellow-soft); }
+
+/* ---------- phone ---------- */
+.phone { width: 390px; height: 844px; border-radius: 54px; background: #111; padding: 12px; box-shadow: 0 30px 60px rgba(0,0,0,.25); position: relative; }
+.phone .glass { width: 100%; height: 100%; border-radius: 44px; overflow: hidden; position: relative; background: var(--paper); }
+.notch { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 120px; height: 34px; background: #111; border-radius: 20px; z-index: 50; }
+.status { height: 50px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 30px 6px; font: 600 15px "Space Grotesk"; position: relative; z-index: 40; }
+.screens { position: absolute; inset: 0; }
+.scr { position: absolute; inset: 0; display: flex; flex-direction: column; opacity: 0; pointer-events: none; transform: translateX(24px);
+  transition: opacity .32s var(--slide), transform .38s var(--slide); }
+.scr.on { opacity: 1; pointer-events: auto; transform: none; }
+.scr.left { transform: translateX(-24px); }
+.topbar { background: var(--frame); padding: 50px 20px 14px; border-bottom: 1px solid var(--seam); flex: none; }
+.topbar .row { display: flex; justify-content: space-between; align-items: center; }
+.topbar h2 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+.topbar .date { font: 400 12px "Space Mono"; color: #564919; margin-top: 2px; }
+.avatar { width: 34px; height: 34px; border-radius: var(--r-sticker); border: 1.5px solid var(--ink); background: var(--pink);
+  display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+.content { flex: 1; overflow-y: auto; padding: 16px 16px 120px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; }
+.content::-webkit-scrollbar { display: none; }
+.content > * { flex-shrink: 0; }
+.card { background: var(--paper); border: 1px solid var(--hair); border-radius: var(--r-card); padding: 16px; }
+.card.cream { background: var(--cream); }
+.eyebrow { font: 700 11px "Space Mono"; letter-spacing: .06em; text-transform: uppercase; color: var(--hint); }
+.sticker { display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid var(--ink); border-radius: var(--r-sticker);
+  padding: 3px 8px; font: 700 12px "Space Grotesk"; }
+.s-yellow { background: var(--yellow); } .s-pink { background: var(--pink); } .s-cyan { background: var(--cyan); }
+.s-orange { background: var(--orange); } .s-lime { background: var(--lime); } .s-paper { background: var(--paper); }
+.big { font-size: 56px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+.muted { color: var(--muted); } .hint { color: var(--hint); }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; border: 1.5px solid var(--ink);
+  border-radius: var(--r-control); font: 700 15px "Space Grotesk"; cursor: pointer; position: relative; overflow: hidden; user-select: none;
+  transition: transform .18s var(--spring); }
+.btn:active { transform: scale(.97); }
+.btn::after { content: ""; position: absolute; inset: 0; background: var(--ink); opacity: 0; transition: opacity .1s; }
+.btn:hover::after { opacity: .06; }
+.btn.pink { background: var(--pink); } .btn.paper { background: var(--paper); } .btn.yellow { background: var(--yellow); }
+
+/* fade-up stagger */
+.rise { opacity: 0; transform: translateY(14px); }
+.scr.on .rise { animation: rise .55s var(--slide) forwards; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+/* hero ring */
+.hero { display: flex; gap: 16px; align-items: center; }
+.ring { width: 138px; height: 138px; position: relative; flex: none; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring .track { stroke: var(--fill); }
+.ring .base { stroke: var(--ink); stroke-opacity: .18; }
+.ring .val { stroke: var(--orange); stroke-linecap: butt; transition: stroke-dashoffset 1.4s var(--slide); }
+.ring .center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.ring .center b { font-size: 40px; letter-spacing: -.04em; line-height: 1; }
+.ring .center span { font: 400 11px "Space Mono"; color: var(--hint); }
+.ring .usual { position: absolute; width: 10px; height: 10px; background: var(--ink); border: 2px solid var(--paper); border-radius: 2px; }
+
+/* bars */
+.bars { display: flex; align-items: flex-end; gap: 3px; height: 92px; margin-top: 12px; }
+.bars i { flex: 1; background: var(--ink); opacity: .14; border-radius: 2px 2px 0 0; height: 2%; transform-origin: bottom;
+  transition: height .7s var(--spring); }
+.bars i.hot { background: var(--orange); opacity: 1; border: 1px solid var(--ink); }
+.axis { display: flex; justify-content: space-between; font: 400 10px "Space Mono"; color: var(--hint); margin-top: 6px; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mini b { font-size: 26px; letter-spacing: -.03em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+/* claude CTA */
+.cta { border: 1.5px solid var(--ink); border-radius: var(--r-card); background: var(--pink-soft); padding: 14px 16px; display: flex; gap: 12px;
+  align-items: center; cursor: pointer; position: relative; overflow: hidden; }
+.cta .dot { width: 34px; height: 34px; border-radius: var(--r-sticker); border: 1.5px solid var(--ink); background: var(--pink); display: grid; place-items: center; flex: none; }
+.cta::before { content: ""; position: absolute; inset: -2px; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.7) 50%, transparent 70%);
+  transform: translateX(-100%); animation: sweep 2.8s 1.2s ease-in-out infinite; }
+@keyframes sweep { 60%,100% { transform: translateX(100%); } }
+
+/* tab bar */
+.tabbar { position: absolute; left: 0; right: 0; bottom: 0; height: 88px; background: var(--paper); border-top: 1px solid var(--seam);
+  display: flex; justify-content: space-around; padding: 8px 10px 26px; z-index: 30; }
+.tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font: 600 11px "Space Grotesk"; color: var(--muted); cursor: pointer; }
+.tab .ic { width: 44px; height: 30px; border-radius: var(--r-control); display: grid; place-items: center; border: 1.5px solid transparent;
+  transition: background .25s var(--slide), border-color .25s, transform .3s var(--spring); }
+.tab.on { color: var(--ink); }
+.tab.on .ic { background: var(--yellow); border-color: var(--ink); transform: translateY(-2px); }
+.fab { position: absolute; right: 18px; bottom: 100px; width: 56px; height: 56px; border-radius: var(--r-control); border: 1.5px solid var(--ink);
+  background: var(--pink); display: grid; place-items: center; z-index: 31; cursor: pointer; font-size: 30px; font-weight: 400; line-height: 1;
+  transition: transform .3s var(--spring); box-shadow: 3px 3px 0 var(--ink); }
+.fab:hover { transform: rotate(90deg); }
+
+/* trends */
+.trend { display: flex; align-items: flex-end; gap: 5px; height: 170px; margin-top: 14px; position: relative; }
+.trend .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; height: 100%; justify-content: flex-end; }
+.trend .col i { width: 100%; background: var(--ink); opacity: .16; border-radius: 2px 2px 0 0; height: 0; transition: height .8s var(--spring), opacity .2s; }
+.trend .col.hot i { background: var(--orange); opacity: 1; border: 1px solid var(--ink); }
+.trend .col.sel i { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.trend .col span { font: 400 9px "Space Mono"; color: var(--hint); }
+.trend .baseline { position: absolute; left: 0; right: 0; border-top: 1.5px dashed var(--seam); bottom: 52px; }
+.trend .baseline::after { content: "your usual · 12 min"; position: absolute; left: 0; top: 4px; font: 400 10px "Space Mono"; color: var(--hint); }
+.marker { position: absolute; top: -4px; transform: translateX(-50%); }
+.daydetail { margin-top: 12px; padding: 12px; border-radius: var(--r-card); background: var(--cyan-soft); border: 1px solid var(--hair);
+  display: flex; justify-content: space-between; align-items: center; transition: all .3s var(--slide); }
+
+/* insight */
+.case-head { display: flex; justify-content: space-between; align-items: center; }
+.thinking { display: flex; align-items: center; gap: 10px; padding: 14px; border-radius: var(--r-card); background: var(--fill); }
+.pix { display: grid; grid-template-columns: repeat(3, 5px); gap: 2px; }
+.pix b { width: 5px; height: 5px; background: var(--ink); animation: pix 1s infinite; }
+.pix b:nth-child(2){animation-delay:.1s}.pix b:nth-child(3){animation-delay:.2s}.pix b:nth-child(6){animation-delay:.3s}
+.pix b:nth-child(9){animation-delay:.4s}.pix b:nth-child(8){animation-delay:.5s}.pix b:nth-child(7){animation-delay:.6s}.pix b:nth-child(4){animation-delay:.7s}
+.pix b:nth-child(5){opacity:0;animation:none}
+@keyframes pix { 0%,100% { opacity: .15; } 30% { opacity: 1; } }
+.summary { font-size: 16px; line-height: 1.5; min-height: 72px; }
+.caret { display: inline-block; width: 8px; height: 17px; background: var(--ink); vertical-align: -3px; animation: blink .8s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.suspect { border: 1.5px solid var(--ink); border-radius: var(--r-card); padding: 14px; background: var(--paper); display: flex; flex-direction: column; gap: 8px;
+  opacity: 0; transform: translateY(30px) scale(.97); }
+.suspect.in { animation: card .6s var(--spring) forwards; }
+@keyframes card { to { opacity: 1; transform: none; } }
+.suspect.top { background: var(--yellow-soft); }
+.suspect .head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.suspect .rank { font: 700 12px "Space Mono"; width: 26px; height: 26px; border: 1.5px solid var(--ink); border-radius: var(--r-sticker); display: grid; place-items: center; background: var(--paper); flex: none; }
+.conf { height: 6px; background: var(--fill); border-radius: 2px; overflow: hidden; }
+.conf i { display: block; height: 100%; width: 0; background: var(--cyan); transition: width 1.1s var(--slide); }
+.timeline { position: relative; height: 96px; margin-top: 8px; }
+.timeline .days { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; }
+.timeline .days span { font: 400 9px "Space Mono"; color: var(--hint); width: 18px; text-align: center; }
+.timeline svg { position: absolute; inset: 0 0 16px 0; width: 100%; height: 80px; overflow: visible; }
+.arc { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.arc-draw { stroke-dasharray: 260; stroke-dashoffset: 260; }
+.scr.on .arc-draw { animation: draw 1.4s 1.6s var(--slide) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.note { border-left: 2px solid var(--orange); padding: 2px 0 2px 10px; font-size: 13px; color: var(--muted); }
+
+/* experiment */
+.exp-ring { width: 170px; height: 170px; margin: 6px auto 0; position: relative; }
+.exp-ring svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.exp-ring .center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.cmp { display: flex; gap: 14px; align-items: flex-end; height: 140px; margin-top: 14px; }
+.cmp .c { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+.cmp .c i { width: 64%; border: 1.5px solid var(--ink); border-radius: var(--r-chip) var(--r-chip) 0 0; height: 0; transition: height 1s var(--spring); }
+.dots { display: flex; gap: 6px; margin-top: 12px; justify-content: center; }
+.dots i { width: 22px; height: 22px; border-radius: var(--r-sticker); border: 1.5px solid var(--ink); display: grid; place-items: center; font: 700 10px "Space Mono"; background: var(--paper); }
+.dots i.done { background: var(--lime); } .dots i.today { background: var(--yellow); animation: bob 1.6s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-3px); } }
+
+/* sheet */
+.scrim { position: absolute; inset: 0; background: rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .32s var(--slide); z-index: 60; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--paper); border-radius: var(--r-dialog) var(--r-dialog) 0 0;
+  border-top: 1.5px solid var(--ink); padding: 10px 18px 34px; transform: translateY(100%); transition: transform .42s var(--slide); z-index: 61; }
+.sheet.open { transform: none; } .scrim.open { opacity: 1; pointer-events: auto; }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--hair); margin: 0 auto 14px; }
+.tagchip { border: 1.5px solid var(--ink); border-radius: var(--r-control); padding: 10px 12px; font: 600 14px "Space Grotesk"; display: flex; gap: 8px; align-items: center;
+  background: var(--paper); cursor: pointer; transition: background .2s, transform .3s var(--spring); }
+.tagchip.on { background: var(--yellow); transform: scale(1.05); }
+.tagchip:active { transform: scale(.95); }
+.toast { position: absolute; left: 50%; top: 60px; transform: translate(-50%, -30px); background: #252429; color: #f3f3f5; padding: 10px 14px;
+  border-radius: var(--r-chip); font: 600 13px "Space Grotesk"; opacity: 0; transition: all .4s var(--spring); z-index: 70; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- watch ---------- */
+.watch { width: 222px; height: 268px; border-radius: 58px; background: #1a1a1a; padding: 13px; box-shadow: 0 24px 50px rgba(0,0,0,.3); position: relative; }
+.watch::after { content: ""; position: absolute; right: -9px; top: 70px; width: 10px; height: 40px; background: #2a2a2a; border-radius: 4px; }
+.watch .face { width: 100%; height: 100%; border-radius: 46px; background: #000; overflow: hidden; position: relative; color: #fff; }
+.wscr { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding: 22px 14px; opacity: 0; transition: opacity .35s; }
+.wscr.on { opacity: 1; }
+.wtime { position: absolute; top: 10px; right: 26px; font: 600 13px "Space Grotesk"; }
+.wtitle { position: absolute; top: 10px; left: 26px; font: 700 13px "Space Grotesk"; color: var(--yellow); }
+.wring { width: 128px; height: 128px; margin-top: 18px; position: relative; }
+.wring svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.wring .center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.wring b { font-size: 34px; letter-spacing: -.04em; line-height: 1; }
+.wring span { font: 400 10px "Space Mono"; color: #aaa; }
+.wstats { display: flex; gap: 14px; margin-top: 8px; font: 700 13px "Space Grotesk"; }
+.pulse { width: 86px; height: 86px; border-radius: 22px; background: var(--orange); border: 2px solid #fff; display: grid; place-items: center; margin-top: 16px; position: relative; }
+.pulse::before, .pulse::after { content: ""; position: absolute; inset: -2px; border-radius: 22px; border: 2px solid var(--orange); animation: ripple 1.8s infinite; }
+.pulse::after { animation-delay: .9s; }
+@keyframes ripple { from { transform: scale(1); opacity: .9; } to { transform: scale(1.6); opacity: 0; } }
+.wq { font: 700 15px "Space Grotesk"; margin-top: 16px; text-align: center; line-height: 1.2; }
+.wbtns { display: flex; gap: 8px; margin-top: 12px; width: 100%; }
+.wbtn { flex: 1; height: 36px; border-radius: 18px; display: grid; place-items: center; font: 700 14px "Space Grotesk"; cursor: pointer; transition: transform .2s var(--spring); }
+.wbtn:active { transform: scale(.92); }
+.wbtn.no { background: #333; } .wbtn.yes { background: var(--yellow); color: var(--ink); }
+.shake .face { animation: shake .5s; }
+@keyframes shake { 20%,60% { transform: translateX(-3px); } 40%,80% { transform: translateX(3px); } }
+
+.legend { max-width: 760px; font-size: 13px; color: var(--muted); line-height: 1.6; text-align: center; }
+</style>
+</head>
+<body>
+<h1 class="page">Eczema Twin · UI prototype v1</h1>
+<p class="page-sub">Raft colors & layout · motion is ours. Click the tabs inside the phone, the pink “+” button, and the watch buttons. Demo data: Douglas, Oct 5–18.</p>
+
+<div class="screen-picker" id="picker">
+  <button class="pick on" data-go="today">Today</button>
+  <button class="pick" data-go="trends">Trends</button>
+  <button class="pick" data-go="insight">Insight (Claude)</button>
+  <button class="pick" data-go="experiment">Experiment</button>
+  <button class="pick" data-go="sheet">Quick tag</button>
+  <button class="pick" data-wgo="ring">⌚ Ring</button>
+  <button class="pick" data-wgo="prompt">⌚ Scratch alert</button>
+</div>
+
+<div class="stage">
+<div>
+<div class="phone"><div class="glass">
+  <div class="notch"></div>
+  <div class="screens">
+
+  <!-- TODAY -->
+  <section class="scr on" id="s-today">
+    <header class="topbar"><div class="row"><div><h2>Today</h2><div class="date">SAT · OCT 18</div></div><div class="avatar">D</div></div></header>
+    <div class="content">
+      <div class="card rise" style="animation-delay:.05s">
+        <div class="eyebrow">Scratching today</div>
+        <div class="hero" style="margin-top:10px">
+          <div class="ring">
+            <svg viewBox="0 0 140 140"><circle class="track" cx="70" cy="70" r="58" fill="none" stroke-width="16"/>
+              <circle class="val" id="todayRing" cx="70" cy="70" r="58" fill="none" stroke-width="16" stroke-dasharray="364.4" stroke-dashoffset="364.4"/></svg>
+            <div class="center"><b class="count" data-to="47">0</b><span>MIN</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span class="sticker s-orange">▲ 3.9× your usual</span>
+            <div class="muted" style="font-size:14px;line-height:1.4">Mostly at night, <b style="color:var(--ink)">2–4 am</b>. 126 scratches, 20 intense.</div>
+          </div>
+        </div>
+        <div class="bars" id="dayBars"></div>
+        <div class="axis"><span>12a</span><span>6a</span><span>12p</span><span>6p</span><span>now</span></div>
+      </div>
+
+      <div class="cta rise" style="animation-delay:.18s" data-go="insight">
+        <div class="dot">✶</div>
+        <div style="flex:1"><div style="font-weight:700">Claude found a likely trigger</div><div class="muted" style="font-size:13px">Your scratching jumped 2 days after a change.</div></div>
+        <div style="font-size:20px">→</div>
+      </div>
+
+      <div class="grid2 rise" style="animation-delay:.3s">
+        <div class="card mini"><div class="eyebrow">Sleep</div><b class="count" data-to="5.2" data-dec="1">0</b><span class="hint"> h</span><div class="muted" style="font-size:12px">woke up 6×</div></div>
+        <div class="card mini"><div class="eyebrow">Stress (HRV)</div><b class="count" data-to="31">0</b><span class="hint"> ms</span><div class="muted" style="font-size:12px">lower than usual</div></div>
+      </div>
+      <div class="card cream rise" style="animation-delay:.42s">
+        <div class="eyebrow">Around you · auto</div>
+        <div class="chips">
+          <span class="sticker s-orange">💧 Humidity 28% · dry</span>
+          <span class="sticker s-paper">🌫 Air quality 42 · good</span>
+          <span class="sticker s-paper">🌼 Pollen · low</span>
+          <span class="sticker s-paper">🌡 11°C</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDS -->
+  <section class="scr" id="s-trends">
+    <header class="topbar"><div class="row"><div><h2>Trends</h2><div class="date">LAST 14 DAYS</div></div><div class="avatar">D</div></div></header>
+    <div class="content">
+      <div class="card rise">
+        <div class="eyebrow">Minutes scratching per day</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px"><span class="big count" data-to="33">0</span><span class="muted">min / day this week</span></div>
+        <span class="sticker s-orange" style="margin-top:8px">▲ up 158% from last week</span>
+        <div class="trend" id="trend"><div class="baseline"></div></div>
+        <div class="daydetail" id="dayDetail"><div><div class="eyebrow">Oct 15</div><b>38 min</b> <span class="muted">· 3 a.m. worst</span></div><span class="sticker s-paper">tap a day</span></div>
+      </div>
+      <div class="card rise" style="animation-delay:.15s">
+        <div class="eyebrow">What changed</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;font-size:14px">
+          <div style="display:flex;gap:10px;align-items:center"><span class="sticker s-pink">🧴</span><div><b>New body wash</b> <span class="muted">· from Oct 9</span></div></div>
+          <div style="display:flex;gap:10px;align-items:center"><span class="sticker s-orange">💧</span><div><b>Dry air</b> <span class="muted">· humidity below 30% from Oct 10</span></div></div>
+          <div style="display:flex;gap:10px;align-items:center"><span class="sticker s-paper">📚</span><div><b>Exam week</b> <span class="muted">· Oct 14–15</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHT -->
+  <section class="scr" id="s-insight">
+    <header class="topbar"><div class="row"><div><h2>Insight</h2><div class="date">CASE #3 · OCT 18</div></div><span class="sticker s-pink">✶ Claude</span></div></header>
+    <div class="content">
+      <div class="thinking" id="thinking"><div class="pix"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div><span class="muted" id="thinkText">Reading 14 days of scratching, sleep and weather…</span></div>
+      <div class="card" id="sumCard" style="display:none"><div class="eyebrow">What Claude thinks</div><p class="summary" id="summary" style="margin-top:8px"></p></div>
+
+      <div class="suspect top" data-i="0">
+        <div class="head"><div style="display:flex;gap:10px;align-items:center"><span class="rank">1</span><b style="font-size:17px">New scented body wash</b></div><span class="sticker s-yellow">Medium</span></div>
+        <div class="conf"><i data-w="62"></i></div>
+        <div class="muted" style="font-size:13px">Scratching rose about <b style="color:var(--ink)">2 days</b> after you started it, and stayed high while you kept using it. That delay fits contact triggers (48–72 h).</div>
+        <div class="timeline">
+          <svg viewBox="0 0 320 80" preserveAspectRatio="none">
+            <rect x="0" y="62" width="320" height="2" fill="#e8e8e8"/>
+            <rect class="tl-bar" x="20" y="54" width="10" height="10" fill="#141111" opacity=".2"/>
+            <path class="arc arc-draw" d="M 128 50 Q 160 -10 190 30"/>
+            <g transform="translate(128,56)"><rect x="-9" y="-9" width="18" height="18" fill="#fe7da8" stroke="#141111" stroke-width="1.5"/></g>
+            <g transform="translate(192,40)"><rect x="-11" y="-11" width="22" height="22" fill="#f8a16f" stroke="#141111" stroke-width="1.5"/></g>
+            <text x="118" y="80" font-family="Space Mono" font-size="9" fill="#555">OCT 9 · started</text>
+            <text x="176" y="20" font-family="Space Mono" font-size="9" fill="#555">+2 days</text>
+          </svg>
+        </div>
+      </div>
+      <div class="suspect" data-i="1">
+        <div class="head"><div style="display:flex;gap:10px;align-items:center"><span class="rank">2</span><b style="font-size:17px">Dry air</b></div><span class="sticker s-paper">Low–Medium</span></div>
+        <div class="conf"><i data-w="38"></i></div>
+        <div class="muted" style="font-size:13px">Humidity dropped below 30% the same week.</div>
+      </div>
+      <div class="suspect" data-i="2">
+        <div class="head"><div style="display:flex;gap:10px;align-items:center"><span class="rank">3</span><b style="font-size:17px">Exam stress & short sleep</b></div><span class="sticker s-paper">Low</span></div>
+        <div class="conf"><i data-w="18"></i></div>
+        <div class="muted" style="font-size:13px">Came after the flare started. Probably making it worse, not starting it.</div>
+      </div>
+      <div class="note suspect" data-i="3" style="border:none;border-left:2px solid var(--orange);border-radius:0;padding:4px 0 4px 10px;background:none">Body wash and dry air started the same week, so Claude can’t fully separate them yet. A small test will tell.</div>
+      <div class="btn pink suspect" data-i="4" data-go="experiment">Start a 10-day test: pause the body wash →</div>
+      <div class="hint suspect" data-i="5" style="font-size:11px;text-align:center">Not a diagnosis. If skin oozes, crusts or you get a fever, see a doctor today.</div>
+    </div>
+  </section>
+
+  <!-- EXPERIMENT -->
+  <section class="scr" id="s-experiment">
+    <header class="topbar"><div class="row"><div><h2>Experiment</h2><div class="date">PAUSE THE BODY WASH</div></div><span class="sticker s-cyan">Day 6 / 10</span></div></header>
+    <div class="content">
+      <div class="card rise">
+        <div class="exp-ring">
+          <svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="72" fill="none" stroke="#f3f3f3" stroke-width="14"/>
+            <circle id="expRing" cx="85" cy="85" r="72" fill="none" stroke="#27ccf3" stroke-width="14" stroke-dasharray="452.4" stroke-dashoffset="452.4" style="transition:stroke-dashoffset 1.4s var(--slide)"/></svg>
+          <div class="center"><b style="font-size:44px;letter-spacing:-.04em" class="count" data-to="6">0</b><span class="mono hint" style="font-size:11px">OF 10 DAYS</span></div>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+      <div class="card rise" style="animation-delay:.15s">
+        <div class="eyebrow">Scratching per day</div>
+        <div class="cmp">
+          <div class="c"><b class="count" data-to="41">0</b><i data-h="100" style="background:var(--orange)"></i><span class="mono hint" style="font-size:10px">WITH WASH</span></div>
+          <div class="c"><b class="count" data-to="18">0</b><i data-h="44" style="background:var(--lime)"></i><span class="mono hint" style="font-size:10px">PAUSED</span></div>
+        </div>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><span class="sticker s-lime">▼ 56% less so far</span><span class="muted" style="font-size:13px">4 more days to be sure</span></div>
+      </div>
+      <div class="card cream rise" style="animation-delay:.3s;font-size:14px;line-height:1.5"><b>Tip:</b> keep everything else the same (food, gym, room humidity) so the result is clear.</div>
+    </div>
+  </section>
+
+  </div>
+
+  <div class="fab" id="fab">+</div>
+  <nav class="tabbar">
+    <div class="tab on" data-go="today"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#141111" stroke-width="1.8"><circle cx="10" cy="10" r="7"/><path d="M10 3a7 7 0 0 1 7 7h-7z" fill="#141111"/></svg></div>Today</div>
+    <div class="tab" data-go="trends"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="#141111"><rect x="3" y="11" width="3" height="6"/><rect x="8.5" y="6" width="3" height="11"/><rect x="14" y="3" width="3" height="14"/></svg></div>Trends</div>
+    <div class="tab" data-go="insight"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="#141111"><path d="M10 2l1.8 6.2L18 10l-6.2 1.8L10 18l-1.8-6.2L2 10l6.2-1.8z"/></svg></div>Insight</div>
+    <div class="tab" data-go="experiment"><div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#141111" stroke-width="1.8"><path d="M7 3h6M8 3v5l-4 7a1.5 1.5 0 0 0 1.3 2.2h9.4A1.5 1.5 0 0 0 16 15l-4-7V3"/></svg></div>Test</div>
+  </nav>
+
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet">
+    <div class="grab"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:20px">Anything new today?</b><span class="hint mono" style="font-size:11px">ONE TAP</span></div>
+    <div class="muted" style="font-size:13px;margin-top:4px">Everything else is tracked for you.</div>
+    <div class="chips" style="margin-top:14px;gap:10px">
+      <div class="tagchip">🧴 New product</div><div class="tagchip">🧺 New detergent</div><div class="tagchip">🥛 Dairy</div>
+      <div class="tagchip">🥜 Nuts</div><div class="tagchip">🍤 Seafood</div><div class="tagchip">🏋️ Sweaty workout</div>
+      <div class="tagchip">🐶 Pet</div><div class="tagchip">🏊 Pool</div><div class="tagchip">🧶 Wool</div>
+    </div>
+    <div class="btn paper" style="margin-top:16px">📷 Scan a product label</div>
+    <div class="btn yellow" style="margin-top:10px" id="saveTags">Save</div>
+  </div>
+  <div class="toast" id="toast">Saved · Claude will include it</div>
+</div></div>
+<div class="label-under">iPhone · 5 screens</div>
+</div>
+
+<div>
+<div class="watch" id="watch"><div class="face">
+  <div class="wscr on" id="w-ring">
+    <div class="wtitle">Twin</div><div class="wtime">10:09</div>
+    <div class="wring"><svg viewBox="0 0 128 128"><circle cx="64" cy="64" r="54" fill="none" stroke="#2a2a2a" stroke-width="14"/>
+      <circle id="wRing" cx="64" cy="64" r="54" fill="none" stroke="#f8a16f" stroke-width="14" stroke-dasharray="339.3" stroke-dashoffset="339.3" style="transition:stroke-dashoffset 1.4s var(--slide)"/></svg>
+      <div class="center"><b class="wcount">0</b><span>MIN TODAY</span></div></div>
+    <div class="wstats"><span>✋ 126</span><span style="color:var(--orange)">▲ 20</span></div>
+  </div>
+  <div class="wscr" id="w-prompt">
+    <div class="wtitle">Twin</div><div class="wtime">03:12</div>
+    <div class="pulse"><span style="font-size:34px">✋</span></div>
+    <div class="wq">Were you<br>scratching?</div>
+    <div class="wbtns"><div class="wbtn no" data-ans="no">No</div><div class="wbtn yes" data-ans="yes">Yes</div></div>
+  </div>
+</div></div>
+<div class="label-under">Apple Watch · ring & scratch alert</div>
+</div>
+</div>
+
+<p class="legend">Motion in this prototype: page slide + fade, cards rising in sequence, ring and bars filling with a spring, numbers counting up, Claude “thinking” pixels then typed answer, suspect cards flying in by rank, the trigger→flare arc drawing itself, bottom sheet sliding up, watch ripple + shake on detection. All will be rebuilt natively in SwiftUI with haptics.</p>
+
+<script>
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const order = ["today","trends","insight","experiment"];
+let cur = "today";
+
+function countUp(el){
+  const to = parseFloat(el.dataset.to), dec = +el.dataset.dec || 0, t0 = performance.now(), d = 1100;
+  (function f(t){ const p = Math.min(1,(t-t0)/d), e = 1-Math.pow(1-p,3); el.textContent = (to*e).toFixed(dec); if(p<1) requestAnimationFrame(f); })(t0);
+}
+function enter(name){
+  const s = $("#s-"+name);
+  s.querySelectorAll(".count").forEach(countUp);
+  if(name==="today"){
+    setTimeout(()=> $("#todayRing").style.strokeDashoffset = 364.4*(1-0.78), 120);
+    const vals=[10,30,82,96,70,40,12,5,4,6,8,5,10,6,4,8,12,6,4,14,22,18,10,6];
+    const bars=$("#dayBars"); bars.innerHTML = vals.map((v,i)=>`<i class="${v>60?'hot':''}"></i>`).join("");
+    [...bars.children].forEach((b,i)=> setTimeout(()=> b.style.height = vals[i]+"%", 200+i*35));
+  }
+  if(name==="trends"){
+    const v=[9,11,8,10,12,9,24,38,31,36,38,29,31,33], hot=i=>v[i]>20;
+    const tr=$("#trend"); tr.querySelectorAll(".col,.marker").forEach(n=>n.remove());
+    v.forEach((x,i)=>{ const c=document.createElement("div"); c.className="col"+(hot(i)?" hot":""); c.innerHTML=`<i></i><span>${5+i}</span>`;
+      c.onclick=()=>{ $$(".trend .col").forEach(k=>k.classList.remove("sel")); c.classList.add("sel");
+        $("#dayDetail").innerHTML=`<div><div class="eyebrow">Oct ${5+i}</div><b>${x} min</b> <span class="muted">· ${hot(i)?'3 a.m. worst':'calm night'}</span></div><span class="sticker ${hot(i)?'s-orange':'s-lime'}">${hot(i)?'flare':'normal'}</span>`; };
+      tr.appendChild(c); setTimeout(()=> c.querySelector("i").style.height = (x/40*100)+"%", 150+i*45); });
+    const m=document.createElement("div"); m.className="marker sticker s-pink"; m.style.left=((4+.5)/14*100)+"%"; m.style.fontSize="10px"; m.textContent="🧴 new wash";
+    m.style.left = "32%"; tr.appendChild(m);
+  }
+  if(name==="insight") runInsight();
+  if(name==="experiment"){
+    setTimeout(()=> $("#expRing").style.strokeDashoffset = 452.4*(1-.6), 150);
+    $("#dots").innerHTML = Array.from({length:10},(_,i)=>`<i class="${i<5?'done':i===5?'today':''}">${i+1}</i>`).join("");
+    s.querySelectorAll(".cmp i").forEach((b,i)=> setTimeout(()=> b.style.height = b.dataset.h*0.75+"%", 300+i*250));
+  }
+}
+let insightTimer=[];
+function runInsight(){
+  insightTimer.forEach(clearTimeout); insightTimer=[];
+  $("#thinking").style.display="flex"; $("#sumCard").style.display="none";
+  $$(".suspect").forEach(c=>{ c.classList.remove("in"); const i=c.querySelector(".conf i"); if(i) i.style.width="0"; });
+  const steps=["Reading 14 days of scratching, sleep and weather…","Checking what changed 1–3 days before each jump…","Ranking suspects…"];
+  steps.forEach((t,i)=> insightTimer.push(setTimeout(()=> $("#thinkText").textContent=t, i*700)));
+  insightTimer.push(setTimeout(()=>{
+    $("#thinking").style.display="none"; $("#sumCard").style.display="block";
+    const text="Your scratching nearly tripled from Oct 11. The most likely cause is the new scented body wash you started 2 days before. I’m fairly, not fully, sure: the air also got very dry that week.";
+    const out=$("#summary"); out.innerHTML=""; let k=0;
+    const tick=()=>{ out.innerHTML = text.slice(0,k)+'<span class="caret"></span>'; k+=2; if(k<=text.length+2) insightTimer.push(setTimeout(tick,16)); else { out.innerHTML=text; showCards(); } };
+    tick();
+  }, 2200));
+}
+function showCards(){
+  $$(".suspect").forEach((c,n)=> insightTimer.push(setTimeout(()=>{ c.classList.add("in"); const i=c.querySelector(".conf i"); if(i) setTimeout(()=> i.style.width=i.dataset.w+"%",200); }, n*180)));
+}
+function go(name){
+  if(name==="sheet"){ openSheet(); return; }
+  if(name===cur) { enter(name); return; }
+  const a=order.indexOf(cur), b=order.indexOf(name);
+  const prev=$("#s-"+cur), next=$("#s-"+name);
+  prev.classList.remove("on"); prev.classList.toggle("left", b>a);
+  next.classList.remove("left"); next.style.transform = b>a ? "translateX(24px)" : "translateX(-24px)";
+  requestAnimationFrame(()=>{ next.style.transform=""; next.classList.add("on"); });
+  // restart rise animations
+  next.querySelectorAll(".rise").forEach(r=>{ r.style.animation="none"; r.offsetHeight; r.style.animation=""; });
+  $$(".tab").forEach(t=>t.classList.toggle("on", t.dataset.go===name));
+  $$(".pick[data-go]").forEach(t=>t.classList.toggle("on", t.dataset.go===name));
+  cur=name; enter(name);
+}
+function openSheet(){ $("#sheet").classList.add("open"); $("#scrim").classList.add("open"); }
+function closeSheet(){ $("#sheet").classList.remove("open"); $("#scrim").classList.remove("open"); }
+$$("[data-go]").forEach(el=> el.addEventListener("click", ()=> go(el.dataset.go)));
+$("#fab").onclick=openSheet; $("#scrim").onclick=closeSheet;
+$$(".tagchip").forEach(c=> c.onclick=()=> c.classList.toggle("on"));
+$("#saveTags").onclick=()=>{ closeSheet(); const t=$("#toast"); t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); };
+
+// watch
+function wgo(n){
+  $$(".wscr").forEach(s=>s.classList.toggle("on", s.id==="w-"+n));
+  $$(".pick[data-wgo]").forEach(t=>t.classList.toggle("on", t.dataset.wgo===n));
+  if(n==="ring"){ $("#wRing").style.strokeDashoffset=339.3; setTimeout(()=> $("#wRing").style.strokeDashoffset=339.3*(1-.78),80);
+    const el=$(".wcount"); el.dataset.to=47; countUp(el); }
+  if(n==="prompt"){ const w=$("#watch"); w.classList.remove("shake"); w.offsetWidth; w.classList.add("shake"); }
+}
+$$("[data-wgo]").forEach(el=> el.addEventListener("click", ()=> wgo(el.dataset.wgo)));
+$$(".wbtn").forEach(b=> b.onclick=()=>{ b.style.transform="scale(.9)"; setTimeout(()=>{ b.style.transform=""; wgo("ring"); },220); });
+
+const params = new URLSearchParams(location.search);
+window.addEventListener("load", ()=>{ enter("today"); wgo("ring");
+  if(params.get("s")) go(params.get("s"));
+  if(params.get("w")) wgo(params.get("w")); });
+</script>
+</body>
+</html>

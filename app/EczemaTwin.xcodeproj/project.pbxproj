@@ -1,0 +1,904 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04DC01E1881FF54A9FD43214 /* EczemaTwinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1B3BDB0E5C9F0AE7DBB8F0 /* EczemaTwinApp.swift */; };
+		0AE803FEBCE322AD828F98C3 /* ControlPressStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B537D92374DD10C70E95B5 /* ControlPressStyle.swift */; };
+		0C47E3279B980203D1702F0C /* LivePill.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE35167A82BBFBAF22509A89 /* LivePill.swift */; };
+		0FEF86B880FBE9ADB8724590 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4B2897C6CCC760F580D166 /* HUD.swift */; };
+		10056456D441FC06F7913DF4 /* InsightScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6F0189F64A4798731B6B1D /* InsightScreen.swift */; };
+		111FA460D673B6A23A03B139 /* SummaryStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0D84168AA9EA0F518A4E6A /* SummaryStory.swift */; };
+		113E1A6B663B35AC7A91E6C3 /* QuarterHourChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BACD158F10E448128766E /* QuarterHourChart.swift */; };
+		13D46B0D36E7759EF572CF10 /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 760C741AF41DD66B5FC369AF /* SpaceMono-Bold.ttf */; };
+		16198B1E0902547DBE01046A /* EczemaKit in Frameworks */ = {isa = PBXBuildFile; productRef = D117CFDD5A0CB67976CB8EDD /* EczemaKit */; };
+		184EB3599E5C593625792027 /* SpaceGrotesk.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1487CBB263DD93F8907CC /* SpaceGrotesk.ttf */; };
+		198CB74A61347DCE1EFF0344 /* RealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481F1833102702AFC8CDF5A2 /* RealData.swift */; };
+		20C008F0F3148CC5188759D9 /* TrendsCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8235AB06029C117D8E8B36 /* TrendsCards.swift */; };
+		21EED874B53BF2CE9BFAAE8D /* ScreenScaffold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CB0563BBE0CC1D12498743 /* ScreenScaffold.swift */; };
+		268E502DC7BD2019A1C29ACC /* OverlayBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DFB5BE1CFD7993FDB2CDDA /* OverlayBarChart.swift */; };
+		26C1685BBABC00BA05327816 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FEF26FC09D4CA7D5E7D3E /* TabBar.swift */; };
+		322CD2D0B89ACACA80385057 /* SummaryNightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BA9288F92A58719CA032CD /* SummaryNightCard.swift */; };
+		359AE6B20330D10C7AEBF9CF /* WatchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DDD38B993F1AA1D0BC536CA /* WatchStore.swift */; };
+		35D381A4B70778CB4D6359AF /* NessieOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46435E4265D80659F5FDFE1 /* NessieOrders.swift */; };
+		37712494B0D3905517DCDA96 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0BAE1425EE27470E3A238 /* AppState.swift */; };
+		3A51F8AE6065B3E76AAAB512 /* ChatThreadViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA7FBEEDDC38AC625DB4D1 /* ChatThreadViews.swift */; };
+		3B7C6E1ADB8ADA307ECD856C /* HourlyScratchChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59666E413FAD8FCAACA96F91 /* HourlyScratchChart.swift */; };
+		3CDADBC963B59E1BD2BB8FB0 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89663F3DDC66BCF5E2268A7E /* Components.swift */; };
+		419C301295E5357B8D63267E /* TrendsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98215790D60CBA5BA7B09831 /* TrendsData.swift */; };
+		42ED95C8E40E85E16A17A3B8 /* TrendsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C04AF9BC2B991DBCAF4D604 /* TrendsScreen.swift */; };
+		43E9284535284EC823FEA719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20725F17361B3FA040D79E6C /* Assets.xcassets */; };
+		44E1B82DB431995C57861E74 /* SignalLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C2E3A3EE2BA5714D4874E1 /* SignalLineChart.swift */; };
+		460A0A6955DA3D851D5F5841 /* LiveMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E03FADE1874C4C509264EC8 /* LiveMonitor.swift */; };
+		48428B69503D7D7EB001E6C7 /* OrientationLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89D19DC74A0E0D71E60FF2 /* OrientationLock.swift */; };
+		48F3E315ABEC5638185AB796 /* LiveStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71746025FCD0137A6FD57A /* LiveStreamer.swift */; };
+		49DBBE7537FBF36FA86BF2FB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F964877FF3ADC4D998AAC93 /* RootView.swift */; };
+		4CFF2785CF7513EE7129DC52 /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896AB6DB5F3888888AF15F3 /* WatchRootView.swift */; };
+		50645F761E8D1F3581E01CDB /* ChatComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B21276CACC2600D384D2D /* ChatComposer.swift */; };
+		51602C72B717C6AE9C70EDC7 /* SpaceMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 760C741AF41DD66B5FC369AF /* SpaceMono-Bold.ttf */; };
+		5342282DDF4A954661FA364C /* PermissionCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4B2A61F1C1F47AA1510E8B /* PermissionCards.swift */; };
+		53433D0CAB530186BAFCE27D /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5808DD3E3B07C0808DABFD4C /* OFL.txt */; };
+		558DF6DCEFC8FDF1D72D9448 /* MonitorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53312E31F08FE80F384BD385 /* MonitorScreen.swift */; };
+		575C311180B313796A89B293 /* SpaceGrotesk.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34F1487CBB263DD93F8907CC /* SpaceGrotesk.ttf */; };
+		5B43630FAAAFBC128522A885 /* TwinIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8537DBA8F6774CD120C17 /* TwinIcon.swift */; };
+		5D8AFA25300C7981940B9159 /* LiveReplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533848905591F2813A5E3EA9 /* LiveReplay.swift */; };
+		6120A254393C824E106A6B6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2041CCD0264F87E0A11694E2 /* Assets.xcassets */; };
+		63F214BF2D73BD94C75EA70A /* QuarterHourChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46BACD158F10E448128766E /* QuarterHourChart.swift */; };
+		6E35D893E7F698AF7831E9C7 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89663F3DDC66BCF5E2268A7E /* Components.swift */; };
+		6E46972D47205DEEBB367D44 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1BD32C0370C9BA3147BBF8 /* Theme.swift */; };
+		6E863BB33E3B8A9E282A337B /* StageNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A5DF5B6053F283ACF19DAA /* StageNotifications.swift */; };
+		6F41A92F75EFB90FB03BBDBC /* WatchInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F129293B2FD6E909EB3AC01 /* WatchInbox.swift */; };
+		705CFBCBD31A268ABDEA6257 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 208DBA8B4BEC280B2C06EBFB /* LaunchScreen.storyboard */; };
+		73C3C31B9F91D0396052115D /* DailyScratchChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CF5CD9D03422FC9CECB0A0 /* DailyScratchChart.swift */; };
+		79D322D18A4F64C1FFE34A10 /* PermissionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105BB566FA59048640D3660B /* PermissionsScreen.swift */; };
+		7FC61495F36D235D7E17894E /* HealthReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA3B16DEEAFCB72E81305C /* HealthReader.swift */; };
+		86CB04D942289675C860D6B3 /* ChartRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CF87A7465A89E733C681C /* ChartRangePicker.swift */; };
+		8AF9D793035A366205AE4763 /* LiveMonitorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFE75E6C8B3CF0CA5E9973C /* LiveMonitorPresenter.swift */; };
+		94A027040E07F67FEA7A5AA0 /* ShellServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EE34011CA4E78402E237D3 /* ShellServices.swift */; };
+		959BBFBC752662D7AAB67D08 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5808DD3E3B07C0808DABFD4C /* OFL.txt */; };
+		976E54F3AC11E418205AA68F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1BD32C0370C9BA3147BBF8 /* Theme.swift */; };
+		9979B2C5E14FDE97E264DC7B /* WatchStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79954630B15D2F8FC68A0DF /* WatchStyle.swift */; };
+		998F5DCB0D1CBBCA7DEE045A /* BackgroundRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751231395BD9B08F0494C6A /* BackgroundRecorder.swift */; };
+		9D9B9FC68BFEAFB2383B40AC /* LiveSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C51CCC0F091E681A181E4C7 /* LiveSession.swift */; };
+		A1348D1CAFD23E2A8D2BBE70 /* HourlyScratchChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59666E413FAD8FCAACA96F91 /* HourlyScratchChart.swift */; };
+		A5169C554658DF70A339839D /* ChartRangePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B4CF87A7465A89E733C681C /* ChartRangePicker.swift */; };
+		A90000FCDEC8CC5078CD99E6 /* SignalLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C2E3A3EE2BA5714D4874E1 /* SignalLineChart.swift */; };
+		ACBF7EF4271BF60AF75F8C1F /* SummaryCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E35B01A1EF67E7229346A7 /* SummaryCards.swift */; };
+		AF4D133AC33F342368291A4D /* LivePillHarness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F62057DD333871EA66459D3 /* LivePillHarness.swift */; };
+		B279BD03EE0B06C033805E4B /* DailyScratchChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CF5CD9D03422FC9CECB0A0 /* DailyScratchChart.swift */; };
+		B56138DA790475C50A2F4DA9 /* LiveRelayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81469EE688A63C6968697870 /* LiveRelayClient.swift */; };
+		B6FA149DF727D940229BFB48 /* LiveSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014BDD3C1323481999354AAB /* LiveSimulator.swift */; };
+		B98500EFEC7EF5D8EBEE6E58 /* TwinIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB8537DBA8F6774CD120C17 /* TwinIcon.swift */; };
+		BBBB1A58B05588354A87B2D1 /* DeviceAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06FE54F03E23DB9D8E77B2B /* DeviceAccess.swift */; };
+		BE0F69BD38BD8F2F926E4A96 /* LiveBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4920F844414A5B8042B0564 /* LiveBars.swift */; };
+		C2A59A49ED98B9FB21169240 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E06B0299ACCBE9F04008DCEE /* SpaceMono-Regular.ttf */; };
+		C2C5EC54813E8B22D7D1F26F /* LiveGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C32B1D057DE4A32192BED /* LiveGraph.swift */; };
+		C58F6EFE338BB4CE2C6A6B20 /* ChatCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDE81F3D6AE5C299424DE60 /* ChatCards.swift */; };
+		D0A78FEA08952544FA30DCCB /* EczemaKit in Frameworks */ = {isa = PBXBuildFile; productRef = D2EA930CC5E12E9FB0AD6085 /* EczemaKit */; };
+		D826614D296D25D1EC6F52F9 /* OverlayBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DFB5BE1CFD7993FDB2CDDA /* OverlayBarChart.swift */; };
+		E05B340326EC3216606E365B /* EczemaTwinWatch.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 28A06BF100E5C5473F4637B6 /* EczemaTwinWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E55B86B8E25DE8774687E072 /* SummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C71ED35D0EF0880F2A6A1F0 /* SummaryScreen.swift */; };
+		E574D0D481A6EFEDCFB60FB4 /* ChatSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48969043B79B3104CD06543 /* ChatSession.swift */; };
+		E7784C3DF5F23040BB783975 /* SpaceMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E06B0299ACCBE9F04008DCEE /* SpaceMono-Regular.ttf */; };
+		F30C8F2E8CFA7CE2833457E0 /* WatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76256B4672DD738B542C92E /* WatchModel.swift */; };
+		F33CDDB440F084232959FCA2 /* TrendsEventSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1E58D8F83E40F3AE8F4941 /* TrendsEventSheet.swift */; };
+		FA881C809B2B0BECE02DB009 /* LiveMonitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DACAB9E72DC72192AD47F7 /* LiveMonitorView.swift */; };
+		FB96FE91564D485C7A2AF6FA /* EczemaTwinWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347396144EA7921BA5D444F0 /* EczemaTwinWatchApp.swift */; };
+		FD5C701082C639F24C217B9A /* PhoneLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0CBE45AF6B83E4BCF4F4A4 /* PhoneLink.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		816BA3BA89E4AFF16B90F73B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F666E875112B38711841008D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C13D0BE614F5D65663717916;
+			remoteInfo = EczemaTwinWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		34484D5B107CB9EAE91C0F1B /* Embed Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				E05B340326EC3216606E365B /* EczemaTwinWatch.app in Embed Dependencies */,
+			);
+			name = "Embed Dependencies";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		014BDD3C1323481999354AAB /* LiveSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSimulator.swift; sourceTree = "<group>"; };
+		0DDD38B993F1AA1D0BC536CA /* WatchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStore.swift; sourceTree = "<group>"; };
+		0F964877FF3ADC4D998AAC93 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		105BB566FA59048640D3660B /* PermissionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsScreen.swift; sourceTree = "<group>"; };
+		10CB0563BBE0CC1D12498743 /* ScreenScaffold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenScaffold.swift; sourceTree = "<group>"; };
+		13EE34011CA4E78402E237D3 /* ShellServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellServices.swift; sourceTree = "<group>"; };
+		14B537D92374DD10C70E95B5 /* ControlPressStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPressStyle.swift; sourceTree = "<group>"; };
+		188F7FF09D624D55923C26C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1896AB6DB5F3888888AF15F3 /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		1C51CCC0F091E681A181E4C7 /* LiveSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSession.swift; sourceTree = "<group>"; };
+		1D71746025FCD0137A6FD57A /* LiveStreamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamer.swift; sourceTree = "<group>"; };
+		2041CCD0264F87E0A11694E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20725F17361B3FA040D79E6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		208DBA8B4BEC280B2C06EBFB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		253171EEA7790B9CB34EF61E /* EczemaKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EczemaKit; path = Packages/EczemaKit; sourceTree = SOURCE_ROOT; };
+		28A06BF100E5C5473F4637B6 /* EczemaTwinWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EczemaTwinWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B4B2A61F1C1F47AA1510E8B /* PermissionCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCards.swift; sourceTree = "<group>"; };
+		2C6F0189F64A4798731B6B1D /* InsightScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightScreen.swift; sourceTree = "<group>"; };
+		2F129293B2FD6E909EB3AC01 /* WatchInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInbox.swift; sourceTree = "<group>"; };
+		344A6C9801EFCF8F5AE3E2C0 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
+		347396144EA7921BA5D444F0 /* EczemaTwinWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EczemaTwinWatchApp.swift; sourceTree = "<group>"; };
+		34F1487CBB263DD93F8907CC /* SpaceGrotesk.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SpaceGrotesk.ttf; sourceTree = "<group>"; };
+		3A0CBE45AF6B83E4BCF4F4A4 /* PhoneLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLink.swift; sourceTree = "<group>"; };
+		3C04AF9BC2B991DBCAF4D604 /* TrendsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsScreen.swift; sourceTree = "<group>"; };
+		3C0B21276CACC2600D384D2D /* ChatComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatComposer.swift; sourceTree = "<group>"; };
+		3D89D19DC74A0E0D71E60FF2 /* OrientationLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationLock.swift; sourceTree = "<group>"; };
+		481F1833102702AFC8CDF5A2 /* RealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealData.swift; sourceTree = "<group>"; };
+		4E03FADE1874C4C509264EC8 /* LiveMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMonitor.swift; sourceTree = "<group>"; };
+		53312E31F08FE80F384BD385 /* MonitorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorScreen.swift; sourceTree = "<group>"; };
+		533848905591F2813A5E3EA9 /* LiveReplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveReplay.swift; sourceTree = "<group>"; };
+		570EC8EF09994F162B38DB16 /* Live.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Live.xcconfig; sourceTree = "<group>"; };
+		5808DD3E3B07C0808DABFD4C /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		59666E413FAD8FCAACA96F91 /* HourlyScratchChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyScratchChart.swift; sourceTree = "<group>"; };
+		5CFE75E6C8B3CF0CA5E9973C /* LiveMonitorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMonitorPresenter.swift; sourceTree = "<group>"; };
+		5DDE81F3D6AE5C299424DE60 /* ChatCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCards.swift; sourceTree = "<group>"; };
+		68A5DF5B6053F283ACF19DAA /* StageNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageNotifications.swift; sourceTree = "<group>"; };
+		6B4CF87A7465A89E733C681C /* ChartRangePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartRangePicker.swift; sourceTree = "<group>"; };
+		6C71ED35D0EF0880F2A6A1F0 /* SummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreen.swift; sourceTree = "<group>"; };
+		6F62057DD333871EA66459D3 /* LivePillHarness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePillHarness.swift; sourceTree = "<group>"; };
+		72BA9288F92A58719CA032CD /* SummaryNightCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryNightCard.swift; sourceTree = "<group>"; };
+		74E35B01A1EF67E7229346A7 /* SummaryCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCards.swift; sourceTree = "<group>"; };
+		760C741AF41DD66B5FC369AF /* SpaceMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Bold.ttf"; sourceTree = "<group>"; };
+		7AB8537DBA8F6774CD120C17 /* TwinIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwinIcon.swift; sourceTree = "<group>"; };
+		7C8235AB06029C117D8E8B36 /* TrendsCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsCards.swift; sourceTree = "<group>"; };
+		81469EE688A63C6968697870 /* LiveRelayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveRelayClient.swift; sourceTree = "<group>"; };
+		83588CEFBC0B69A2FB905A13 /* Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Watch.entitlements; sourceTree = "<group>"; };
+		88CF0F5B4A8F4AB5381388F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		89663F3DDC66BCF5E2268A7E /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		8FDA7FBEEDDC38AC625DB4D1 /* ChatThreadViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatThreadViews.swift; sourceTree = "<group>"; };
+		98215790D60CBA5BA7B09831 /* TrendsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsData.swift; sourceTree = "<group>"; };
+		9C1E58D8F83E40F3AE8F4941 /* TrendsEventSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsEventSheet.swift; sourceTree = "<group>"; };
+		A05C32B1D057DE4A32192BED /* LiveGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveGraph.swift; sourceTree = "<group>"; };
+		A751231395BD9B08F0494C6A /* BackgroundRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRecorder.swift; sourceTree = "<group>"; };
+		A85310267F1C2C624378E505 /* EczemaTwin.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = EczemaTwin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6FEF26FC09D4CA7D5E7D3E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		B46BACD158F10E448128766E /* QuarterHourChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuarterHourChart.swift; sourceTree = "<group>"; };
+		B48969043B79B3104CD06543 /* ChatSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSession.swift; sourceTree = "<group>"; };
+		BB1B3BDB0E5C9F0AE7DBB8F0 /* EczemaTwinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EczemaTwinApp.swift; sourceTree = "<group>"; };
+		C1CF5CD9D03422FC9CECB0A0 /* DailyScratchChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyScratchChart.swift; sourceTree = "<group>"; };
+		C4920F844414A5B8042B0564 /* LiveBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveBars.swift; sourceTree = "<group>"; };
+		CB1BD32C0370C9BA3147BBF8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		CDFA3B16DEEAFCB72E81305C /* HealthReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReader.swift; sourceTree = "<group>"; };
+		D6DFB5BE1CFD7993FDB2CDDA /* OverlayBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayBarChart.swift; sourceTree = "<group>"; };
+		D76256B4672DD738B542C92E /* WatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchModel.swift; sourceTree = "<group>"; };
+		D79954630B15D2F8FC68A0DF /* WatchStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchStyle.swift; sourceTree = "<group>"; };
+		DE35167A82BBFBAF22509A89 /* LivePill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivePill.swift; sourceTree = "<group>"; };
+		DED0BAE1425EE27470E3A238 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		E06B0299ACCBE9F04008DCEE /* SpaceMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpaceMono-Regular.ttf"; sourceTree = "<group>"; };
+		E5DACAB9E72DC72192AD47F7 /* LiveMonitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveMonitorView.swift; sourceTree = "<group>"; };
+		F06FE54F03E23DB9D8E77B2B /* DeviceAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAccess.swift; sourceTree = "<group>"; };
+		F46435E4265D80659F5FDFE1 /* NessieOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NessieOrders.swift; sourceTree = "<group>"; };
+		F4C2E3A3EE2BA5714D4874E1 /* SignalLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalLineChart.swift; sourceTree = "<group>"; };
+		FF0D84168AA9EA0F518A4E6A /* SummaryStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryStory.swift; sourceTree = "<group>"; };
+		FF4B2897C6CCC760F580D166 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2BC1E074B206AA46C42F6D99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16198B1E0902547DBE01046A /* EczemaKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C9B626023B0A96E4AF49F88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0A78FEA08952544FA30DCCB /* EczemaKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0356E82B19003A307DA01107 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				89663F3DDC66BCF5E2268A7E /* Components.swift */,
+				CB1BD32C0370C9BA3147BBF8 /* Theme.swift */,
+				7AB8537DBA8F6774CD120C17 /* TwinIcon.swift */,
+				B210365C0A31A49ED759582A /* Charts */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		06F6974B18449FB8E9923108 /* Trends */ = {
+			isa = PBXGroup;
+			children = (
+				7C8235AB06029C117D8E8B36 /* TrendsCards.swift */,
+				98215790D60CBA5BA7B09831 /* TrendsData.swift */,
+				9C1E58D8F83E40F3AE8F4941 /* TrendsEventSheet.swift */,
+				3C04AF9BC2B991DBCAF4D604 /* TrendsScreen.swift */,
+			);
+			path = Trends;
+			sourceTree = "<group>";
+		};
+		18666BBF75C3CFD3229313D9 = {
+			isa = PBXGroup;
+			children = (
+				8771134B00CC7CEE6E47E2C8 /* App */,
+				65E7B0701181B66423E637D8 /* Packages */,
+				197807F1E111C470937530AF /* Shared */,
+				EC6BA7FFA5F57D7AF498736D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		197807F1E111C470937530AF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0356E82B19003A307DA01107 /* Design */,
+				B4303CE4E3CD909334CFD5C1 /* Fonts */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1BA830139C88988BB068EDA5 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				53312E31F08FE80F384BD385 /* MonitorScreen.swift */,
+				1896AB6DB5F3888888AF15F3 /* WatchRootView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		1E6D1A1F79F13B8EE073EF1F /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B7B14C593DEB238324CE878C /* Insight */,
+				C789BC6DD513FFE97987A182 /* Live */,
+				24741B5495207B5EE361943C /* Onboarding */,
+				90237B4267E63A12BD5A5271 /* Today */,
+				06F6974B18449FB8E9923108 /* Trends */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		24741B5495207B5EE361943C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2B4B2A61F1C1F47AA1510E8B /* PermissionCards.swift */,
+				105BB566FA59048640D3660B /* PermissionsScreen.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2DEE757F23B1A7FDCF9B865C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F06FE54F03E23DB9D8E77B2B /* DeviceAccess.swift */,
+				CDFA3B16DEEAFCB72E81305C /* HealthReader.swift */,
+				481F1833102702AFC8CDF5A2 /* RealData.swift */,
+				13EE34011CA4E78402E237D3 /* ShellServices.swift */,
+				2F129293B2FD6E909EB3AC01 /* WatchInbox.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		47C926AB866A18113A90D7E7 /* Shell */ = {
+			isa = PBXGroup;
+			children = (
+				DED0BAE1425EE27470E3A238 /* AppState.swift */,
+				14B537D92374DD10C70E95B5 /* ControlPressStyle.swift */,
+				FF4B2897C6CCC760F580D166 /* HUD.swift */,
+				208DBA8B4BEC280B2C06EBFB /* LaunchScreen.storyboard */,
+				3D89D19DC74A0E0D71E60FF2 /* OrientationLock.swift */,
+				0F964877FF3ADC4D998AAC93 /* RootView.swift */,
+				10CB0563BBE0CC1D12498743 /* ScreenScaffold.swift */,
+				68A5DF5B6053F283ACF19DAA /* StageNotifications.swift */,
+				AA6FEF26FC09D4CA7D5E7D3E /* TabBar.swift */,
+			);
+			path = Shell;
+			sourceTree = "<group>";
+		};
+		65E7B0701181B66423E637D8 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				253171EEA7790B9CB34EF61E /* EczemaKit */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		6A492CE496E773C55C05C64D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A751231395BD9B08F0494C6A /* BackgroundRecorder.swift */,
+				4E03FADE1874C4C509264EC8 /* LiveMonitor.swift */,
+				1D71746025FCD0137A6FD57A /* LiveStreamer.swift */,
+				3A0CBE45AF6B83E4BCF4F4A4 /* PhoneLink.swift */,
+				0DDD38B993F1AA1D0BC536CA /* WatchStore.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		80B0768FDC331470133A0E1E /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				20725F17361B3FA040D79E6C /* Assets.xcassets */,
+				347396144EA7921BA5D444F0 /* EczemaTwinWatchApp.swift */,
+				188F7FF09D624D55923C26C6 /* Info.plist */,
+				570EC8EF09994F162B38DB16 /* Live.xcconfig */,
+				83588CEFBC0B69A2FB905A13 /* Watch.entitlements */,
+				D76256B4672DD738B542C92E /* WatchModel.swift */,
+				E75F4075DE13665B01073360 /* Design */,
+				1BA830139C88988BB068EDA5 /* Screens */,
+				6A492CE496E773C55C05C64D /* Services */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		8771134B00CC7CEE6E47E2C8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B340534EAFEEC70AA9907F4F /* iOS */,
+				80B0768FDC331470133A0E1E /* Watch */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		90237B4267E63A12BD5A5271 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				74E35B01A1EF67E7229346A7 /* SummaryCards.swift */,
+				72BA9288F92A58719CA032CD /* SummaryNightCard.swift */,
+				6C71ED35D0EF0880F2A6A1F0 /* SummaryScreen.swift */,
+				FF0D84168AA9EA0F518A4E6A /* SummaryStory.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		B210365C0A31A49ED759582A /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				6B4CF87A7465A89E733C681C /* ChartRangePicker.swift */,
+				C1CF5CD9D03422FC9CECB0A0 /* DailyScratchChart.swift */,
+				59666E413FAD8FCAACA96F91 /* HourlyScratchChart.swift */,
+				D6DFB5BE1CFD7993FDB2CDDA /* OverlayBarChart.swift */,
+				B46BACD158F10E448128766E /* QuarterHourChart.swift */,
+				F4C2E3A3EE2BA5714D4874E1 /* SignalLineChart.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		B340534EAFEEC70AA9907F4F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2041CCD0264F87E0A11694E2 /* Assets.xcassets */,
+				BB1B3BDB0E5C9F0AE7DBB8F0 /* EczemaTwinApp.swift */,
+				88CF0F5B4A8F4AB5381388F1 /* Info.plist */,
+				344A6C9801EFCF8F5AE3E2C0 /* iOS.entitlements */,
+				1E6D1A1F79F13B8EE073EF1F /* Screens */,
+				2DEE757F23B1A7FDCF9B865C /* Services */,
+				47C926AB866A18113A90D7E7 /* Shell */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		B4303CE4E3CD909334CFD5C1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5808DD3E3B07C0808DABFD4C /* OFL.txt */,
+				34F1487CBB263DD93F8907CC /* SpaceGrotesk.ttf */,
+				760C741AF41DD66B5FC369AF /* SpaceMono-Bold.ttf */,
+				E06B0299ACCBE9F04008DCEE /* SpaceMono-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B7B14C593DEB238324CE878C /* Insight */ = {
+			isa = PBXGroup;
+			children = (
+				5DDE81F3D6AE5C299424DE60 /* ChatCards.swift */,
+				3C0B21276CACC2600D384D2D /* ChatComposer.swift */,
+				B48969043B79B3104CD06543 /* ChatSession.swift */,
+				8FDA7FBEEDDC38AC625DB4D1 /* ChatThreadViews.swift */,
+				2C6F0189F64A4798731B6B1D /* InsightScreen.swift */,
+				F46435E4265D80659F5FDFE1 /* NessieOrders.swift */,
+			);
+			path = Insight;
+			sourceTree = "<group>";
+		};
+		C789BC6DD513FFE97987A182 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				C4920F844414A5B8042B0564 /* LiveBars.swift */,
+				A05C32B1D057DE4A32192BED /* LiveGraph.swift */,
+				5CFE75E6C8B3CF0CA5E9973C /* LiveMonitorPresenter.swift */,
+				E5DACAB9E72DC72192AD47F7 /* LiveMonitorView.swift */,
+				DE35167A82BBFBAF22509A89 /* LivePill.swift */,
+				6F62057DD333871EA66459D3 /* LivePillHarness.swift */,
+				81469EE688A63C6968697870 /* LiveRelayClient.swift */,
+				533848905591F2813A5E3EA9 /* LiveReplay.swift */,
+				1C51CCC0F091E681A181E4C7 /* LiveSession.swift */,
+				014BDD3C1323481999354AAB /* LiveSimulator.swift */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		E75F4075DE13665B01073360 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				D79954630B15D2F8FC68A0DF /* WatchStyle.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		EC6BA7FFA5F57D7AF498736D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A85310267F1C2C624378E505 /* EczemaTwin.app */,
+				28A06BF100E5C5473F4637B6 /* EczemaTwinWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C030AFAFB481B02FA35A4BB /* EczemaTwin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BA41CCE8752521DE561AEA0 /* Build configuration list for PBXNativeTarget "EczemaTwin" */;
+			buildPhases = (
+				BD44CB3B0E430AB6373E160F /* Sources */,
+				36BA0EEFEE9CC869E44845DB /* Resources */,
+				5C9B626023B0A96E4AF49F88 /* Frameworks */,
+				34484D5B107CB9EAE91C0F1B /* Embed Dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C52236C7438F2A31813460F /* PBXTargetDependency */,
+			);
+			name = EczemaTwin;
+			packageProductDependencies = (
+				D2EA930CC5E12E9FB0AD6085 /* EczemaKit */,
+			);
+			productName = EczemaTwin;
+			productReference = A85310267F1C2C624378E505 /* EczemaTwin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C13D0BE614F5D65663717916 /* EczemaTwinWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9EAAB2AB4E30E6AF31845C1 /* Build configuration list for PBXNativeTarget "EczemaTwinWatch" */;
+			buildPhases = (
+				BB278B87A0CE758A57771495 /* Sources */,
+				30E544C624E66A26CDF7C0C7 /* Resources */,
+				2BC1E074B206AA46C42F6D99 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EczemaTwinWatch;
+			packageProductDependencies = (
+				D117CFDD5A0CB67976CB8EDD /* EczemaKit */,
+			);
+			productName = EczemaTwinWatch;
+			productReference = 28A06BF100E5C5473F4637B6 /* EczemaTwinWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F666E875112B38711841008D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					4C030AFAFB481B02FA35A4BB = {
+						DevelopmentTeam = 35AD3DPH6Y;
+						ProvisioningStyle = Automatic;
+					};
+					C13D0BE614F5D65663717916 = {
+						DevelopmentTeam = 35AD3DPH6Y;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E01F434CC5D316535DDA8E20 /* Build configuration list for PBXProject "EczemaTwin" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 18666BBF75C3CFD3229313D9;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CFD316D3F71889A831722A0F /* XCLocalSwiftPackageReference "Packages/EczemaKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EC6BA7FFA5F57D7AF498736D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C030AFAFB481B02FA35A4BB /* EczemaTwin */,
+				C13D0BE614F5D65663717916 /* EczemaTwinWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30E544C624E66A26CDF7C0C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E9284535284EC823FEA719 /* Assets.xcassets in Resources */,
+				53433D0CAB530186BAFCE27D /* OFL.txt in Resources */,
+				575C311180B313796A89B293 /* SpaceGrotesk.ttf in Resources */,
+				13D46B0D36E7759EF572CF10 /* SpaceMono-Bold.ttf in Resources */,
+				C2A59A49ED98B9FB21169240 /* SpaceMono-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BA0EEFEE9CC869E44845DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6120A254393C824E106A6B6B /* Assets.xcassets in Resources */,
+				705CFBCBD31A268ABDEA6257 /* LaunchScreen.storyboard in Resources */,
+				959BBFBC752662D7AAB67D08 /* OFL.txt in Resources */,
+				184EB3599E5C593625792027 /* SpaceGrotesk.ttf in Resources */,
+				51602C72B717C6AE9C70EDC7 /* SpaceMono-Bold.ttf in Resources */,
+				E7784C3DF5F23040BB783975 /* SpaceMono-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB278B87A0CE758A57771495 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				998F5DCB0D1CBBCA7DEE045A /* BackgroundRecorder.swift in Sources */,
+				A5169C554658DF70A339839D /* ChartRangePicker.swift in Sources */,
+				3CDADBC963B59E1BD2BB8FB0 /* Components.swift in Sources */,
+				B279BD03EE0B06C033805E4B /* DailyScratchChart.swift in Sources */,
+				FB96FE91564D485C7A2AF6FA /* EczemaTwinWatchApp.swift in Sources */,
+				3B7C6E1ADB8ADA307ECD856C /* HourlyScratchChart.swift in Sources */,
+				460A0A6955DA3D851D5F5841 /* LiveMonitor.swift in Sources */,
+				48F3E315ABEC5638185AB796 /* LiveStreamer.swift in Sources */,
+				558DF6DCEFC8FDF1D72D9448 /* MonitorScreen.swift in Sources */,
+				268E502DC7BD2019A1C29ACC /* OverlayBarChart.swift in Sources */,
+				FD5C701082C639F24C217B9A /* PhoneLink.swift in Sources */,
+				113E1A6B663B35AC7A91E6C3 /* QuarterHourChart.swift in Sources */,
+				A90000FCDEC8CC5078CD99E6 /* SignalLineChart.swift in Sources */,
+				976E54F3AC11E418205AA68F /* Theme.swift in Sources */,
+				B98500EFEC7EF5D8EBEE6E58 /* TwinIcon.swift in Sources */,
+				F30C8F2E8CFA7CE2833457E0 /* WatchModel.swift in Sources */,
+				4CFF2785CF7513EE7129DC52 /* WatchRootView.swift in Sources */,
+				359AE6B20330D10C7AEBF9CF /* WatchStore.swift in Sources */,
+				9979B2C5E14FDE97E264DC7B /* WatchStyle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD44CB3B0E430AB6373E160F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37712494B0D3905517DCDA96 /* AppState.swift in Sources */,
+				86CB04D942289675C860D6B3 /* ChartRangePicker.swift in Sources */,
+				C58F6EFE338BB4CE2C6A6B20 /* ChatCards.swift in Sources */,
+				50645F761E8D1F3581E01CDB /* ChatComposer.swift in Sources */,
+				E574D0D481A6EFEDCFB60FB4 /* ChatSession.swift in Sources */,
+				3A51F8AE6065B3E76AAAB512 /* ChatThreadViews.swift in Sources */,
+				6E35D893E7F698AF7831E9C7 /* Components.swift in Sources */,
+				0AE803FEBCE322AD828F98C3 /* ControlPressStyle.swift in Sources */,
+				73C3C31B9F91D0396052115D /* DailyScratchChart.swift in Sources */,
+				BBBB1A58B05588354A87B2D1 /* DeviceAccess.swift in Sources */,
+				04DC01E1881FF54A9FD43214 /* EczemaTwinApp.swift in Sources */,
+				0FEF86B880FBE9ADB8724590 /* HUD.swift in Sources */,
+				7FC61495F36D235D7E17894E /* HealthReader.swift in Sources */,
+				A1348D1CAFD23E2A8D2BBE70 /* HourlyScratchChart.swift in Sources */,
+				10056456D441FC06F7913DF4 /* InsightScreen.swift in Sources */,
+				BE0F69BD38BD8F2F926E4A96 /* LiveBars.swift in Sources */,
+				C2C5EC54813E8B22D7D1F26F /* LiveGraph.swift in Sources */,
+				8AF9D793035A366205AE4763 /* LiveMonitorPresenter.swift in Sources */,
+				FA881C809B2B0BECE02DB009 /* LiveMonitorView.swift in Sources */,
+				0C47E3279B980203D1702F0C /* LivePill.swift in Sources */,
+				AF4D133AC33F342368291A4D /* LivePillHarness.swift in Sources */,
+				B56138DA790475C50A2F4DA9 /* LiveRelayClient.swift in Sources */,
+				5D8AFA25300C7981940B9159 /* LiveReplay.swift in Sources */,
+				9D9B9FC68BFEAFB2383B40AC /* LiveSession.swift in Sources */,
+				B6FA149DF727D940229BFB48 /* LiveSimulator.swift in Sources */,
+				35D381A4B70778CB4D6359AF /* NessieOrders.swift in Sources */,
+				48428B69503D7D7EB001E6C7 /* OrientationLock.swift in Sources */,
+				D826614D296D25D1EC6F52F9 /* OverlayBarChart.swift in Sources */,
+				5342282DDF4A954661FA364C /* PermissionCards.swift in Sources */,
+				79D322D18A4F64C1FFE34A10 /* PermissionsScreen.swift in Sources */,
+				63F214BF2D73BD94C75EA70A /* QuarterHourChart.swift in Sources */,
+				198CB74A61347DCE1EFF0344 /* RealData.swift in Sources */,
+				49DBBE7537FBF36FA86BF2FB /* RootView.swift in Sources */,
+				21EED874B53BF2CE9BFAAE8D /* ScreenScaffold.swift in Sources */,
+				94A027040E07F67FEA7A5AA0 /* ShellServices.swift in Sources */,
+				44E1B82DB431995C57861E74 /* SignalLineChart.swift in Sources */,
+				6E863BB33E3B8A9E282A337B /* StageNotifications.swift in Sources */,
+				ACBF7EF4271BF60AF75F8C1F /* SummaryCards.swift in Sources */,
+				322CD2D0B89ACACA80385057 /* SummaryNightCard.swift in Sources */,
+				E55B86B8E25DE8774687E072 /* SummaryScreen.swift in Sources */,
+				111FA460D673B6A23A03B139 /* SummaryStory.swift in Sources */,
+				26C1685BBABC00BA05327816 /* TabBar.swift in Sources */,
+				6E46972D47205DEEBB367D44 /* Theme.swift in Sources */,
+				20C008F0F3148CC5188759D9 /* TrendsCards.swift in Sources */,
+				419C301295E5357B8D63267E /* TrendsData.swift in Sources */,
+				F33CDDB440F084232959FCA2 /* TrendsEventSheet.swift in Sources */,
+				42ED95C8E40E85E16A17A3B8 /* TrendsScreen.swift in Sources */,
+				5B43630FAAAFBC128522A885 /* TwinIcon.swift in Sources */,
+				6F41A92F75EFB90FB03BBDBC /* WatchInbox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C52236C7438F2A31813460F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C13D0BE614F5D65663717916 /* EczemaTwinWatch */;
+			targetProxy = 816BA3BA89E4AFF16B90F73B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		070844BE4F3B5E8314368803 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 35AD3DPH6Y;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		0AF52EE9B9198B1FC35440A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 570EC8EF09994F162B38DB16 /* Live.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/Watch/Watch.entitlements;
+				INFOPLIST_FILE = App/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackyzhong.eczematwin2.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		59AA04D222984194EF60731F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 570EC8EF09994F162B38DB16 /* Live.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/Watch/Watch.entitlements;
+				INFOPLIST_FILE = App/Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackyzhong.eczematwin2.watchkitapp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		71B4DB803D43F6EAA326AF02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 35AD3DPH6Y;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		76F36AB87E24D6D84326F531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackyzhong.eczematwin2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		8C5F704222D52D497822E6CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/iOS/iOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jackyzhong.eczematwin2;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6BA41CCE8752521DE561AEA0 /* Build configuration list for PBXNativeTarget "EczemaTwin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5F704222D52D497822E6CD /* Debug */,
+				76F36AB87E24D6D84326F531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A9EAAB2AB4E30E6AF31845C1 /* Build configuration list for PBXNativeTarget "EczemaTwinWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0AF52EE9B9198B1FC35440A2 /* Debug */,
+				59AA04D222984194EF60731F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E01F434CC5D316535DDA8E20 /* Build configuration list for PBXProject "EczemaTwin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				070844BE4F3B5E8314368803 /* Debug */,
+				71B4DB803D43F6EAA326AF02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		CFD316D3F71889A831722A0F /* XCLocalSwiftPackageReference "Packages/EczemaKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/EczemaKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D117CFDD5A0CB67976CB8EDD /* EczemaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EczemaKit;
+		};
+		D2EA930CC5E12E9FB0AD6085 /* EczemaKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = EczemaKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F666E875112B38711841008D /* Project object */;
+}
